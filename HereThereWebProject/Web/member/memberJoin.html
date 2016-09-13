@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입페이지</title>
+</head>
+<body>
+ <center>
+	<h1>회원 가입 페이지</h1>
+	<form action="../mjoin" method="post">
+	<table width="700">
+		<tr bgcolor="yellow">
+		<th width="150">항 목</th><th width="550">내 용</th></tr>
+		<tr><td bgcolor="#66ccff" align="center">아 이 디</td>
+			<td><input type="text" id="mbid" name="mbid" required></td></tr>
+		<tr><td align="center">이 &nbsp; 름</td>
+			<td><input type="text" id="mbname" name="mbname" required></td></tr>
+		<tr><td bgcolor="#66ccff" align="center">암 &nbsp; 호</td>
+			<td><input type="password" id="mbpwd1" name="mbpwd" required></td></tr>
+		<tr><td align="center">암호확인</td>
+			<td><input type="password" id="mbpwd2" required></td></tr>
+		<tr><td align="center">이 메 일</td>
+			<td><input type="email" name="email" id="email"></td></tr>
+		<tr><td bgcolor="#66ccff" align="center">성 &nbsp; 별</td>
+			<td><input type="radio" name="gender" value="M"> 남  &nbsp;
+				<input type="radio" name="gender" value="F"> 여  &nbsp;</td></tr>
+		<tr><td bgcolor="#66ccff" align="center">생 &nbsp; 일</td>
+			<td><input type="date" name="birthdate"></td></tr>
+		<tr><td align="center">전화번호</td>
+			<td><input type="tel" name="phone" placeholder="- 포함 입력"></td></tr>
+		
+		<tr><td bgcolor="#66ccff" colspan="2" align="center">
+			<input type="submit" value="가입하기"> &nbsp;
+			<input type="reset" value="다시작성"> &nbsp;
+			<input type="button" value="취소" onclick="javascript:history.go(-1);">
+		</td></tr>
+	</table>
+	</form>
+ </center>
+</body>
+</html>
