@@ -18,6 +18,7 @@ public class Board {
 	private int bdShingoCnt;		//게시글에 대한 신고 횟수
 	private ArrayList bdImages;		//게시글에 들어갈 사진파일 리스트
 	private String mapInfo;			//게시글에 들어갈 맵 정보
+	private String map;
 	
 	public Board(){}
 
