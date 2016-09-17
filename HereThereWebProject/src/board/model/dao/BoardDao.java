@@ -204,4 +204,60 @@ public class BoardDao {
 		
 		return list;		
 	}
+
+	public int insertBoard(Connection con, Board board) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = "insert into board values()";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			// pstmt.setString() 추가
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteBoard(Connection con, int boardNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = "delete from board where bd_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection con, Board board) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = ""; // update 쿼리 추가
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			// pstmt.setString() 추가
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
