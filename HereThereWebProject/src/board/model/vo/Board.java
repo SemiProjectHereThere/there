@@ -16,9 +16,8 @@ public class Board {
 	private int bdCommentCnt;		//게시글의 댓글 갯수
 	private int bdStarPt;			//게시글의 별점
 	private int bdShingoCnt;		//게시글에 대한 신고 횟수
-	private ArrayList bdImages;		//게시글에 들어갈 사진파일 리스트
+	private ArrayList bdImages = new ArrayList();		//게시글에 들어갈 사진파일 리스트
 	private String mapInfo;			//게시글에 들어갈 맵 정보
-	private String map;
 	
 	public Board(){}
 
@@ -150,7 +149,7 @@ public class Board {
 		return bdTitle + ", " + bdNo + ", " + bdContent + ", " + bdWriter
 				+ ", " + bdEnrollDate + ", " + bdCategory + ", " + bdLocation
 				+ ", " + bdReadCnt + ", " + bdCommentCnt + ", " + bdStarPt
-				+ ", b" + bdShingoCnt + ", " + bdImages + ", " + mapInfo;
+				+ ", " + bdShingoCnt + ", " + bdImages + ", " + mapInfo;
 	}
 	
 	
