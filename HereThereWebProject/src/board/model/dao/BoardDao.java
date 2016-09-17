@@ -1,6 +1,7 @@
 package board.model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -150,6 +151,55 @@ public class BoardDao {
 		}finally{
 			close(rset);
 			close(stmt);
+		}
+		
+		return list;		
+	}
+
+	public ArrayList<Board> selectAll(Connection con, String userId) {
+		// 전체게시물을 list에 저장하는 메소드
+		ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";		//등록순으로 정렬하여 list에 담는다. Board 테이블에서 userId로 select all함.
+		
+		Board bd = null;
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;		
+	}
+
+	public ArrayList<Board> selectFavorite(Connection con, String userId) {
+		// 전체게시물을 list에 저장하는 메소드
+		ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";		//Favorite 테이블에서 userId로 select all함.
+								//FA_BD_NO로 orderby해서 list에 담는다.
+		
+		Board bd = null;
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
 		}
 		
 		return list;		

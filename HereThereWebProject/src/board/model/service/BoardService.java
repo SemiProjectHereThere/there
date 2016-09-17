@@ -13,6 +13,7 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectAll(con);
+		close(con);
 		return list;
 	}
 
@@ -20,6 +21,7 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectPartByLoc(con, loc);
+		close(con);
 		return list;
 	}
 
@@ -27,6 +29,7 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectPartByCategory(con, category);
+		close(con);
 		return list;
 	}
 
@@ -34,6 +37,7 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectPartByPopular(con, popular);
+		close(con);
 		return list;
 		}
 
@@ -41,6 +45,7 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectPartByStarPt(con, starPt);
+		close(con);
 		return list;
 	}
 
@@ -48,6 +53,23 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectPartByCommentCnt(con, commentCnt);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Board> selectAll(String userId) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectAll(con, userId);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Board> selectFavorite(String userId) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectFavorite(con, userId);
+		close(con);
 		return list;
 	}
 
