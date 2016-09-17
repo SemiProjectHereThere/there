@@ -11,18 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
 import board.model.vo.Board;
+import board.model.vo.Picture;
 
 /**
- * Servlet implementation class BoardPartByCommentCntServlet
+ * Servlet implementation class BoardDetailViewServlet
  */
-@WebServlet("/BoardPartByCommentCnt")
-public class BoardPartByCommentCntServlet extends HttpServlet {
+@WebServlet("/BoardDetailView")
+public class BoardDetailViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardPartByCommentCntServlet() {
+    public BoardDetailViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +32,23 @@ public class BoardPartByCommentCntServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//게시물페이지에서 댓글개수별 분류부분을 클릭시 작동하는 servlet
+		// 게시판jsp에서 세부정보를 보기위해 게시물 제목 클릭시 작동되는 servlet
 		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		ArrayList<Board> list = new BoardService().selectPartByCommentCnt();
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
-		if(list != null){
-			//RequestDispatcer를 이용 게시물jsp로 list를 넘김.
+		Board board = new BoardService().selectOne(boardNo);
+		ArrayList<Picture> list = new BoardService().selectPicAll(boardNo);
+		
+		if(board != null){
+			//RequestDispatcer를 이용 게시물 디테일뷰jsp로 list를 넘김.
 		}else{
 			//db 불러오기 실패 페이지로 sendRedirect함.
 		}	
-		}
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

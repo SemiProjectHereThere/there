@@ -36,9 +36,7 @@ public class BoardPartByStarPtServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String starPt = request.getParameter("starPt");
-		
-		ArrayList<Board> list = new BoardService().selectPartByStarPt(starPt);
+		ArrayList<Board> list = new BoardService().selectPartByStarPt();
 		
 		if(list != null){
 			//RequestDispatcer를 이용 게시물jsp로 list를 넘김.

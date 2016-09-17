@@ -36,9 +36,7 @@ public class BoardPartByPopularServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String popular = request.getParameter("popular");
-		
-		ArrayList<Board> list = new BoardService().selectPartByPopular(popular);
+		ArrayList<Board> list = new BoardService().selectPartByPopular();
 		
 		if(list != null){
 			//RequestDispatcer를 이용 게시물jsp로 list를 넘김.

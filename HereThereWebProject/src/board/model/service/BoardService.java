@@ -6,6 +6,7 @@ import static common.JDBCTemplate.*;
 
 import board.model.dao.BoardDao;
 import board.model.vo.Board;
+import board.model.vo.Picture;
 
 public class BoardService {
 
@@ -33,26 +34,26 @@ public class BoardService {
 		return list;
 	}
 
-	public ArrayList<Board> selectPartByPopular(String popular) {
+	public ArrayList<Board> selectPartByPopular() {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
-		list = new BoardDao().selectPartByPopular(con, popular);
+		list = new BoardDao().selectPartByPopular(con);
 		close(con);
 		return list;
 		}
 
-	public ArrayList<Board> selectPartByStarPt(String starPt) {
+	public ArrayList<Board> selectPartByStarPt() {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
-		list = new BoardDao().selectPartByStarPt(con, starPt);
+		list = new BoardDao().selectPartByStarPt(con);
 		close(con);
 		return list;
 	}
 
-	public ArrayList<Board> selectPartByCommentCnt(String commentCnt) {
+	public ArrayList<Board> selectPartByCommentCnt() {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
-		list = new BoardDao().selectPartByCommentCnt(con, commentCnt);
+		list = new BoardDao().selectPartByCommentCnt(con);
 		close(con);
 		return list;
 	}
@@ -69,6 +70,22 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectFavorite(con, userId);
+		close(con);
+		return list;
+	}
+
+	public Board selectOne(int boardNo) {
+		Board board = null;
+		Connection con = getConnection();
+		board = new BoardDao().selectOne(con, boardNo);
+		close(con);
+		return board;
+	}
+
+	public ArrayList<Picture> selectPicAll(int boardNo) {
+		ArrayList<Picture> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPicAll(con, boardNo);
 		close(con);
 		return list;
 	}

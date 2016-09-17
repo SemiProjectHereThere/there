@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import board.model.vo.Board;
+import board.model.vo.Picture;
+
 import static common.JDBCTemplate.*;
 
 public class BoardDao {
@@ -84,7 +86,7 @@ public class BoardDao {
 		
 	}
 
-	public ArrayList<Board> selectPartByPopular(Connection con, String popular) {
+	public ArrayList<Board> selectPartByPopular(Connection con) {
 		//인기순별로 분류된 게시물을 list에 담는 메소드
 		ArrayList<Board> list = null;
 		
@@ -108,7 +110,7 @@ public class BoardDao {
 		return list;		
 		}
 
-	public ArrayList<Board> selectPartByStarPt(Connection con, String starPt) {
+	public ArrayList<Board> selectPartByStarPt(Connection con) {
 		//별점순별로 분류된 게시물을 list에 담는 메소드
 		ArrayList<Board> list = null;
 		
@@ -132,7 +134,7 @@ public class BoardDao {
 		return list;		
 	}
 
-	public ArrayList<Board> selectPartByCommentCnt(Connection con, String commentCnt) {
+	public ArrayList<Board> selectPartByCommentCnt(Connection con) {
 		//댓글개수 순별로 분류된 게시물을 list에 담는 메소드
 		ArrayList<Board> list = null;
 		
@@ -204,4 +206,51 @@ public class BoardDao {
 		
 		return list;		
 	}
+
+	public Board selectOne(Connection con, int boardNo) {
+		// 게시물 세부정보를 board 객체에 저장하는 메소드
+		Board board = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";		//board 테이블에서 boardNo로 select all함.
+		
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return board;		
+	}
+
+	public ArrayList<Picture> selectPicAll(Connection con, int boardNo) {
+		// 사진 세부정보를 ArrayList 객체에 저장하는 메소드
+		ArrayList<Picture> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";		//사진 테이블에서 boardNo로 original, rename select함.
+								//Picture 객체에 저장 후 리스트에 객체를 저장
+		
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;	
+		}
 }
