@@ -5,15 +5,15 @@ import java.sql.Date;
 public class Member implements java.io.Serializable{
 	public Member(){}
 	
-	private String memberId;
-	private String memberPwd;
-	private String memberName;
-	private String email;
-	private char gender;
-	private Date birthday;
-	private String phone;
-	private Date joinDate;
-	private char managerYN;
+	private String memberId; //회원의 아이디
+	private String memberPwd; //회원의 비밀번호
+	private String memberName; //회원의 이름
+	private String email; //회원의 이메일
+	private char gender; //회원의 성별
+	private Date birthday; //회원의 생년월일
+	private String phone; //회원의 전화번호
+	private Date joinDate;  //회원의 가입날짜
+	private char managerYN; //회원의 매니저 여부
 	
 	
 	
