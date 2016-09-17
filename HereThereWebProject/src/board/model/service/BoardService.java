@@ -90,6 +90,42 @@ public class BoardService {
 		return list;
 	}
 
+	public int insertBoard(Board board) {
+		Connection con = getConnection();
+		int result = new BoardDao().insertBoard(con, board);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int deleteBoard(int boardNo) {
+		Connection con = getConnection();
+		int result = new BoardDao().deleteBoard(con, boardNo);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int updateBoard(Board board) {
+		Connection con = getConnection();
+		int result = new BoardDao().updateBoard(con, board);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
 	
 
 }

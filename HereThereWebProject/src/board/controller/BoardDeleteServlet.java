@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
+
 /**
  * Servlet implementation class BoardDeleteServlet
  */
@@ -28,6 +30,17 @@ public class BoardDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		
+		//파라미터 부분
+		int boardNo = (Integer) null;
+		
+		int result = new BoardService().deleteBoard(boardNo);
+		
+		if(result > 0){
+			//성공시 게시판 리스트로 sendRedirect
+		}else{
+			//실패시 RequestDispatcher
+		}
 	}
 
 	/**

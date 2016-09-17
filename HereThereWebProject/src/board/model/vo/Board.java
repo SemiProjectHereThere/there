@@ -1,6 +1,7 @@
 package board.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Board {
 	
@@ -15,11 +16,14 @@ public class Board {
 	private int bdCommentCnt;		//게시글의 댓글 갯수
 	private int bdStarPt;			//게시글의 별점
 	private int bdShingoCnt;		//게시글에 대한 신고 횟수
+	private ArrayList bdImages;		//게시글에 들어갈 사진파일 리스트
+	private String mapInfo;			//게시글에 들어갈 맵 정보
 	
 	public Board(){}
 
 	public Board(String bdTitle, int bdNo, String bdContent, String bdWriter, Date bdEnrollDate, String bdCategory,
-			String bdLocation, int bdReadCnt, int bdCommentCnt, int bdStarPt, int bdShingo) {
+			String bdLocation, int bdReadCnt, int bdCommentCnt, int bdStarPt, int bdShingoCnt, ArrayList bdImages,
+			String mapInfo) {
 		super();
 		this.bdTitle = bdTitle;
 		this.bdNo = bdNo;
@@ -31,7 +35,9 @@ public class Board {
 		this.bdReadCnt = bdReadCnt;
 		this.bdCommentCnt = bdCommentCnt;
 		this.bdStarPt = bdStarPt;
-		this.bdShingoCnt = bdShingo;
+		this.bdShingoCnt = bdShingoCnt;
+		this.bdImages = bdImages;
+		this.mapInfo = mapInfo;
 	}
 
 	public String getBdTitle() {
@@ -114,19 +120,39 @@ public class Board {
 		this.bdStarPt = bdStarPt;
 	}
 
-	public int getBdShingo() {
+	public int getBdShingoCnt() {
 		return bdShingoCnt;
 	}
 
-	public void setBdShingo(int bdShingo) {
-		this.bdShingoCnt = bdShingo;
+	public void setBdShingoCnt(int bdShingoCnt) {
+		this.bdShingoCnt = bdShingoCnt;
+	}
+
+	public ArrayList getBdImages() {
+		return bdImages;
+	}
+
+	public void setBdImages(ArrayList bdImages) {
+		this.bdImages = bdImages;
+	}
+
+	public String getMapInfo() {
+		return mapInfo;
+	}
+
+	public void setMapInfo(String mapInfo) {
+		this.mapInfo = mapInfo;
+	}
+
+	@Override
+	public String toString() {
+		return bdTitle + ", " + bdNo + ", " + bdContent + ", " + bdWriter
+				+ ", " + bdEnrollDate + ", " + bdCategory + ", " + bdLocation
+				+ ", " + bdReadCnt + ", " + bdCommentCnt + ", " + bdStarPt
+				+ ", b" + bdShingoCnt + ", " + bdImages + ", " + mapInfo;
 	}
 	
-	@Override
-	public String toString(){
-		return bdTitle + ", " + bdNo + ", " + bdContent + ", " + bdWriter + ", " + bdEnrollDate + ", " + 
-	bdCategory + ", " + bdLocation + ", " + bdReadCnt + ", " + bdCommentCnt + ", " + bdStarPt + ", " + bdShingoCnt;
-	}
+	
 	
 	
 
