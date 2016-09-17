@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* 초기화 셋팅 */
+body, h1, h2, h3, h4, h5, h6, div, p, address, em, strong, a, img, ul, ol, li, dl, dd, dt, q, blockquote, table, tr, td, caption, thead, tbody, tfoot, form, input, fieldset, legend, select, option, label {margin:0; padding:0;}
+img, fieldset {border:none;}
+em, address {font-style:normal;}
+ul, ol {list-style:none;}
+a {text-decoration:none}
