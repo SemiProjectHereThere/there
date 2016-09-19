@@ -17,7 +17,7 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td id="editorTd"></td>
+			<td width="980px" id="editorTd"></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -78,8 +78,33 @@
 	        error : function(request, status, error) {
 				alert("에러");
 			}
-		});	
+		});
+		$("#save").click(function(){
+			Editor.save(); 
+		})
 })
+// submit 전 다음에디터 validation체크
+function validForm(editor) {
+	var validator = new Trex.Validator();
+	var content = editor.getContent();
+	if (!validator.exists(content)) {
+		alert('내용을 입력하세요');
+		return false;
+	}
+  return true;
+}
+
+//validForm 함수가 true로 return된 후에 동작하는 함수
+function setForm(editor) {
+        var form = editor.getForm();
+        var content = editor.getContent();
+        var textarea = document.createElement('textarea');
+        //textarea를 생성하여 해당태그에 에디터 입력값들을 신규생성 textarea에 담는다
+        textarea.name = 'content';
+        textarea.value = content;
+        form.createField(textarea);
+     return true;
+}
 </script>
 </body>
 </html>
