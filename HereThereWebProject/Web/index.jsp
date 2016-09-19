@@ -3,7 +3,6 @@
 
 <html>
 <head>
-<<<<<<< HEAD
   <title> YOGI JOGI </title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -153,7 +152,6 @@
 		</div>
 		<!-- footer End -->
 	</body>
-=======
 <meta charset="UTF-8">
 <title>메인페이지</title>
 </head>
@@ -180,5 +178,4 @@
 	<% } %>
 	<a href="/HereThere/board/boardWriteForm.jsp">글쓰기 페이지</a>
 </body>
->>>>>>> branch 'master' of https://github.com/SemiProjectHereThere/there
 </html>
