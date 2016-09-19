@@ -30,5 +30,6 @@
 		<% } %>
 	</ul>
 	<% } %>
+	<a href="/HereThere/board/boardWriteForm.jsp">글쓰기 페이지</a>
 </body>
 </html>
