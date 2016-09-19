@@ -18,6 +18,8 @@
         <textarea name="daumeditor" id="daumeditor" rows="10" cols="100" style="width:766px; height:412px;display: none;"></textarea>
         <input type="button" id="save_button" value="내용전송"/>
     </form>
+</div>
+<!-- 에디터 끝 -->
     <script type="text/javascript">
     $(function(){
         $.ajax({
@@ -108,7 +110,5 @@
         return true;
     }
     </script>
-</div>
-<!-- 에디터 끝 -->
 </body>
 </html>
