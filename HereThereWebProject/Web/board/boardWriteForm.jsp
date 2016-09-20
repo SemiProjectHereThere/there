@@ -4,20 +4,44 @@
 <head>
 <meta charset="UTF-8">
 <title>글쓰기 페이지</title>
-<link rel="stylesheet" href="../daumeditor/css/editor.css" type="text/css" charset="utf-8"/>
-<script src="../daumeditor/js/editor_loader.js?environment=development" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-<form name="tx_editor_form" id="tx_editor_form" action="/insert.jsp" method="post" accept-charset="utf-8">
+<form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
 <table width="100%">
 		<tr>
 			<td>제목</td>
 			<td><input type="text" id="title" name="title" /></td>
 		</tr>
 		<tr>
+			<td>지역분류</td>
+			<td><select name="location">
+				<option value="1">서울특별시</option>
+				<option value="2">인천광역시</option>
+				<option value="3">부산광역시</option>
+				<option value="4">울산광역시</option>
+				<option value="5">대구광역시</option>
+				<option value="6">대전광역시</option>
+				<option value="7">광주광역시</option>
+				<option value="8">경기도</option>
+				<option value="9">강원도</option>
+				<option value="10">충청북도</option>
+				<option value="11">충청남도</option>
+				<option value="12">전라북도</option>
+				<option value="13">전라남도</option>
+				<option value="14">경상북도</option>
+				<option value="15">경상남도</option>
+				<option value="16">제주도</option>
+			</select> &nbsp; &nbsp;
+			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
+			<input type="radio" name="category" value="2">맛집 &nbsp; &nbsp;
+			<input type="radio" name="category" value="3">명소 
+			</td>
+		</tr>
+		<tr>
 			<td>내용</td>
-			<td width="980px" id="editorTd"></td>
+			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2">
@@ -28,83 +52,35 @@
 </table>
 </form>
 <script type="text/javascript">
-    function setConfig(){
-		var config = {
-				txHost: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) http://xxx.xxx.com */
-				txPath: '', /* 런타임 시 리소스들을 로딩할 때 필요한 부분으로, 경로가 변경되면 이 부분 수정이 필요. ex) /xxx/xxx/ */
-				txService: 'sample', /* 수정필요없음. */
-				txProject: 'sample', /* 수정필요없음. 프로젝트가 여러개일 경우만 수정한다. */
-				initializedId: "", /* 대부분의 경우에 빈문자열 */
-				wrapper: "tx_trex_container", /* 에디터를 둘러싸고 있는 레이어 이름(에디터 컨테이너) */
-				form: 'tx_editor_form'+"", /* 등록하기 위한 Form 이름 */
-				txIconPath: "../daumeditor/images/icon/editor/", /*에디터에 사용되는 이미지 디렉터리, 필요에 따라 수정한다. */
-				txDecoPath: "../daumeditor/images/deco/contents/", /*본문에 사용되는 이미지 디렉터리, 서비스에서 사용할 때는 완성된 컨텐츠로 배포되기 위해 절대경로로 수정한다. */
-				canvas: {
-					styles: {
-						color: "#123456", /* 기본 글자색 */
-						fontFamily: "굴림", /* 기본 글자체 */
-						fontSize: "10pt", /* 기본 글자크기 */
-						backgroundColor: "#fff", /*기본 배경색 */
-						lineHeight: "1.5", /*기본 줄간격 */
-						padding: "8px" /* 위지윅 영역의 여백 */
-					},
-					showGuideArea: false
-				},
-				events: {
-					preventUnload: false
-				},
-				sidebar: {
-					attachbox: {
-						show: true,
-						confirmForDeleteAll: true
-					}
-				},
-				size: {
-					contentWidth: 700 /* 지정된 본문영역의 넓이가 있을 경우에 설정 */
-				}
-			};
-			EditorJSLoader.ready(function(Editor) {
-				editor = new Editor(config);
-			});
-}
-    $(function(){
-		$.ajax({
-	        type:"POST", 
-	        url: "editor_frame.html",
-	        success: function(data){
-	        	$("#editorTd").html(data);
-	        	setConfig();
-	        }, 
-	        error : function(request, status, error) {
-				alert("에러");
-			}
-		});
-		$("#save").click(function(){
-			Editor.save(); 
-		})
+$(function(){
+    //전역변수선언
+    var editor_object = [];
+     
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: editor_object,
+        elPlaceHolder: "smarteditor",
+        sSkinURI: "../smarteditor/SmartEditor2Skin.html", 
+        htParams : {
+            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseToolbar : true,             
+            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseVerticalResizer : true,     
+            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+            bUseModeChanger : true, 
+        }
+    });
+     
+    //전송버튼 클릭이벤트
+    $("#save").click(function(){
+        //id가 smarteditor인 textarea에 에디터에서 대입
+        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+         
+        // 이부분에 에디터 validation 검증
+         
+        //폼 submit
+        $("#frm").submit();
+    })
 })
-// submit 전 다음에디터 validation체크
-function validForm(editor) {
-	var validator = new Trex.Validator();
-	var content = editor.getContent();
-	if (!validator.exists(content)) {
-		alert('내용을 입력하세요');
-		return false;
-	}
-  return true;
-}
-
-//validForm 함수가 true로 return된 후에 동작하는 함수
-function setForm(editor) {
-        var form = editor.getForm();
-        var content = editor.getContent();
-        var textarea = document.createElement('textarea');
-        //textarea를 생성하여 해당태그에 에디터 입력값들을 신규생성 textarea에 담는다
-        textarea.name = 'content';
-        textarea.value = content;
-        form.createField(textarea);
-     return true;
-}
 </script>
 </body>
 </html>

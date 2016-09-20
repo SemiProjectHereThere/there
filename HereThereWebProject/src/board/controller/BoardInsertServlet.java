@@ -33,6 +33,12 @@ public class BoardInsertServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		//파라미터 부분
+		String title = request.getParameter("title");
+		String location = request.getParameter("location");
+		String category = request.getParameter("category");
+		String content = request.getParameter("content");
+		
+		System.out.println(title + "," + location + "," + category + "," + content);
 		
 		Board board = new Board();
 		int result = new BoardService().insertBoard(board);
