@@ -46,7 +46,7 @@
 			<!-- 전체보기 사진 라인 Start -->
 			<div class="col-lg-6-1">
 				<p class="naming">클릭해서 멋진 장소들을 확인해 보세요!</p>
-				<img src="image/img10.jpg" class=""/>
+				<a href="BoardList"><img src="image/img10.jpg" class=""/></a>
 			</div>
 			<!-- 전체보기 사진 라인 End -->
 		</div>
@@ -59,35 +59,35 @@
 				<div class="col-lg-12 photo-link">
 					<div class="col-lg-6-2">
 					<p class="naming">Seoul</p>
-					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<a href="BoardPartByLoc?loc=seoul"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
 					</div>
 					<div class="col-lg-6-2">
 					<p class="naming">Daejeon</p>
-					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
+					<a href="BoardPartByLoc?loc=daejeon"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-2">
 					<p class="naming">Gwangju</p>
-					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
+					<a href="BoardPartByLoc?loc=gwangju"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-3">
 					<p class="naming">Busan</p>
-					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<a href="BoardPartByLoc?loc=busan"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
 					</div>
 					<div class="col-lg-6-4">
 					<p class="naming">Ulsan</p>
-					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
+					<a href="BoardPartByLoc?loc=ulsan"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-5">
 					<p class="naming">Daegu</p>
-					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<a href="BoardPartByLoc?loc=daegu"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
 					</div>
 					<div class="col-lg-6-5">
 					<p class="naming">Jeju</p>
-					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
+					<a href="BoardPartByLoc?loc=jeju"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-5">
 					<p class="naming">Incheon</p>
-					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
+					<a href="BoardPartByLoc?loc=incheon"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 
 				</div>
@@ -118,6 +118,9 @@
 				<li>주소 : 서울특별시 강남구 역삼동 KH빌딩 2층</li>
 				<li>개인정보관리 책임자 : 홍길동 (Yogijogi@naver.com)</li>
 			</ul>
+			</div><br>
+			<div class="cs2">
+			Copyrightⓒ KHCompany. All Rights Reserved.
 			</div>
 			
 		</div>

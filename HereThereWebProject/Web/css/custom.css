@@ -11,7 +11,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 }
 .bg-color {
 	background-color:#ededed;
-	margin-bottom:-150px;
+	margin-bottom:-170px;
 	padding-bottom:250px;
 	min-height:100%;
 }
@@ -29,7 +29,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 }
 .footer{
 	width:100%;
-	height:150px;
+	height:170px;
 	background-color:#7c7c7c;
 	position:relative;
 	z-index:1;
@@ -507,5 +507,6 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 .cs2{
 	width:700px;
 	position:relative;
-	left:350px;
+	left:550px;
+	color:#fff;
 }
