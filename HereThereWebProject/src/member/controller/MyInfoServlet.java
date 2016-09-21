@@ -1,26 +1,28 @@
-package board.controller;
+package member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.BoardService;
-import board.model.vo.Board;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardInsertServlet
+ * Servlet implementation class MyInfoServlet
  */
-@WebServlet(name = "BoardInsert", urlPatterns = { "/BoardInsert" })
-public class BoardInsertServlet extends HttpServlet {
+@WebServlet("/myInfo")
+public class MyInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertServlet() {
+    public MyInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +34,19 @@ public class BoardInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		//파라미터 부분
-		String title = request.getParameter("title");
-		String location = request.getParameter("location");
-		String category = request.getParameter("category");
-		String content = request.getParameter("content");
+		String memberId = request.getParameter("memberId");
 		
-		System.out.println(title + "," + location + "," + category + "," + content);
+		Member member = new MemberService().selectOne(memberId);
 		
-		Board board = new Board();
-		int result = new BoardService().insertBoard(board);
-		
-		if(result > 0){
-			//성공시 게시판 리스트로 sendRedirect
+		RequestDispatcher view = null;
+		if(member != null){
+			view = request.getRequestDispatcher("board/myPageView.jsp");
+			request.setAttribute("member", member);
+			view.forward(request, response);
 		}else{
-			//실패시 RequestDispatcher
+			view = request.getRequestDispatcher("board/boardError.jsp");
+			request.setAttribute("code", "myinfo");
+			view.forward(request, response);
 		}
 	}
 
