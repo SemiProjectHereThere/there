@@ -17,6 +17,7 @@
 		case "binsert" : message = "게시글 추가 실패"; break;
 		case "bdelete" : message = "게시글 삭제 실패"; break;
 		case "bupdate" : message = "게시글 수정 실패"; break;
+		case "myinfo" : message = "내 정보 보기 실패"; break;
 		default : message = "게시글 서비스에서 에러 발생";
 		}
 	%>
