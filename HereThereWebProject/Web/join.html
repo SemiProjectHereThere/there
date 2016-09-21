@@ -40,21 +40,30 @@
 			</div>
 		</div> 
 		<!-- header End -->
-		<!-- container2 컨텐츠 내용시작 -->
+		<!-- container 컨텐츠 내용시작 -->
 		<div class="container">
 				<section id="content">
 						<form method="post" action="">
-							<h1>Login</h1>
-							<div><input type="text" placeholder="Username" id="username"></div>
-							<div><input type="password" placeholder="Password" id="password"></div>
+							<h1>Join Us</h1>
+							
+							<div><input type="text" placeholder="Username" id="username" required></div>
+							<div><input type="text" placeholder="UserId" id="userid"required></div>
+							<div><input type="password" placeholder="Password" id="password1" required></div>
+							<div><input type="password" placeholder="Confirm Password" id="password2" required></div>
+							<div><input type="email" placeholder="Email" id="email" required></div>
+							<div><input type="date" placeholder="BirthDate" id="birthdate" required></div>
 							<div>
-								<input type="submit" value="Login" />
-								<a href="/HereThere/join.html">Register Now</a>
+							<label><h5>Gender</h5></label>&nbsp;&nbsp;
+							<input type="radio"  id="InputGender" name="gender" value="M">&nbsp;남 &nbsp;&nbsp;
+							<input type="radio"  id="InputGender" name="gender" value="F">&nbsp;여</div>
+							<div>
+								<input type="submit" value="Join" />
+								<a href="/HereThere/index.jsp">Cancel</a>
 							</div>
 						</form>
 					</section>
 				</div>
-		<!-- container2 컨텐츠 내용END -->
+		<!-- container 컨텐츠 내용END -->
 		
 		<!-- footer Start -->
 		<div class="footer">

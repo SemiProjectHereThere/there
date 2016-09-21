@@ -25,11 +25,11 @@
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="login.html">로그인</a></div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
 			
 				<!-- 로그인 정보 입력 -->
 			
-				<div class="col-lg-4 pull-left">회원가입</div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
 				
 				<!-- 회원가입 정보 입력 -->
 				
