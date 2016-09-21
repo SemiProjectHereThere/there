@@ -43,50 +43,6 @@
 
 		<!-- Container Start -->
 		<div class="container pt-80">
-			<!-- 첫번째 라인 -->
-			<!-- <div class="col-lg-12 first-line"> 
-				<div class="select-local col-lg-4">
-					<select>
-						<option value="">지역</option>
-						<option value="">서울</option>
-						<option value="">부산</option>
-						<option value="">인천</option>
-						<option value="">경기</option>
-					 </select>
-				</div>
-				<div class="select-local col-lg-4">
-					<button type="button" class="btn2"> 
-						맛집
-					</button>
-				</div>
-				<div class="select-local col-lg-4">
-					<button type="button" class="btn2"> 
-						코스
-					</button>
-				</div>
-			</div> -->
-			<!-- 첫번째 라인 End -->
-			<!-- 두번째 라인 Start -->
-			<!-- <div class="col-lg-12 seconde-line no-padder">
-				<div class="col-lg-2-5">
-					<a href="#" class="btn3">
-						전체보기				
-					</a>
-				</div>
-				<div class="col-lg-2-5">
-					<a href="#" class="btn3">인기순</a>
-				</div>
-				<div class="col-lg-2-5">
- 					<a href="#" class="btn3">별점순</a>
-				</div>
-				<div class="col-lg-2-5">
-					<a href="#" class="btn3">등록일자순	</a>
-				</div> 
-				<div class="col-lg-2-5">
-					<a href="#" class="btn3">댓글순</a>
-				</div>
-			</div> -->
-			<!-- 두번째 라인 End -->
 			<!-- 전체보기 사진 라인 Start -->
 			<div class="col-lg-6-1">
 				<p class="naming">클릭해서 멋진 장소들을 확인해 보세요!</p>
@@ -101,54 +57,69 @@
 			<div class="container wrapper">
 			<!-- contant Start -->
 				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
+					<div class="col-lg-6-2">
+					<p class="naming">Seoul</p>
 					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
 					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
+					<div class="col-lg-6-2">
+					<p class="naming">Daejeon</p>
 					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
 					</div>
-					
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img3.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<div class="col-lg-6-2">
+					<p class="naming">Gwangju</p>
+					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
 					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img4.png" class="img-rounded center-block" alt="남한산성사진" />
+					<div class="col-lg-6-3">
+					<p class="naming">Busan</p>
+					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
 					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img5.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<div class="col-lg-6-4">
+					<p class="naming">Ulsan</p>
+					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
 					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img6.png" class="img-rounded center-block" alt="남한산성사진" />
+					<div class="col-lg-6-5">
+					<p class="naming">Daegu</p>
+					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
 					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img7.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<div class="col-lg-6-5">
+					<p class="naming">Jeju</p>
+					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
 					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img8.png" class="img-rounded center-block" alt="남한산성사진" />
+					<div class="col-lg-6-5">
+					<p class="naming">Incheon</p>
+					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
 					</div>
-				</div>
 
+				</div>
+				
+			
 			<!-- contant End -->
 			</div>
+			
 		</div>
 		<!-- container2 컨텐츠 내용END -->
+		
 		<!-- footer Start -->
-		<div>
-
+		<div class="footer">
+			<div class="cs">
+			<ul>
+				<li><h4>C/S Center 및 광고문의</h4></li>
+				<li>전화: 02-1234-5678</li>
+				<li>팩스: 02-1234-5555</li>
+				<li>이메일 : Yogijogi@naver.com</li>
+				<li>카카오톡ID : Yogijogi</li>
+			</ul>
+			</div>
+			<div class="cs">
+			<ul>
+				<li><h4>회사정보</h4></li>
+				<li>회사명 : KHCompany</li>
+				<li>대표 : 홍길동</li>
+				<li>주소 : 서울특별시 강남구 역삼동 KH빌딩 2층</li>
+				<li>개인정보관리 책임자 : 홍길동 (Yogijogi@naver.com)</li>
+			</ul>
+			</div>
+			
 		</div>
 		<!-- footer End -->
 	</body>
