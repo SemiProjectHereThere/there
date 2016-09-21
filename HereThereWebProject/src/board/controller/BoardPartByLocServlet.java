@@ -48,6 +48,9 @@ public class BoardPartByLocServlet extends HttpServlet {
 			view.forward(request, response);
 		}else{
 			//db 불러오기 실패 페이지로 sendRedirect함.
+			RequestDispatcher view = request.getRequestDispatcher("board/boardView.jsp");
+			request.setAttribute("list", list);
+			view.forward(request, response);
 		}
 	}
 
