@@ -37,8 +37,9 @@ public class BoardInsertServlet extends HttpServlet {
 		String location = request.getParameter("location");
 		String category = request.getParameter("category");
 		String content = request.getParameter("content");
+		String map = request.getParameter("xy");
 		
-		System.out.println(title + "," + location + "," + category + "," + content);
+		System.out.println(title + "," + location + "," + category + "," + content + "," + map);
 		
 		Board board = new Board();
 		int result = new BoardService().insertBoard(board);
