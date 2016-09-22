@@ -19,7 +19,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	width:100%;
 	height:80px;
 	background-color:#fff;
-	border-bottom:3px solid #f57115;#f27b24
+	border-bottom:3px solid #f57115;
 	position:fixed;
 	top:0;
 	z-index:1;
@@ -156,6 +156,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	height:300px;
 	cursor:pointer;
 }
+
 .container .photo-link .col-lg-6:after{
 	content:"";
 	clear:both;
@@ -176,6 +177,20 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	color:#fff;
 	z-index:1;
 	font-size:15pt;
+}
+
+
+.container .photo-link .col-lg-6 .score1 img{
+	
+	position:relative;
+	margin:0;
+	width:20px;
+	height:20px;
+	bottom:-250px;
+	left:20px;
+	z-index:1;
+	
+	
 }
 .container .col-lg-6-1 {
 	color:#fff;
@@ -432,6 +447,9 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 		width:100%;
 		height:400px;
 		margin:auto;
+	}
+	.container .photo-link .col-lg-6 .score1 img{
+		bottom:-350px;
 	}
 	.container .photo-link .col-lg-6:after{
 		content:"";
