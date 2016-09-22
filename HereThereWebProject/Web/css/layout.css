@@ -1,0 +1,71 @@
+/*공통*/
+#wrap{position:relative;clear:both; margin:10px; }
+#contents{position:relative;clear:both;}
+
+#wrap h1{color:#736357;line-height:40px;}
+#wrap .c_text{font-size:12px;line-height:40px;}
+#wrap .flatbtn{color:#8c6239;text-decoration:underline;}
+
+
+#covermodal{border:3px solid #f57115;background:#fff;}
+#covermodal h2{color:#636363;font-size:24px;line-height:40px;}
+#covermodal input{height:24px;display:block;margin:3px 0 0;}
+#covermodal input[type="file"] { overflow:hidden; max-width:100%; height: 40px; font-size: 14pt;}
+
+/** modal window styles **/
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+
+#covermodal {
+  width: 400px;height:200px;  /*팝업창의 크기조절*/
+  margin-top:100px;           /*팝업창 위아래 간격조절*/
+  padding: 18px;
+  background: #f3f6fa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+#profilemodal{border:3px solid #f57115;background:#fff;}
+#profilemodal h2{color:#636363;font-size:24px;line-height:40px;}
+#profilemodal input{height:24px;display:block;margin:3px 0 0;}
+#profilemodal input[type="file"] { overflow:hidden; max-width:100%; height: 40px; font-size: 14pt;}
+
+/** modal window styles **/
+#lean_overlay {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+
+
+#profilemodal {
+  width: 400px;height:200px;  /*팝업창의 크기조절*/
+  margin-top:100px;           /*팝업창 위아래 간격조절*/
+  padding: 18px;
+  background: #f3f6fa;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+
