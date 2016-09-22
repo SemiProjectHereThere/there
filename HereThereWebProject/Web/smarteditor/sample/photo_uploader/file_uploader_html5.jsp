@@ -62,7 +62,7 @@
         // 정보 출력
         sFileInfo += "&bNewLine=true";    
         sFileInfo += "&sFileName=" + filename;    
-        sFileInfo += "&sFileURL=/smarteditorSample/SE2/multiupload/"+realFileNm;
+        sFileInfo += "&sFileURL=/HereThere/SE2/multiupload/"+realFileNm;
         out.println(sFileInfo);
     }
 %>
