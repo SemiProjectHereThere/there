@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+<%
+	Member member = (Member)session.getAttribute("member");
+%>
 
 <html>
 <head>
@@ -24,6 +27,9 @@
 			<h1 class="pull-left">
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
+			<%
+				if(member == null){
+			%>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
 			
@@ -38,6 +44,35 @@
 				<!-- 도움말 페이지 -->
 				
 			</div>
+			<%
+				}else if(!member.getMemberId().equals("admin")){
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><a href=""><%= member.getMemberName() %></a></div>
+				<!-- 마이페이지로 이동 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
+				
+				<div class="col-lg-4 pull-left">더보기</div>
+				<!-- 더보기 메뉴 -->
+			</div>
+			<%
+				}else{
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><a href=""><%= member.getMemberName() %></a></div>
+				<!-- 마이페이지로 이동 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
+				
+				<div class="col-lg-4 pull-left">더보기</div>
+				<!-- 더보기 메뉴 -->
+			</div>
+			<%
+				}
+			%>
 		</div> 
 		<!-- header End -->
 
