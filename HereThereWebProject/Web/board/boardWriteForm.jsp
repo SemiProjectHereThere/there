@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.model.vo.Member" %>
-<% Member member = (Member)session.getAttribute("member"); %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -30,8 +28,7 @@
 </head>
 <body>
 <form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
-<input type="hidden" name="id" value="<%= member.getMemberId()%>">
-<input type="text" id="xy" name="xy" />
+<input type="text" id="xy" name="xy" size="300" />
 <table width="100%">
 
 		<tr>
@@ -150,6 +147,7 @@ function initMap() {
 
   // Adds a marker at the center of the map.
   addMarker(haightAshbury);
+  info();
 }
 
 // Adds a marker to the map and push to the array.
@@ -159,18 +157,23 @@ function addMarker(location) {
     map: map
   });
   markers.push(marker);
+ 
+  info();
+  
 }
 
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
+    markers[i].setMap(map); 
   }
 }
 
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
   setMapOnAll(null);
+  
+  
 }
 
 // Shows any markers currently in the array.
@@ -180,16 +183,25 @@ function showMarkers() {
 
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
-  clearMarkers();
-  markers = [];
+	clearMarkers();
+  	markers = [];
+  	$('#xy').val(null);
+  	positions = "";
+
 }
 
-function info(map){
+function info(){
+	var aa = "";
+	
 	for(var i = 0; i < markers.length; i++) {
 		//alert(markers[i].getPosition());
-		$("#xy").val(markers[i].getPosition());
+
 		positions += markers[i].getPosition() + "/";
+		
+			
+		$("#xy").val(positions);;
 	}
+	positions = "";
 	
 }
 
