@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" href="css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link href="css/layout.css" rel="stylesheet" type="text/css" />
 	<!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -22,6 +23,7 @@
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery.leanModal.min.js"></script>
 </head>
 <body>
 	<!-- header Start -->
@@ -48,28 +50,28 @@
 			<!-- 첫번째 라인 -->
 			<div class="col-lg-12 first-line-400"> 
 				<img class="cover-pic" src="">
+				</img>
 				<img class="profile-pic" src="">
+				</img>
 				<div class="name-div">
-					<a href="#"><%= member.getMemberName() %></a>
+					<a href="#">홍길동</a>
 				</div>
 				<div class="pic-change-btns">
-					<button class="button" id="button-cover" name="cover">커버사진 변경</button> &nbsp; &nbsp;
-					<button class="button" id="button-profile" name="profile">프로필 사진 변경</button>
-				</div>
-				<input type="file" id="theFileInput" style="display:none;" accept="image/*"/>
-				<input type="file" id="theFileInput2" style="display:none;" accept="image/*"/>
-				<script type="text/javascript">
-					$("#button-cover").click(function(){
-						$("#theFileInput").click();
-					});
-					$("#button-profile").click(function(){
-						$("#theFileInput2").click();
-					});
-				</script>
-				
-				<script type="text/javascript">
-				/*커버사진*/
-					var file = document.querySelector('#theFileInput');
+					<div class="button"><a href="#covermodal" id="modaltrigger">커버사진 변경</a></div> &nbsp; &nbsp;
+					<div id="covermodal" style="display:none;">
+					<form method="post" action="">
+					<h3>COVER 사진 변경</h3> <br>
+					<input type="file" id="theFileInput" accept="image/*" size="40">
+					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
+					</form>
+					</div>
+
+			<!--모달윈도우부분-->
+			<script type="text/javascript">
+				$(function(){
+					$('#coverform').submit(function(e){
+
+						var file = document.querySelector('#theFileInput');
 
 					file.onchange = function(){
 						var fileList = file.files;
@@ -103,9 +105,28 @@
 							};
 						};
 					};
-				</script>
-				<script type="text/javascript">
-				/*프로필 사진*/
+
+						return true;
+					});
+  
+					$('#modaltrigger').leanModal({ top: 110, overlay: 0.8, closeButton: ".hidemodal" });
+				});
+			</script>
+			<!--//모달윈도우부분-->
+
+					<div class="button"><a href="#profilemodal" id="modaltrigger1">프로필사진 변경</a></div>
+					<div id="profilemodal" style="display:none;">
+					<form method="post" action="">
+					<h3>PROFILE 사진 변경</h3> <br>
+					<input type="file" id="theFileInput2" accept="image/*" size="40">
+					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
+					</form>
+					</div>
+			<!--모달윈도우부분-->
+			<script type="text/javascript">
+				$(function(){
+					$('#profileform').submit(function(e){
+
 					var file2 = document.querySelector('#theFileInput2');
 
 					file2.onchange = function(){
@@ -140,7 +161,15 @@
 							};
 						};
 					};
-				</script>
+
+						return true;
+					});
+  
+					$('#modaltrigger1').leanModal({ top: 110, overlay: 0.8, closeButton: ".hidemodal" });
+				});
+			</script>
+			<!--//모달윈도우부분-->
+				</div>
 			</div>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
@@ -149,6 +178,7 @@
 					<select>
 						<option value="">전체보기</option>
 						<option value="">찜한 게시물</option>
+						<option value="">내가 올린 게시물</option>
 					 </select>
 				</div>
 				<div class="select-local col-lg-6">

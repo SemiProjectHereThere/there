@@ -69,6 +69,30 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	font-weight:bold;
 	cursor:pointer;
 }
+.header .menubar1 .submenu a{
+	color: #f57115;
+	display: block;
+}
+.header .menubar1 .submenu a:hover{
+	background-color: #f57115;
+	color: #fff;
+	text-decoration: none;
+}
+.header .menubar1 .submenu{
+	display: none;
+}
+.header .menubar1:hover .submenu{
+	display: block;
+	background-color: #fff;
+}
+.header .menubar1 ul li{
+	height: 30px;
+}
+.submenu{
+	position: absolute;
+	height: 0px;
+	transition: height .2s;
+}
 /* container1 Set */
 .container .first-line{
 	width:100%;
@@ -330,7 +354,65 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	z-index:1;
 	font-size:20pt;
 }
-
+.container .first-line-400 .cover-pic{
+	border-radius:30px;
+	height: 315px;
+	width: 1105px;
+	margin-top: 10px;
+	/*border: 1px solid red;*/
+	background-image:url('../image/cover.jpg'); 
+	background-repeat:no-repeat; 
+	background-size:100% 100%
+}
+.container .profile-pic{
+	width: 180px;
+	height: 180px;
+	border-radius:30px;
+	position: absolute;
+	left: 50px;
+	top: 140px;
+	/*border: 1px solid blue;*/
+	background-image:url('../image/profile.jpg'); 
+	background-repeat:no-repeat; 
+	background-size:100% 100%
+}
+.container .name-div{
+	width: 200px;
+	height: 40px;
+	position: absolute;
+	left: 250px;
+	top: 280px;
+	/*border: 1px solid black;*/
+}
+.container .pic-change-btns{
+	position: absolute;
+	left: 775px;
+	top: 275px;
+}
+.container .pic-change-btns .button{
+	background-color: #f57115;
+	border: none;
+	color: white;
+	font-size: 12pt;
+	width: 160px;
+	text-align: center;
+	display: inline-block;
+	transition-duration: 0.2s;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius:10px;	
+	padding: 10px 14px;
+}
+.container .pic-change-btns .button:hover{
+	background-color: white;
+	font-size: 12pt;
+	color: black;
+	border : 2px solid #f57115;
+	border-radius:10px;	
+}
+.container .first-line-400 .name-div{
+	font-size: 20pt;
+}
 /* 부트스트랩 보조 클래스 */
 .no-padder{
 	padding:0 !important; 
