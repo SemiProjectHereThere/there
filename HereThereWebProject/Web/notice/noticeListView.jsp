@@ -4,7 +4,7 @@
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 
-	int listSize = list.size();
+	int listSize = list.size();		//db와 연동이 안되있어서 널포인트오류남.
 	int listSize2 = listSize;
 	int total = listSize;
 	
@@ -38,7 +38,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>notice list</title>
+<title> YOGI JOGI </title>
 <link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="/HereThere/css/bootstrap.css" />
@@ -100,7 +100,7 @@
 					<tr height="25" align="center">
 					<td align="center">&nbsp;</td>
 					<td align="center"><%= n.getNoticeNo() %></td>
-					<td align="center"><a href="#"><%= n.getNoticeTitle() %></a></td>
+					<td align="center"><a href="/HereThere/notice/noticeDetailView.jsp?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>"><%= n.getNoticeTitle() %></a></td>
 				    <td align="center"><%= n.getNoticeWriter() %></td>
 				    <td align="center"><%= n.getNoticeDate() %></td>
 				    <td align="center"><%= n.getCountView() %></td>
