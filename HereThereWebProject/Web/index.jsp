@@ -22,7 +22,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/board/boardWriteForm.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>

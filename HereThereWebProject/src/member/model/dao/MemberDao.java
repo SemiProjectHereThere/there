@@ -24,6 +24,7 @@ public class MemberDao {
 			pstmt.setString(2, memberPwd);
 			
 			rset = pstmt.executeQuery();
+			
 			if(rset.next()){
 				member = new Member();
 				member.setMemberId(memberId);
