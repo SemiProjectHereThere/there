@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+<% Member member = (Member)session.getAttribute("member"); %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -29,6 +30,7 @@
 <body>
 <form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
 <input type="text" id="xy" name="xy" size="300" />
+<input type="hidden" name="id" value="<%=member.getMemberId()%>">
 <table width="100%">
 
 		<tr>
