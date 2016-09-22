@@ -1,6 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, notice.model.vo.Notice" %>
+<%
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 
+	int listSize = list.size();
+	int listSize2 = listSize;
+	int total = listSize;
+	
+	final int ROWSIZE = 4; 		//한페이지에 보일 공지글 수 
+	final int BLOCK = 5;			//아래에 보일 페이지 수 
+	int pg = 1;					//페이지 초기값
+	
+	if(request.getParameter("pg")!=null) {
+		pg = Integer.parseInt(request.getParameter("pg"));
+	}
+	
+	int end = (pg*ROWSIZE);
+	
+	int allPage = 0;
+
+	int startPage = ((pg-1)/BLOCK*BLOCK)+1;
+	int endPage = ((pg-1)/BLOCK*BLOCK)+BLOCK;
+	
+	allPage = (int)Math.ceil(total/(double)ROWSIZE);
+	
+	if(endPage > allPage) {
+		endPage = allPage;
+	}
+	
+	listSize2 -=end;
+	if(listSize2 < 0) {
+		end = listSize;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,25 +88,62 @@
 				   <td width="58">조회수</td>
 				   <td width="7"><img src="../image/table_right.gif" width="5" height="30" /></td>
 				   </tr>
+				   <% if(total == 0){ %>
 					 	<tr align="center" bgcolor="#FFFFFF" height="30">
 					 	<td colspan="6">등록된 글이 없습니다.</td>
 					 	</tr>
+				   <% }else{
+				   
+				   		for(int i=ROWSIZE*(pg-1); i<end; i++){
+				   			Notice n = list.get(i);
+				   %>
 					<tr height="25" align="center">
 					<td align="center">&nbsp;</td>
-					<td align="center"></td>
-					<td align="left"><a href=""></a></td>
-				    <td align="center"></td>
-				    <td align="center"></td>
-				    <td align="center"></td>
+					<td align="center"><%= n.getNoticeNo() %></td>
+					<td align="center"><a href="#"><%= n.getNoticeTitle() %></a></td>
+				    <td align="center"><%= n.getNoticeWriter() %></td>
+				    <td align="center"><%= n.getNoticeDate() %></td>
+				    <td align="center"><%= n.getCountView() %></td>
 				    <td align="center">&nbsp;</td>
 				    <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
+				   <% } } %>
 				    <tr height="1" bgcolor="#f58218"><td colspan="6" width="752"></td></tr>
-			</table><!-- #f58218 --><!-- #82B5DF -->
+			</table>
 			<table width="100%" cellpadding="0" cellspacing="0" border="0">
 			  <tr><td colspan="4" height="5"></td></tr>
 			  <tr>
 				<td align="center">
-					
+				<%
+					if(pg>BLOCK) {
+				%>
+					[<a href="list.jsp?pg=1">◀◀</a>]
+					[<a href="list.jsp?pg=<%=startPage-1%>">◀</a>]
+				<%
+					}
+				%>
+				
+				<%
+					for(int i=startPage; i<= endPage; i++){
+						if(i==pg){
+				%>
+							<u><b>[<%=i %>]</b></u>
+				<%
+						}else{
+				%>
+							[<a href="list.jsp?pg=<%=i %>"><%=i %></a>]
+				<%
+						}
+					}
+				%>
+				
+				<%
+					if(endPage<allPage){
+				%>
+					[<a href="list.jsp?pg=<%=endPage+1%>">▶</a>]
+					[<a href="list.jsp?pg=<%=allPage%>">▶▶</a>]
+				<%
+					}
+				%>
 					</td>
 					</tr>
 				<tr align="center">
