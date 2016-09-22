@@ -16,31 +16,139 @@ public class Board implements java.io.Serializable{
 	private int bdCommentCnt;		//게시글의 댓글 갯수
 	private int bdStarPt;			//게시글의 별점
 	private int bdShingoCnt;		//게시글에 대한 신고 횟수
-	private ArrayList<String> mapX;			//게시글에 들어갈 맵 x 좌표 리스트
-	private ArrayList<String> mapY;			//게시글에 들어갈 맵 y 좌표 리스트 
+	private String bdMap;				//게시글에 들어갈 지도 좌표 정보
 	
 	public Board(){}
 
-	public Board(String bdTitle, String bdContent, String bdWriter, String bdCategory, String bdLocation,
-			ArrayList mapX, ArrayList mapY) {
+	public Board(String bdTitle, String bdContent, String bdWriter, String bdCategory, String bdLocation, String bdMap) {
 		super();
 		this.bdTitle = bdTitle;
 		this.bdContent = bdContent;
 		this.bdWriter = bdWriter;
 		this.bdCategory = bdCategory;
 		this.bdLocation = bdLocation;
-		mapX = new ArrayList<String>();
-		mapY = new ArrayList<String>();
+		this.bdMap = bdMap;
 	}
 
-	
-	
-	
+	public Board(String bdTitle, int bdNo, String bdContent, String bdWriter, Date bdEnrollDate, String bdCategory,
+			String bdLocation, int bdReadCnt, int bdCommentCnt, int bdStarPt, int bdShingoCnt, String bdMap) {
+		super();
+		this.bdTitle = bdTitle;
+		this.bdNo = bdNo;
+		this.bdContent = bdContent;
+		this.bdWriter = bdWriter;
+		this.bdEnrollDate = bdEnrollDate;
+		this.bdCategory = bdCategory;
+		this.bdLocation = bdLocation;
+		this.bdReadCnt = bdReadCnt;
+		this.bdCommentCnt = bdCommentCnt;
+		this.bdStarPt = bdStarPt;
+		this.bdShingoCnt = bdShingoCnt;
+		this.bdMap = bdMap;
+	}
 
-	
-	
-	
-	
-	
+	public String getBdTitle() {
+		return bdTitle;
+	}
+
+	public void setBdTitle(String bdTitle) {
+		this.bdTitle = bdTitle;
+	}
+
+	public int getBdNo() {
+		return bdNo;
+	}
+
+	public void setBdNo(int bdNo) {
+		this.bdNo = bdNo;
+	}
+
+	public String getBdContent() {
+		return bdContent;
+	}
+
+	public void setBdContent(String bdContent) {
+		this.bdContent = bdContent;
+	}
+
+	public String getBdWriter() {
+		return bdWriter;
+	}
+
+	public void setBdWriter(String bdWriter) {
+		this.bdWriter = bdWriter;
+	}
+
+	public Date getBdEnrollDate() {
+		return bdEnrollDate;
+	}
+
+	public void setBdEnrollDate(Date bdEnrollDate) {
+		this.bdEnrollDate = bdEnrollDate;
+	}
+
+	public String getBdCategory() {
+		return bdCategory;
+	}
+
+	public void setBdCategory(String bdCategory) {
+		this.bdCategory = bdCategory;
+	}
+
+	public String getBdLocation() {
+		return bdLocation;
+	}
+
+	public void setBdLocation(String bdLocation) {
+		this.bdLocation = bdLocation;
+	}
+
+	public int getBdReadCnt() {
+		return bdReadCnt;
+	}
+
+	public void setBdReadCnt(int bdReadCnt) {
+		this.bdReadCnt = bdReadCnt;
+	}
+
+	public int getBdCommentCnt() {
+		return bdCommentCnt;
+	}
+
+	public void setBdCommentCnt(int bdCommentCnt) {
+		this.bdCommentCnt = bdCommentCnt;
+	}
+
+	public int getBdStarPt() {
+		return bdStarPt;
+	}
+
+	public void setBdStarPt(int bdStarPt) {
+		this.bdStarPt = bdStarPt;
+	}
+
+	public int getBdShingoCnt() {
+		return bdShingoCnt;
+	}
+
+	public void setBdShingoCnt(int bdShingoCnt) {
+		this.bdShingoCnt = bdShingoCnt;
+	}
+
+	public String getBdMap() {
+		return bdMap;
+	}
+
+	public void setBdMap(String bdMap) {
+		this.bdMap = bdMap;
+	}
+
+	@Override
+	public String toString() {
+		return bdTitle + ", " + bdNo + ", " + bdContent + ", " + bdWriter
+				+ ", " + bdEnrollDate + ", " + bdCategory + ", " + bdLocation
+				+ ", " + bdReadCnt + ", " + bdCommentCnt + ", " + bdStarPt
+				+ ", " + bdShingoCnt + ", " + bdMap;
+	}
 
 }

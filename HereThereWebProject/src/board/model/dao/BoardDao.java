@@ -258,11 +258,19 @@ public class BoardDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String query = "insert into board values()";
+		String query = "insert into board values(BOARD_SEQ.NEXTVAL, ?, ?, ?, sysdate, ?, ?, 0, 0, 0, 0, ?)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			// pstmt.setString() 추가
+			pstmt.setString(1, board.getBdTitle());
+			pstmt.setString(2, board.getBdContent());
+			pstmt.setString(3, board.getBdWriter());
+			pstmt.setString(4, board.getBdCategory());
+			pstmt.setString(5, board.getBdLocation());
+			pstmt.setString(6, board.getBdMap());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
