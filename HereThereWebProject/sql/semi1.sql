@@ -64,6 +64,7 @@ CREATE TABLE BOARD
     BD_COMMENT_COUNT    NUMBER            NOT NULL, 
     BD_STARPOINT        NUMBER            NOT NULL, 
     BD_SINGO            NUMBER            NOT NULL, 
+    BD_MAP				VARCHAR2(500),
     CONSTRAINT BOARD_PK PRIMARY KEY (BD_NO)
 )
 /
@@ -231,25 +232,25 @@ modify (mb_manager_yn default 'N');
 alter table member
 add check (mb_manager_yn in ('Y', 'N'));
 
-INSERT INTO LOCATION VALUES(1, '¼­¿ïÆ¯º°½Ã');
-INSERT INTO LOCATION VALUES(2, 'ÀÎÃµ±¤¿ª½Ã');
-INSERT INTO LOCATION VALUES(3, 'ºÎ»ê±¤¿ª½Ã');
-INSERT INTO LOCATION VALUES(4, '¿ï»ê±¤¿ª½Ã');
-INSERT INTO LOCATION VALUES(5, '´ë±¸±¤¿ª½Ã');
-INSERT INTO LOCATION VALUES(6, '´ëÀü±¤¿ª½Ã');
-INSERT INTO LOCATION VALUES(7, '±¤ÁÖ±¤¿ª½Ã');
-INSERT INTO LOCATION VALUES(8, '°æ±âµµ');
-INSERT INTO LOCATION VALUES(9, '°­¿øµµ');
-INSERT INTO LOCATION VALUES(10, 'ÃæÃ»ºÏµµ');
-INSERT INTO LOCATION VALUES(11, 'ÃæÃ»³²µµ');
-INSERT INTO LOCATION VALUES(12, 'Àü¶óºÏµµ');
-INSERT INTO LOCATION VALUES(13, 'Àü¶ó³²µµ');
-INSERT INTO LOCATION VALUES(14, '°æ»óºÏµµ');
-INSERT INTO LOCATION VALUES(15, '°æ»ó³²µµ');
-INSERT INTO LOCATION VALUES(16, 'Á¦ÁÖµµ');
+INSERT INTO LOCATION VALUES(1, 'ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(2, 'ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(3, 'ï¿½Î»ê±¤ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(4, 'ï¿½ï¿½ê±¤ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(5, 'ï¿½ë±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(6, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(7, 'ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(8, 'ï¿½ï¿½âµµ');
+INSERT INTO LOCATION VALUES(9, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(10, 'ï¿½ï¿½Ã»ï¿½Ïµï¿½');
+INSERT INTO LOCATION VALUES(11, 'ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO LOCATION VALUES(12, 'ï¿½ï¿½ï¿½ï¿½Ïµï¿½');
+INSERT INTO LOCATION VALUES(13, 'ï¿½ï¿½ï¿½ó³²µï¿½');
+INSERT INTO LOCATION VALUES(14, 'ï¿½ï¿½ï¿½Ïµï¿½');
+INSERT INTO LOCATION VALUES(15, 'ï¿½ï¿½ó³²µï¿½');
+INSERT INTO LOCATION VALUES(16, 'ï¿½ï¿½ï¿½Öµï¿½');
 
-INSERT INTO CATEGORY VALUES(1, 'ÄÚ½º');
-INSERT INTO CATEGORY VALUES(2, '¸ÀÁý');
-INSERT INTO CATEGORY VALUES(3, '¸í¼Ò');
+INSERT INTO CATEGORY VALUES(1, 'ï¿½Ú½ï¿½');
+INSERT INTO CATEGORY VALUES(2, 'ï¿½ï¿½ï¿½ï¿½');
+INSERT INTO CATEGORY VALUES(3, 'ï¿½ï¿½ï¿½');
 
 COMMIT;
