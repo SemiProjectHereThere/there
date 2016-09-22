@@ -81,7 +81,7 @@
 			<!-- 전체보기 사진 라인 Start -->
 			<div class="col-lg-6-1">
 				<p class="naming">클릭해서 멋진 장소들을 확인해 보세요!</p>
-				<a href="BoardList"><img src="image/img10.jpg" class=""/></a>
+				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a>
 			</div>
 			<!-- 전체보기 사진 라인 End -->
 		</div>
