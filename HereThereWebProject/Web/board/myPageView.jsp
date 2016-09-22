@@ -178,6 +178,7 @@
 					<select>
 						<option value="">전체보기</option>
 						<option value="">찜한 게시물</option>
+						<option value="">내가 올린 게시물</option>
 					 </select>
 				</div>
 				<div class="select-local col-lg-6">
