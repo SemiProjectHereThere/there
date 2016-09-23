@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="member.model.vo.Member" %>
+<%@page import="member.model.vo.Member, member.model.service.MemberService"%>
 <%
 	Member member = (Member)request.getAttribute("member");
 %>
@@ -37,6 +37,7 @@
 					<ul class="submenu">
 						<li><a href="/HereThere/logout">로그아웃</a></li>
 						<li><a href="/HereThere/myInfo?userid=<%= member.getMemberId() %>">마이페이지</a></li>
+						<li><a href="#">내 정보 수정</a>
 						<li><a href="/HereThere/nlist">공지사항</a></li>
 						<li><a href="/HereThere/help.html">도움말</a></li>
 					</ul>
@@ -48,21 +49,32 @@
 		<!-- Container Start -->
 		<div class="container pt-80">
 			<!-- 첫번째 라인 -->
-			<div class="col-lg-12 first-line-400"> 
-				<img class="cover-pic" src="">
-				</img>
-				<img class="profile-pic" src="">
-				</img>
+			<div class="col-lg-12 first-line-400">
+				<%-- <% System.out.println(member.getRenameCoverName()); %>
+				<% System.out.println(request.getContextPath());%> --%>
+				
+				<% if(member.getRenameCoverName() == null){ %>
+				<img class="cover-pic" src="uploadfiles/cover.jpg">
+				<% }else{ %>
+				<img class="cover-pic" src="<%=request.getContextPath()%>\uploadfiles\<%= member.getMemberId() %>cover.png">
+				<% } %>
+				
+				<% if(member.getRenameProfileName() == null){ %>
+				<img class="profile-pic" src="uploadfiles/profile.jpg">
+				<% }else{ %>
+				<img class="profile-pic" src="<%=request.getContextPath()%>\uploadfiles\<%= member.getMemberId() %>profile.png">
+				<% } %>
 				<div class="name-div">
-					<a href="#"><%= member.getMemberName() %></a>
+					<%= member.getMemberName() %>
 				</div>
 				<div class="pic-change-btns">
 					<div class="button"><a href="#covermodal" id="modaltrigger">커버사진 변경</a></div> &nbsp; &nbsp;
 					<div id="covermodal" style="display:none;">
 					<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
 					<h3>COVER 사진 변경</h3> <br>
-					<input type="file" id="theFileInput" accept="image/*" size="40" name="coverfile">
+					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 					<input type="hidden" name="memberid" value=<%= member.getMemberId() %>>
+					<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= member.getMemberId() %>'">
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
@@ -70,45 +82,9 @@
 			<!--모달윈도우부분-->
 			<script type="text/javascript">
 				 $(function(){
-					$('#coverform').submit(function(e){
-
-						var file = document.querySelector('#theFileInput');
-
-					file.onchange = function(){
-						var fileList = file.files;
-
-						//읽기
-						var reader = new FileReader();
-						reader.readAsDataURL(fileList[0]);
-
-						//로드한 후
-						reader.onload = function(){
-							//썸네일 이미지 생성
-							var tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
-							tempImage.src = reader.result; //data-uri을 이미지 객체에 주입
-							tempImage.onload = function(){
-								//리사이즈를 위해 캔버스 객체 생성
-								var canvas = document.createElement('canvas');
-								var canvasContext = canvas.getContext("2d");
-
-								//캔버스 크기 설정
-								canvas.width = 1105;
-								canvas.height = 315;
-
-								//이미지를 캔버스에 그리기
-								canvasContext.drawImage(this, 0 , 0, 1105, 315);
-
-								//캔버스에 그린 이미지를 다시 data-uri 형태로 변환
-								var dataURI = canvas.toDataURL("image/jpeg");
-
-								//썸네일 이미지 보여주기
-								document.querySelector('.cover-pic').src = dataURI
-							};
-						};
-					};
-
+					/* $('#coverform').submit(function(e){
 						return true;
-					});
+					}); */
   
 					$('#modaltrigger').leanModal({ top: 110, overlay: 0.8, closeButton: ".hidemodal" });
 				});
@@ -117,55 +93,20 @@
 
 					<div class="button"><a href="#profilemodal" id="modaltrigger1">프로필사진 변경</a></div>
 					<div id="profilemodal" style="display:none;">
-					<form method="post" action="/HereThere/profileUp" enctype="multipart/form-data">
+					<form method="post" action="/HereThere/profileUp" enctype="multipart/form-data" name="profileform">
 					<h3>PROFILE 사진 변경</h3> <br>
-					<input type="file" id="theFileInput2" accept="image/*" size="40" name="profilefile">
+					<input type="file" id="theFileInput2" accept=".png" size="40" name="profilefile">
 					<input type="hidden" name="memberid" value=<%= member.getMemberId() %>>
+					<input type="button" value="사진 삭제" onclick="location.href='profiledel?memberid=<%= member.getMemberId() %>'">
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
 			<!--모달윈도우부분-->
 			<script type="text/javascript">
 				$(function(){
-					$('#profileform').submit(function(e){
-
-					var file2 = document.querySelector('#theFileInput2');
-
-					file2.onchange = function(){
-						var fileList2 = file2.files;
-
-						/*읽기*/
-						var reader2 = new FileReader();
-						reader2.readAsDataURL(fileList2[0]);
-
-						/*로드한 후*/
-						reader2.onload = function(){
-							/*썸네일 이미지 생성*/
-							var tempImage2 = new Image(); /*drawImage 메서드에 넣기 위해 이미지 객체화*/
-							tempImage2.src = reader2.result; /*data-uri을 이미지 객체에 주입*/
-							tempImage2.onload = function(){
-								/*리사이즈를 위해 캔버스 객체 생성*/
-								var canvas2 = document.createElement('canvas');
-								var canvasContext2 = canvas2.getContext("2d");
-
-								/*캔버스 크기 설정*/
-								canvas2.width = 180;
-								canvas2.height = 180;
-
-								/*이미지를 캔버스에 그리기*/
-								canvasContext2.drawImage(this, 0 , 0, 180, 180);
-
-								/*캔버스에 그린 이미지를 다시 data-uri 형태로 변환*/
-								var dataURI2 = canvas2.toDataURL("image/jpeg");
-
-								/*썸네일 이미지 보여주기*/
-								document.querySelector('.profile-pic').src = dataURI2
-							};
-						};
-					};
-
+					/* $('#profileform').submit(function(e){
 						return true;
-					});
+					}); */
   
 					$('#modaltrigger1').leanModal({ top: 110, overlay: 0.8, closeButton: ".hidemodal" });
 				});

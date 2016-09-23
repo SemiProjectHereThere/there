@@ -9,7 +9,7 @@
 
 #covermodal{border:3px solid #f57115;background:#fff;}
 #covermodal h2{color:#636363;font-size:24px;line-height:40px;}
-#covermodal input{height:24px;display:block;margin:3px 0 0;}
+#covermodal input{height:36px;display:block;margin:3px 0 0; float:left}
 #covermodal input[type="file"] { overflow:hidden; max-width:100%; height: 40px; font-size: 14pt;}
 
 /** modal window styles **/
@@ -39,7 +39,7 @@
 }
 #profilemodal{border:3px solid #f57115;background:#fff;}
 #profilemodal h2{color:#636363;font-size:24px;line-height:40px;}
-#profilemodal input{height:24px;display:block;margin:3px 0 0;}
+#profilemodal input{height:36px;display:block;margin:3px 0 0; float:left}
 #profilemodal input[type="file"] { overflow:hidden; max-width:100%; height: 40px; font-size: 14pt;}
 
 /** modal window styles **/

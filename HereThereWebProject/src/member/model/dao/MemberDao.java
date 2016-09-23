@@ -36,6 +36,10 @@ public class MemberDao {
 				member.setPhone(rset.getString("mb_phone"));
 				member.setJoinDate(rset.getDate("mb_joinDate"));
 				member.setManagerYN(rset.getString("mb_manager_yn").charAt(0));
+				member.setOriginalCoverName(rset.getString("ORIGINAL_COVER"));
+				member.setRenameCoverName(rset.getString("RENAME_COVER"));
+				member.setOriginalProfileName(rset.getString("ORIGINAL_PROFILE"));
+				member.setRenameProfileName(rset.getString("RENAME_PROFILE"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,6 +102,10 @@ public class MemberDao {
 				member.setPhone(rset.getString("mb_phone"));
 				member.setJoinDate(rset.getDate("mb_joindate"));
 				member.setManagerYN(rset.getString("mb_manager_yn").charAt(0));
+				member.setOriginalCoverName(rset.getString("ORIGINAL_COVER"));
+				member.setRenameCoverName(rset.getString("RENAME_COVER"));
+				member.setOriginalProfileName(rset.getString("ORIGINAL_PROFILE"));
+				member.setRenameProfileName(rset.getString("RENAME_PROFILE"));
 			}
 			
 		} catch (Exception e) {
@@ -202,9 +210,6 @@ public class MemberDao {
 	public int coverUp(Connection con, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		System.out.println(member.toString());
-		System.out.println(member.getOriginalCoverName());
-		System.out.println(member.getRenameCoverName());
 		String query = "update member set original_cover = ?, rename_cover = ? where mb_id = ?";
 		
 		try {
@@ -226,9 +231,6 @@ public class MemberDao {
 	public int profileUp(Connection con, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		System.out.println(member.toString());
-		System.out.println(member.getOriginalProfileName());
-		System.out.println(member.getRenameProfileName());
 		String query = "update member set ORIGINAL_PROFILE = ?, RENAME_PROFILE = ? where mb_id = ?";
 		
 		try {
@@ -247,4 +249,41 @@ public class MemberDao {
 		return result;
 	}
 
+	public int coverDelete(Connection con, String memberId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update member set original_cover = null, rename_cover = null where mb_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int profileDelete(Connection con, String memberId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update member set original_profile = null, rename_profile = null where mb_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
 }

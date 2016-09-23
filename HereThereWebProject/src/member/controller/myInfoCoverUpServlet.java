@@ -1,7 +1,6 @@
 package member.controller;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -77,6 +76,7 @@ public class myInfoCoverUpServlet extends HttpServlet {
 		char cp = 'c';
 		Member member = new Member(memberId, originalFileName, savePath + "\\" + renameFileName, cp);
 		int result = new MemberService().coverUpdate(member);
+		
 		
 		if(result > 0){
 			response.sendRedirect("myInfo?memberId="+memberId);
