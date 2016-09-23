@@ -3,6 +3,7 @@ package board.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,12 +41,16 @@ public class BoardDetailViewServlet extends HttpServlet {
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 		
 		Board board = new BoardService().selectOne(boardNo);
-		ArrayList<Picture> list = new BoardService().selectPicAll(boardNo);
 		
+		RequestDispatcher view = null;
 		if(board != null){
-			//RequestDispatcer를 이용 게시물 디테일뷰jsp로 list를 넘김.
+			view = request.getRequestDispatcher("board/boardDetailView.jsp");
+			request.setAttribute("board", board);
+			view.forward(request, response);
 		}else{
-			//db 불러오기 실패 페이지로 sendRedirect함.
+			view = request.getRequestDispatcher("board/boardError.jsp");
+			request.setAttribute("code", "bdView");
+			view.forward(request, response);
 		}	
 		
 	}

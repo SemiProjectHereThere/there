@@ -231,17 +231,32 @@ public class BoardDao {
 
 	public Board selectOne(Connection con, int boardNo) {
 		// 게시물 세부정보를 board 객체에 저장하는 메소드
-		Board board = null;
+		Board b = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "";		//board 테이블에서 boardNo로 select all함.
+		String query = "select * from board where bd_no = ?";		//board 테이블에서 boardNo로 select all함.
 		
 		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
 			
-			
-			
+			if(rset.next()){
+				b.setBdNo(boardNo);
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
@@ -249,7 +264,7 @@ public class BoardDao {
 			close(pstmt);
 		}
 		
-		return board;		
+		return b;		
 	}
 
 	public ArrayList<Picture> selectPicAll(Connection con, int boardNo) {
