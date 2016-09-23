@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="notice.model.vo.Notice, member.model.vo.Member"%>
 <%
-	/* Notice n = (Notice)request.getAttribute("notice");
+	Notice n = (Notice)request.getAttribute("notice");
 	int noticeNo = (Integer)request.getAttribute("noticeno");
-	int pg = (Integer)request.getAttribute("pg"); */
+	int pg = (Integer)request.getAttribute("pg");
 %>
 <!DOCTYPE html>
 <html>
@@ -107,9 +107,8 @@
 				     <tr align="center">
 				      <td width="120">&nbsp;</td>
 				      <td colspan="2" width="399" height="50" ><input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp';">
-					<input type=button value="답글" OnClick="#">
-					<input type=button value="목록" OnClick="#">
-					<input type=button value="수정" OnClick="#">
+					<input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/notice/nlist';">
+					<input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>';">
 					<input type=button value="삭제" OnClick="#">
 				      <td width="0">&nbsp;</td>
 				     </tr>

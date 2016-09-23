@@ -100,7 +100,7 @@
 					<tr height="25" align="center">
 					<td align="center">&nbsp;</td>
 					<td align="center"><%= n.getNoticeNo() %></td>
-					<td align="center"><a href="/HereThere/notice/noticeDetailView.jsp?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>"><%= n.getNoticeTitle() %></a></td>
+					<td align="center"><a href="/HereThere/notice/ndetail?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>"><%= n.getNoticeTitle() %></a></td>
 				    <td align="center"><%= n.getNoticeWriter() %></td>
 				    <td align="center"><%= n.getNoticeDate() %></td>
 				    <td align="center"><%= n.getCountView() %></td>

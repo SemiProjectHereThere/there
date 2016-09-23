@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="notice.model.vo.Notice"%>
+<%
+	Notice n = (Notice)request.getAttribute("notice");
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,20 +11,21 @@
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-<form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
+<form id="frm" action="/HereThere/nupdate?noticeno=<%= n.getNoticeNo() %>" method="post" accept-charset="utf-8">
 <table width="100%">
 
 		<tr>
 			<td>제목</td>
-			<td><input type="text" id="title" name="title" /></td>
+			<td><input type="text" id="title" name="title" value="<%= n.getNoticeTitle() %>" /></td>
+			
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea></td>
+			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"><%= n.getNoticeContent() %></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" id="save" value="저장"/>
+				<input type="button" id="save" value="수정하기"/>
 				<input type="button" value="취소" OnClick="javascript:history.go(-1);"/>
 			</td>
 		</tr>
