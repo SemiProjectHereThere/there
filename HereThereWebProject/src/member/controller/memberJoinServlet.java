@@ -40,13 +40,17 @@ public class memberJoinServlet extends HttpServlet {
 				response.setContentType("text/html; charset=utf-8");
 				
 				//3. 전송값 꺼내서 변수에 저장하기
-				String memberId = request.getParameter("mbid");
-				String memberPwd = request.getParameter("mbpwd");
-				String memberName = request.getParameter("mbname");
+				String memberId = request.getParameter("userId");
+				String memberPwd = request.getParameter("pwd");
+				String memberName = request.getParameter("name");
 				String email = request.getParameter("email");
 				char gender = request.getParameter("gender").charAt(0);
 				Date birthday = Date.valueOf(request.getParameter("birthdate"));
-				String phone = request.getParameter("phone");
+				String hp1 =request.getParameter("hp1");
+				String hp2 =request.getParameter("hp2");
+				String hp3 =request.getParameter("hp3");
+				String phone = hp1 + hp2 + hp3; 
+			
 				
 				
 				//전송된 값이 2개 이상이면, 객체에 저장함
