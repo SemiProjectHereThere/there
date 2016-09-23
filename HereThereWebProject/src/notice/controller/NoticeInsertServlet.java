@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
+import board.model.vo.Board;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
@@ -39,20 +41,25 @@ public class NoticeInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String noticeTitle = request.getParameter("noticetitle");
-		String noticeWriter = request.getParameter("noticewriter");
-		String noticeContent = request.getParameter("noticecontent");
+		String noticeTitle = request.getParameter("title");
+		String noticeWriter = request.getParameter("userid");
+		String noticeContent = request.getParameter("smarteditor");
+		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		Notice notice = new Notice(noticeWriter, noticeTitle, noticeContent);
 		int result = new NoticeService().insertNotice(notice);
 		
 		if(result > 0){
-			response.sendRedirect("/HereThere/nlist");
+			RequestDispatcher view = request.getRequestDispatcher("nlist");
+			request.setAttribute("userid", noticeWriter);
+			request.setAttribute("pg", pg);
+			view.forward(request, response);
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("notice/noticeError.jsp");
 			request.setAttribute("code", "ninsert");
 			view.forward(request, response);
 		}
+				
 	}
 
 	/**

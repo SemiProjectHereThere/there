@@ -37,17 +37,15 @@ public class NoticeListServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		ArrayList<Notice> list = new NoticeService().selectList();
+		String userId = request.getParameter("userid");
+		int pg = Integer.parseInt(request.getParameter("pg"));
 		
-		RequestDispatcher view = null;
-		if(list != null){
-			view = request.getRequestDispatcher("notice/noticeListView.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		}else{
-			view = request.getRequestDispatcher("notice/noticeError.jsp");
-			request.setAttribute("code", "nlist");
-			view.forward(request, response);
-		}
+		RequestDispatcher view = request.getRequestDispatcher("notice/noticeListView.jsp");
+		request.setAttribute("list", list);
+		request.setAttribute("userId", userId);
+		request.setAttribute("pg", pg);
+		view.forward(request, response);
+		
 	}
 
 	/**

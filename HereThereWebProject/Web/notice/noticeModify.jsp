@@ -2,6 +2,8 @@
     pageEncoding="UTF-8" import="notice.model.vo.Notice"%>
 <%
 	Notice n = (Notice)request.getAttribute("notice");
+	int pg = (Integer)request.getAttribute("pg");
+	String userId = (String)request.getAttribute("userid");
 %>
 <html>
 <head>
@@ -11,7 +13,7 @@
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-<form id="frm" action="/HereThere/nupdate?noticeno=<%= n.getNoticeNo() %>" method="post" accept-charset="utf-8">
+<form id="frm" action="/HereThere/nupdate?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>&userid=<%= userId %>" method="post" accept-charset="utf-8">
 <table width="100%">
 
 		<tr>
@@ -60,6 +62,9 @@ $(function(){
         //폼 submit
         $("#frm").submit();
     })
+    editor_object.modify({
+    	"content":$tx('smarteditor')
+    	});
 })
 </script>
 </body>

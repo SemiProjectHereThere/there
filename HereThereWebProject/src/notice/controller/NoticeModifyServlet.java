@@ -36,6 +36,8 @@ public class NoticeModifyServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 				
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		String userId = request.getParameter("userid");
 				
 		Notice notice = new NoticeService().selectOne(noticeNo);
 				
@@ -43,6 +45,8 @@ public class NoticeModifyServlet extends HttpServlet {
 		if(notice != null){
 			view = request.getRequestDispatcher("notice/noticeModify.jsp");
 			request.setAttribute("notice", notice);
+			request.setAttribute("pg", pg);
+			request.setAttribute("userid", userId);
 			view.forward(request, response);
 		}else{
 			//에러

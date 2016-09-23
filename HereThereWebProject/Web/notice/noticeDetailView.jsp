@@ -6,6 +6,7 @@
 	Notice n = (Notice)request.getAttribute("notice");
 	int noticeNo = (Integer)request.getAttribute("noticeno");
 	int pg = (Integer)request.getAttribute("pg");
+	int endPg = (Integer)request.getAttribute("endpg");
 %>
 <!DOCTYPE html>
 <html>
@@ -63,10 +64,10 @@
 				    <table width="100%" cellpadding="0" cellspacing="0" border="0">
 				    <tr height="100"><td width="5"></td>
 				    <td width="" bgcolor=""></td></tr>
-				     <tr style="background:url('../image/table_mid.gif') repeat-x; text-align:center;">
-				      <td width="5"><img src="../image/table_left.gif" width="5" height="30" /></td>
+				     <tr style="background:url('/HereThere/image/table_mid.gif') repeat-x; text-align:center;">
+				      <td width="5"><img src="/HereThere/image/table_left.gif" width="5" height="30" /></td>
 				      <td><%= n.getNoticeTitle() %></td>
-				      <td width="5"><img src="../image/table_right.gif" width="5" height="30" /></td>
+				      <td width="5"><img src="/HereThere/image/table_right.gif" width="5" height="30" /></td>
 				     </tr>
 				    </table>
 				   <table width="764">
@@ -103,17 +104,17 @@
 				      <td width="0"></td>
 				                   <td width="399" colspan="2" height="200"><%= n.getNoticeContent() %>
 				                </tr>
-				     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
-				     <tr height="1" bgcolor="#82B5DF"><td colspan="4" width="407"></td></tr>
+				     <tr height="1" bgcolor="#f58218"><td colspan="4" width="407"></td></tr>
+				     <tr height="1" bgcolor="#f58218"><td colspan="4" width="407"></td></tr>
 				     <tr align="center">
 				      <td width="120">&nbsp;</td>
 				      <td colspan="2" width="399" height="50" >
-					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/notice/nlist?pg=<%= pg %>';">
-					  <% if(member.getManagerYN() == 'Y' ) { %>
-					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp';">
-					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>';">
+					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/nlist?pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';">
+					  <%-- <% if(member.getManagerYN() == 'Y' ) { %> --%>
+					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?pg=<%= endPg %>&userid=<%= n.getNoticeWriter() %>';">
+					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';">
 					  <input type=button value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>';">
-					  <% } %>
+					  <%-- <% } %> --%>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				    </table>

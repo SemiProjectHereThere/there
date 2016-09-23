@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String userId = (String)request.getParameter("userid");
+	int pg = Integer.parseInt(request.getParameter("pg"));
+			
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,7 +13,7 @@
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-<form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
+<form id="frm" action="/HereThere/ninsert?userid=<%= userId %>&pg=<%= pg %>" method="post" accept-charset="utf-8">
 <table width="100%">
 
 		<tr>

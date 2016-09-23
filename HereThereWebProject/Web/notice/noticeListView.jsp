@@ -3,10 +3,17 @@
 <%@ page import="java.util.ArrayList, notice.model.vo.Notice" %>
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-
-	int listSize = list.size();		//db와 연동이 안되있어서 널포인트오류남.
-	int listSize2 = listSize;
-	int total = listSize;
+	String userId = (String)request.getAttribute("userId");
+	
+	int listSize = 0;
+	int listSize2 = 0;
+	int total = 0;
+	if(list != null){
+		listSize = list.size();		//db와 연동이 안되있어서 널포인트오류남.
+		listSize2 = listSize;
+		total = listSize;
+	}
+	
 	
 	final int ROWSIZE = 4; 		//한페이지에 보일 공지글 수 
 	final int BLOCK = 5;			//아래에 보일 페이지 수 
@@ -78,15 +85,15 @@
 		<div class="container">
 				<!-- 게시판 페이지 -->
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
-				   <tr height="30"><td width="5"></td></tr>
-				   <tr style="background:url('../image/table_mid.gif') repeat-x; text-align:center;">
-				   <td width="5"><img src="../image/table_left.gif" width="5" height="30" /></td>
+				   <tr height="130"><td width="5"></td></tr>
+				   <tr style="background:url('/HereThere/image/table_mid.gif') repeat-x; text-align:center;">
+				   <td width="5"><img src="/HereThere/image/table_left.gif" width="5" height="30" /></td>
 				   <td width="73">번호</td>
 				   <td width="379">제목</td>
 				   <td width="73">작성자</td>
 				   <td width="164">작성일</td>
 				   <td width="58">조회수</td>
-				   <td width="7"><img src="../image/table_right.gif" width="5" height="30" /></td>
+				   <td width="7"><img src="/HereThere/image/table_right.gif" width="5" height="30" /></td>
 				   </tr>
 				   <% if(total == 0){ %>
 					 	<tr align="center" bgcolor="#FFFFFF" height="30">
@@ -100,12 +107,12 @@
 					<tr height="25" align="center">
 					<td align="center">&nbsp;</td>
 					<td align="center"><%= n.getNoticeNo() %></td>
-					<td align="center"><a href="/HereThere/notice/ndetail?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>"><%= n.getNoticeTitle() %></a></td>
+					<td align="center"><a href="/HereThere/ndetail?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>&endpg=<%= allPage %>"><%= n.getNoticeTitle() %></a></td>
 				    <td align="center"><%= n.getNoticeWriter() %></td>
 				    <td align="center"><%= n.getNoticeDate() %></td>
 				    <td align="center"><%= n.getCountView() %></td>
 				    <td align="center">&nbsp;</td>
-				    <tr height="1" bgcolor="#D2D2D2"><td colspan="6"></td></tr>
+				    <tr height="1" bgcolor="#f58218"><td colspan="6"></td></tr>
 				   <% } } %>
 				    <tr height="1" bgcolor="#f58218"><td colspan="6" width="752"></td></tr>
 			</table>
@@ -116,8 +123,8 @@
 				<%
 					if(pg>BLOCK) {
 				%>
-					[<a href="list.jsp?pg=1">◀◀</a>]
-					[<a href="list.jsp?pg=<%=startPage-1%>">◀</a>]
+					[<a href="/HereThere/nlist?pg=1&userid=<%= userId %>">◀◀</a>]
+					[<a href="/HereThere/nlist?pg=<%=startPage-1%>&userid=<%= userId %>">◀</a>]
 				<%
 					}
 				%>
@@ -130,7 +137,7 @@
 				<%
 						}else{
 				%>
-							[<a href="list.jsp?pg=<%=i %>"><%=i %></a>]
+							[<a href="/HereThere/nlist?pg=<%=i %>&userid=<%= userId %>"><%=i %></a>]
 				<%
 						}
 					}
@@ -139,15 +146,17 @@
 				<%
 					if(endPage<allPage){
 				%>
-					[<a href="list.jsp?pg=<%=endPage+1%>">▶</a>]
-					[<a href="list.jsp?pg=<%=allPage%>">▶▶</a>]
+					[<a href="/HereThere/nlist?pg=<%=endPage+1%>&userid=<%= userId %>">▶</a>]
+					[<a href="/HereThere/nlist?pg=<%=allPage%>&userid=<%= userId %>">▶▶</a>]
 				<%
 					}
 				%>
 					</td>
 					</tr>
 				<tr align="center">
-			   <td><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp';"></td>
+				<%-- <% if(userId.equals("admin")){ %> --%>
+			   <td><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>';"></td>
+			  <%--  <% } %> --%>
 			  </tr>
 			 </table>
 		</div>
