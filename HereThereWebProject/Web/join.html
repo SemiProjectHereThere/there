@@ -16,6 +16,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<!-- 로그인 창 -->
     <link type="text/css" rel="stylesheet" href="./css/style.css" />
+    
  </head>
 
  <body>
@@ -40,18 +41,104 @@
 			</div>
 		</div> 
 		<!-- header End -->
+		<script>
+		function checking()
+		{
+			if(document.writeForm.name.value == "")
+				{
+				alert("이름을 입력하세요")
+				return false;
+				}
+			//아이디 입력여부 검사
+			else if(document.writeForm.userId.value == ""){
+				alert("아이디를 입력하세요")
+				document.writeForm.userId.focus()
+				return false;
+			}
+			//아이디 유효성 검사(영문소문자, 숫자만)
+			for(i=0; i<document.writeForm.userId.value.length; i++)
+			{
+				ch=document.writeForm.userId.value.charAt(i)
+				if(!(ch >= '0' && ch<='9')&&!(ch>= 'a' && ch<='z'))
+					{
+					alert("아이디는 공백없이 소문자, 숫자만 입력가능합니다.")
+					document.writeForm.userId.focus()
+					document.writeForm.userId.select()
+					return false;
+					}
+			}
+			//아이디에 공백 사용하지 않기 
+			if(document.writeForm.userId.value.indexOf(" ")>=0)
+				{
+				alert("아이디에 공백을 사용할수 없습니다.")
+				document.writeForm.userId.focus()
+				document.writeForm.userId.select()
+				return false;
+				}
+			//아이디 길이 체크(6~12자)
+			if(document.writeForm.userId.value.length <6 || document.writeForm.userId.value.length > 12)
+				{
+				alert("아이디를 6~12자까지 입력해주세요.")
+				document.writeForm.userId.focus()
+				document.writeForm.userId.select()
+				return false;
+				}
+			// 비밀번호 입력하지 않았을시
+			else if(document.writeForm.pwd.value == "")
+			{
+				alert("비밀번호를 입력하세요")
+				document.writeForm.pwd.focus()
+				return false;
+			}
+			// 비밀번호 길이체크(4~8자 까지 허용 )
+			if(document.writeForm.pwd.value.length<4 || document.writeForm.pwd.value.length>8)
+			{
+				alert("비밀번호를 4~8자 까지 입력해주세요")
+				document.writeForm.pwd.focus()
+				document.writeForm.pwd.select()
+			}	
+			else if(document.writeForm.pwd.value != document.writeForm.repwd.value)
+			{
+				alert("비밀번호가 다릅니다")
+				document.writeForm.pwd.value=""
+				document.writeForm.repwd.value=""
+				document.writeForm.pwd.focus=""
+				return false;
+			}
+			else if(document.writeForm.email.value == "")alert("이메일을 입력하세요")
+		/* 	else document.writeForm.submit() */
+		}
+		
+	/* 	function checkId()
+		{
+			var sid = document.writeForm.userId.value   // 아이디값 가져오기
+			if(sid == "") alert("입력된 아이디가 없습니다.")	// 없는 경우 메세지 출력
+			
+			else window.open("checkId.jsp?id="+ sid,"", "width=400 height=150")
+		} */
+		</script>
 		<!-- container 컨텐츠 내용시작 -->
 		<div class="container">
 				<section id="content">
-						<form method="post" action="">
+						<form method="post" action="/HereThere/mjoin" name="writeForm" onsubmit="return checking()">
 							<h1>Join Us</h1>
 							
-							<div><input type="text" placeholder="Username" id="username" required></div>
-							<div><input type="text" placeholder="UserId" id="userid"required></div>
-							<div><input type="password" placeholder="Password" id="password1" required></div>
-							<div><input type="password" placeholder="Confirm Password" id="password2" required></div>
-							<div><input type="email" placeholder="Email" id="email" required></div>
-							<div><input type="date" placeholder="BirthDate" id="birthdate" required></div>
+							<div><input type="text" placeholder="Username" id="username" name="name"></div>
+							
+							<div><input type="text" placeholder="UserId" id="userid" name="userId">
+							<input type="button" value="Id Check" id="idcheck"></input></div>
+							<div><input type="password" placeholder="Password" id="password1"name="pwd"></div>
+							<div><input type="password" placeholder="Confirm Password" id="password2"name="repwd" ></div>
+							<div><input type="email" placeholder="Email" id="email"name="email" ></div>
+							<div><input type="date" placeholder="BirthDate" id="birthdate" name="birthdate"></div>
+							<div id="tel"><select name="hp1" class="box">
+							<option value="010">010
+							<option value="011">011
+							<option value="016">016
+							<option value="017">017
+							<option value="018">018
+							<option value="019">019
+							</select>-<input type="text" name="hp2" maxlength=4 class="box">-<input type="text" name="hp3" maxlength=4 class="box"></div>
 							<div>
 							<label><h5>Gender</h5></label>&nbsp;&nbsp;
 							<input type="radio"  id="InputGender" name="gender" value="M">&nbsp;남 &nbsp;&nbsp;
@@ -79,7 +166,7 @@
 			<div class="cs">
 			<ul>
 				<li><h4>회사정보</h4></li>
-				<li>회사명 : KHCompany</li>
+				<li>회사명 : KHCompanyㅁ</li>
 				<li>대표 : 홍길동</li>
 				<li>주소 : 서울특별시 강남구 역삼동 KH빌딩 2층</li>
 				<li>개인정보관리 책임자 : 홍길동 (Yogijogi@naver.com)</li>
