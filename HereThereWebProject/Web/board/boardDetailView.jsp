@@ -20,8 +20,8 @@
 	%>
 	<%=k %>
 	<br>
-	<a href="/HereThere/board/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
-	<a href="/HereThere/board/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
+	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
+	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
 	<div>댓글라인</div>
 </body>
 </html>
