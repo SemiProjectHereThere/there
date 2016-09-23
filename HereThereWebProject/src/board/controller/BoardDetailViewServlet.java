@@ -39,6 +39,7 @@ public class BoardDetailViewServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		System.out.println(boardNo);
 		
 		Board board = new BoardService().selectOne(boardNo);
 		

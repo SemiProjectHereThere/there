@@ -244,6 +244,7 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
+				b = new Board();
 				b.setBdNo(boardNo);
 				b.setBdTitle(rset.getString("bd_title"));
 				b.setBdContent(rset.getString("bd_Content"));

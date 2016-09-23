@@ -1,6 +1,8 @@
 package board.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
+import board.model.vo.Board;
 
 /**
  * Servlet implementation class BoardDeleteServlet
@@ -31,16 +34,18 @@ public class BoardDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		//파라미터 부분
-		int boardNo = (Integer) null;
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		System.out.println(boardNo);
 		
 		int result = new BoardService().deleteBoard(boardNo);
 		
 		if(result > 0){
-			//성공시 게시판 리스트로 sendRedirect
+			response.sendRedirect("/HereThere/boardView.jsp");
 		}else{
-			//실패시 RequestDispatcher
-		}
+			RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
+			request.setAttribute("code", "bdelete");
+			error.forward(request, response);
+		}	
 	}
 
 	/**
