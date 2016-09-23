@@ -37,7 +37,7 @@
 					<ul class="submenu">
 						<li><a href="/HereThere/logout">로그아웃</a></li>
 						<li><a href="/HereThere/myInfo?userid=<%= member.getMemberId() %>">마이페이지</a></li>
-						<li><a href="/HereThere/nlist">공지사항</a></li>
+						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
 						<li><a href="/HereThere/help.html">도움말</a></li>
 					</ul>
 				</div>
