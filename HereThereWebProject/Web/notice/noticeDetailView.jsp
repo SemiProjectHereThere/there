@@ -24,12 +24,14 @@
 
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	
+	<!-- 페이지 탭부분 -->
+	<link rel="shortcut icon" href="image/111.png.ico">
 	<style type="text/css">
 	.bd{
 		margin: 0 100px 0 200px;
 	}
-	</style> 
+	</style>
+	
  </head>
 <body>
 <!-- header Start -->
@@ -113,8 +115,8 @@
 					  <%-- <% if(member.getManagerYN() == 'Y' ) { %> --%>
 					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?pg=<%= endPg %>&userid=<%= n.getNoticeWriter() %>';">
 					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';">
-					  <input type=button value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>';">
-					  <%-- <% } %> --%>
+					  <input type=button id="Btn" value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';" >
+					  <%-- <% }  --%>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				    </table>

@@ -35,11 +35,16 @@ public class NoticeDeleteServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		String userId = request.getParameter("userid");
 		
 		int result = new NoticeService().noticeDelete(noticeNo);
 		
 		if(result > 0 ){
-			response.sendRedirect("/HereThere/nlist");
+			RequestDispatcher view = request.getRequestDispatcher("nlist");
+			request.setAttribute("userid", userId);
+			request.setAttribute("pg", pg);
+			view.forward(request, response);
 		}else{
 			//에러
 		}

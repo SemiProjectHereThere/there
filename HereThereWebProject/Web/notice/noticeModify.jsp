@@ -11,6 +11,8 @@
 <title>글쓰기 페이지</title>
 <script type="text/javascript" src="../smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+<!-- 페이지 탭부분 -->
+	<link rel="shortcut icon" href="image/111.png.ico">
 </head>
 <body>
 <form id="frm" action="/HereThere/nupdate?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>&userid=<%= userId %>" method="post" accept-charset="utf-8">

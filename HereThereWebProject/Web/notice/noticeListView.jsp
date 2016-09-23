@@ -15,7 +15,7 @@
 	}
 	
 	
-	final int ROWSIZE = 4; 		//한페이지에 보일 공지글 수 
+	final int ROWSIZE = 15; 		//한페이지에 보일 공지글 수 
 	final int BLOCK = 5;			//아래에 보일 페이지 수 
 	int pg = 1;					//페이지 초기값
 	
@@ -57,6 +57,8 @@
 
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<!-- 페이지 탭부분 -->
+	<link rel="shortcut icon" href="image/111.png.ico">
  </head>
 
  <body>
@@ -152,12 +154,11 @@
 					}
 				%>
 					</td>
+					<%-- <% if(userId.equals("admin")){ %> --%>
+			  		<td align="right" width="50px"><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>';"></td>
+			  		<%--  <% } %> --%>
 					</tr>
-				<tr align="center">
-				<%-- <% if(userId.equals("admin")){ %> --%>
-			   <td><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>';"></td>
-			  <%--  <% } %> --%>
-			  </tr>
+				
 			 </table>
 		</div>
 		<!-- container2 컨텐츠 내용END -->

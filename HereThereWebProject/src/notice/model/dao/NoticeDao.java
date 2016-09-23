@@ -13,7 +13,7 @@ public class NoticeDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from adminboard";
+		String query = "select * from adminboard order by adb_no";
 		
 		try {
 			stmt = con.createStatement();
