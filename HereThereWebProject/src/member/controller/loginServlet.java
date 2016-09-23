@@ -37,7 +37,8 @@ public class loginServlet extends HttpServlet {
 		//전송온 값들 추출
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
-		
+		System.out.println(memberId);
+		System.out.println(memberPwd);
 		//추출한 값을 모델로 넘기고 결과를 받음
 		Member member = new MemberService().loginCheck(memberId, memberPwd);
 		

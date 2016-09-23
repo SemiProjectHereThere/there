@@ -39,12 +39,9 @@ public class NoticeDeleteServlet extends HttpServlet {
 		int result = new NoticeService().noticeDelete(noticeNo);
 		
 		if(result > 0 ){
-			response.sendRedirect("/first/nlist");
+			response.sendRedirect("/HereThere/nlist");
 		}else{
-			RequestDispatcher view = request.getRequestDispatcher("notice/noticeError.jsp");
-			request.setAttribute("code", "ndelete");
-			request.setAttribute("noticeNo", noticeNo);
-			view.forward(request, response);
+			//에러
 		}
 	}
 

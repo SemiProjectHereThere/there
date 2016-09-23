@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="notice.model.vo.Notice, member.model.vo.Member"%>
 <%
+	Member member = (Member)session.getAttribute("member");
 	Notice n = (Notice)request.getAttribute("notice");
 	int noticeNo = (Integer)request.getAttribute("noticeno");
 	int pg = (Integer)request.getAttribute("pg");
@@ -64,7 +65,7 @@
 				    <td width="" bgcolor=""></td></tr>
 				     <tr style="background:url('../image/table_mid.gif') repeat-x; text-align:center;">
 				      <td width="5"><img src="../image/table_left.gif" width="5" height="30" /></td>
-				      <td>제 목</td>
+				      <td><%= n.getNoticeTitle() %></td>
 				      <td width="5"><img src="../image/table_right.gif" width="5" height="30" /></td>
 				     </tr>
 				    </table>
@@ -72,44 +73,47 @@
 				     <tr>
 				      
 				      <td align="center" width="76">글번호</td>
-				      <td width="319"></td>
+				      <td width="319"><%= n.getNoticeNo() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 					 <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				    <tr>
 				      
 				      <td align="center" width="76">아이디</td>
-				      <td width="319"></td>
+				      <td width="319"><%= n.getNoticeWriter() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 					 <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				    <tr>
 				      
 				      <td align="center" width="76">작성일</td>
-				      <td width="319"></td>
+				      <td width="319"><%= n.getNoticeDate() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				    <tr>
 				      
 				      <td align="center" width="76">조회수</td>
-				      <td width="319"></td>
+				      <td width="319"><%= n.getCountView() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				      
 				     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				                <tr>
 				      <td width="0"></td>
-				                   <td width="399" colspan="2" height="200">
+				                   <td width="399" colspan="2" height="200"><%= n.getNoticeContent() %>
 				                </tr>
 				     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				     <tr height="1" bgcolor="#82B5DF"><td colspan="4" width="407"></td></tr>
 				     <tr align="center">
 				      <td width="120">&nbsp;</td>
-				      <td colspan="2" width="399" height="50" ><input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp';">
-					<input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/notice/nlist';">
-					<input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>';">
-					<input type=button value="삭제" OnClick="#">
+				      <td colspan="2" width="399" height="50" >
+					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/notice/nlist?pg=<%= pg %>';">
+					  <% if(member.getManagerYN() == 'Y' ) { %>
+					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp';">
+					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>';">
+					  <input type=button value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>';">
+					  <% } %>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				    </table>
