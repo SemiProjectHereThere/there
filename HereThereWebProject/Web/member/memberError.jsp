@@ -20,6 +20,8 @@
 		case "mupdate" : message = "회원 정보 수정이 실패하였습니다."; break;
 		case "mdel" : message = "회원 탈퇴가 실패하였습니다."; break;
 		case "mall" : message = "전체 회원 조회가 실패하였습니다."; break;
+		case "Coverup": message = "커버사진 변경이 실패하였습니다."; break;
+		case "Profileup" : message = "프로필사진 변경이 실패하였습니다."; break;
 		default: message = "알 수 없는 에러가 발생하였습니다."; break;
 		}
 	%>

@@ -202,7 +202,9 @@ public class MemberDao {
 	public int coverUp(Connection con, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+		System.out.println(member.toString());
+		System.out.println(member.getOriginalCoverName());
+		System.out.println(member.getRenameCoverName());
 		String query = "update member set original_cover = ?, rename_cover = ? where mb_id = ?";
 		
 		try {
@@ -224,8 +226,10 @@ public class MemberDao {
 	public int profileUp(Connection con, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
-		String query = "update member set original_profile = ?, rename_profile = ? where mb_id = ?";
+		System.out.println(member.toString());
+		System.out.println(member.getOriginalProfileName());
+		System.out.println(member.getRenameProfileName());
+		String query = "update member set ORIGINAL_PROFILE = ?, RENAME_PROFILE = ? where mb_id = ?";
 		
 		try {
 			pstmt = con.prepareStatement(query);

@@ -18,8 +18,7 @@ public class Member implements java.io.Serializable{
 	private String renameCoverName;	//새로 지은 회원 커버사진이름
 	private String originalProfileName; //회원 원래 프로필사진이름
 	private String renameProfileName;	//새로 지은 회원 프로필사진이름
-	
-	
+	private char cp; //회원의 커버사진과 프로필사진 구별
 	
 	public Member(String memberId, String memberPwd, String memberName, String email, char gender, Date birthday,
 			String phone) {
@@ -47,11 +46,19 @@ public class Member implements java.io.Serializable{
 		this.managerYN = managerYN;
 	}
 
-	public Member(String memberId, String originalCoverName, String renameCoverName) {
+	public Member(String memberId, String originalCoverName, String renameCoverName, char cp) {
 		super();
 		this.memberId = memberId;
 		this.originalCoverName = originalCoverName;
 		this.renameCoverName = renameCoverName;
+		this.cp = cp;
+	}
+	
+	public Member(String memberId, String originalProfileName, String renameProfileName) {
+		super();
+		this.memberId = memberId;
+		this.originalProfileName = originalProfileName;
+		this.renameProfileName = renameProfileName;
 	}
 
 	public String getOriginalCoverName() {
