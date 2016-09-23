@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>my page view</title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" href="css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -37,12 +38,9 @@
 					<ul class="submenu">
 						<li><a href="/HereThere/logout">로그아웃</a></li>
 						<li><a href="/HereThere/myInfo?userid=<%= member.getMemberId() %>">마이페이지</a></li>
-<<<<<<< HEAD
-						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
-=======
+						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>">공지사항</a></li>
 						<li><a href="#">내 정보 수정</a>
 						<li><a href="/HereThere/nlist">공지사항</a></li>
->>>>>>> branch 'master' of https://github.com/SemiProjectHereThere/there
 						<li><a href="/HereThere/help.html">도움말</a></li>
 					</ul>
 				</div>
