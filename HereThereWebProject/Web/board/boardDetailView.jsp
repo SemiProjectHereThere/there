@@ -15,13 +15,13 @@
 	<div>지도<%=b.getBdMap() %></div>
 	<br><br>
 	<% 
-		String s = b.getBdContent(); 
+		String s = b.getBdContent();
 		String k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
 	%>
 	<%=k %>
 	<br>
-	<a href="/HereThere/board/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
-	<a href="/HereThere/board/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
+	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
+	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
 	<div>댓글라인</div>
 </body>
 </html>

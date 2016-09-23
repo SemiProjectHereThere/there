@@ -94,4 +94,27 @@ public class MemberService {
 		return result;
 	}
 
+	public int coverDelete(String memberId) {
+		Connection con = getConnection();
+		int result = new MemberDao().coverDelete(con, memberId);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int profileDelete(String memberId) {
+		Connection con = getConnection();
+		int result = new MemberDao().profileDelete(con, memberId);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 }

@@ -30,6 +30,16 @@ public class Board implements java.io.Serializable{
 		this.bdMap = bdMap;
 	}
 
+	public Board(String bdTitle, int bdNo, String bdContent, String bdCategory, String bdLocation, String bdMap) {
+		super();
+		this.bdTitle = bdTitle;
+		this.bdNo = bdNo;
+		this.bdContent = bdContent;
+		this.bdCategory = bdCategory;
+		this.bdLocation = bdLocation;
+		this.bdMap = bdMap;
+	}
+
 	public Board(String bdTitle, int bdNo, String bdContent, String bdWriter, Date bdEnrollDate, String bdCategory,
 			String bdLocation, int bdReadCnt, int bdCommentCnt, int bdStarPt, int bdShingoCnt, String bdMap) {
 		super();

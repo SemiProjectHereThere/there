@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="board.model.vo.Board, java.util.ArrayList " %>
+<%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,58 +94,52 @@
 		<div class="bg-color">
 			<div class="container wrapper">
 			<!-- contant Start -->
+			<%for(int i = 1; i<list.size()/2 + 1; i++){ %>
 				<div class="col-lg-12 photo-link">
+				
+				<%for(int j = i*2-1; j<i*2 + 1; j++){ %>
+					<%Board b = list.get(j-1); %>
+					<% 
+						String k ="";
+     					String s = b.getBdContent(); 
+     					System.out.println("======================================");
+      					System.out.println(s.indexOf("/HereThere/SE2"));
+      					System.out.println(s.indexOf("&#10;&#10;"));
+      					System.out.println("======================================");
+      					if(s.indexOf("/HereThere/SE2")!= -1){
+      					k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
+      					}
+      					
+  					 %>
+					
 					<div class="col-lg-6">
-					<p class="naming">
+					<p class="naming"><%=b.getBdTitle() %></p>
+					<div class="<%=b.getBdNo() %> score1"></div>
 					
-					가을엔 남한산성 단풍 나들이!!</p>
-					
-					<div class="score score1"></div>
-					
-					<img src="/HereThere/image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+					<script>
+	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
+
+	 				$('.' + <%=b.getBdNo()%>).raty({readOnly:true, score: <%=b.getBdStarPt() %> });
+					</script>
+					<%if(k==""){ %>
+					<img src="/HereThere/image/img2.png" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
+					<%}else{ %>
+					<img src="<%=k %>" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
+					<%} %>
 					</div>
-					<div class="col-lg-6">
+				<%System.out.println(list.size()); %>
+				<%if(j == (list.size())){ %>
+		
+				<% break;}} %>
+					<!-- <div class="col-lg-6">
 					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
 					<div class="score score1"></div>
 					<img src="/HereThere/image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
-					</div>
+					</div> -->
 				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<div class="score score1"></div>
-					<img src="/HereThere/image/img3.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
-					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<div class="score score1"></div>
-					<img src="/HereThere/image/img4.png" class="img-rounded center-block" alt="남한산성사진" />
-					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<div class="score score1"></div>
-					<img src="/HereThere/image/img5.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
-					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<div class="score score1"></div>
-					<img src="/HereThere/image/img6.png" class="img-rounded center-block" alt="남한산성사진" />
-					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<div class="score score1"></div>
-					<img src="/HereThere/image/img7.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
-					</div>
-					<div class="col-lg-6">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<div class="score score1"></div>
-					<img src="/HereThere/image/img8.png" class="img-rounded center-block" alt="남한산성사진" />
-					</div>
-				</div>
+				
+				<%} %>
+				
 
 			<!-- contant End -->
 			</div>

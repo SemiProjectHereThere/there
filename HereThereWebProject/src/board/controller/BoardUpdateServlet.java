@@ -1,6 +1,8 @@
 package board.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,14 +35,22 @@ public class BoardUpdateServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		//파라미터 부분
+		String title = request.getParameter("title");
+		String location = request.getParameter("location");
+		String category = request.getParameter("category");
+		String content = request.getParameter("smarteditor");
+		String map = request.getParameter("xy");
+		int no = Integer.parseInt(request.getParameter("no"));
 		
-		Board board = new Board();
+		Board board = new Board(title, no, content, category, location, map);
 		int result = new BoardService().updateBoard(board);
 		
 		if(result > 0){
-			//성공시 게시판 리스트로 sendRedirect
+			response.sendRedirect("/HereThere/board/boardView.jsp");
 		}else{
-			//실패시 RequestDispatcher
+			RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
+			request.setAttribute("code", "bupdate");
+			error.forward(request, response);
 		}
 	}
 
