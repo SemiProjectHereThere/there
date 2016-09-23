@@ -15,7 +15,7 @@
 	<div>지도<%=b.getBdMap() %></div>
 	<br><br>
 	<% 
-		String s = b.getBdContent(); 
+		String s = b.getBdContent();
 		String k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
 	%>
 	<%=k %>

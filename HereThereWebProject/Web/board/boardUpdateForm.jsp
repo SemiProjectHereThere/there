@@ -28,14 +28,15 @@
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
-<form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
+<form id="frm" action="/HereThere/BoardUpdate" method="post" accept-charset="utf-8">
 <input type="text" id="xy" name="xy" size="300" value="<%=b.getBdMap() %>>" />
 <input type="hidden" name="id" value="<%=b.getBdWriter()%>">
+<input type="hidden" name="no" value="<%=b.getBdNo()%>">
 <table width="100%">
 
 		<tr>
 			<td>제목</td>
-			<td><input type="text" id="title" name="title" /></td>
+			<td><input type="text" id="title" name="title" value="<%=b.getBdTitle() %>>" /></td>
 		</tr>
 		<tr>
 			<td>지역분류</td>
@@ -64,7 +65,7 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea></td>
+			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;" value="<%=b.getBdContent() %>>"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2">

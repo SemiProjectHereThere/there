@@ -51,7 +51,7 @@ public class BoardInsertServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		}else{
 			RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
-			request.setAttribute("code", "BoardInsert");
+			request.setAttribute("code", "binsert");
 			error.forward(request, response);
 		}
 	}

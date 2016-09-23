@@ -342,11 +342,20 @@ public class BoardDao {
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String query = ""; // update 쿼리 추가
+		String query = "update board set bd_title = ?, bd_content = ?, bd_category = ?" + 
+						", bd_location = ?, bd_map = ? where bd_no = ?"; // update 쿼리 추가
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			// pstmt.setString() 추가
+			pstmt.setString(1, board.getBdTitle());
+			pstmt.setString(2, board.getBdContent());
+			pstmt.setString(3, board.getBdCategory());
+			pstmt.setString(4, board.getBdLocation());
+			pstmt.setString(5, board.getBdMap());
+			pstmt.setInt(6, board.getBdNo());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
