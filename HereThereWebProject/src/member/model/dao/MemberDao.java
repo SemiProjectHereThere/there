@@ -199,4 +199,48 @@ public class MemberDao {
 		return list;
 	}
 
+	public int coverUp(Connection con, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update member set original_cover = ?, rename_cover = ? where mb_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, member.getOriginalCoverName());
+			pstmt.setString(2, member.getRenameCoverName());
+			pstmt.setString(3, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int profileUp(Connection con, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update member set original_profile = ?, rename_profile = ? where mb_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, member.getOriginalProfileName());
+			pstmt.setString(2, member.getRenameProfileName());
+			pstmt.setString(3, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

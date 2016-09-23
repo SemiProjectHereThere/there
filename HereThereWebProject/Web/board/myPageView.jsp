@@ -54,21 +54,22 @@
 				<img class="profile-pic" src="">
 				</img>
 				<div class="name-div">
-					<a href="#">홍길동</a>
+					<a href="#"><%= member.getMemberName() %></a>
 				</div>
 				<div class="pic-change-btns">
 					<div class="button"><a href="#covermodal" id="modaltrigger">커버사진 변경</a></div> &nbsp; &nbsp;
 					<div id="covermodal" style="display:none;">
-					<form method="post" action="">
+					<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
 					<h3>COVER 사진 변경</h3> <br>
-					<input type="file" id="theFileInput" accept="image/*" size="40">
+					<input type="file" id="theFileInput" accept="image/*" size="40" name="coverfile">
+					<input type="hidden" name="memberid" value=<%= member.getMemberId() %>>
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
 
 			<!--모달윈도우부분-->
 			<script type="text/javascript">
-				$(function(){
+				 $(function(){
 					$('#coverform').submit(function(e){
 
 						var file = document.querySelector('#theFileInput');
@@ -76,31 +77,31 @@
 					file.onchange = function(){
 						var fileList = file.files;
 
-						/*읽기*/
+						//읽기
 						var reader = new FileReader();
 						reader.readAsDataURL(fileList[0]);
 
-						/*로드한 후*/
+						//로드한 후
 						reader.onload = function(){
-							/*썸네일 이미지 생성*/
-							var tempImage = new Image(); /*drawImage 메서드에 넣기 위해 이미지 객체화*/
-							tempImage.src = reader.result; /*data-uri을 이미지 객체에 주입*/
+							//썸네일 이미지 생성
+							var tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
+							tempImage.src = reader.result; //data-uri을 이미지 객체에 주입
 							tempImage.onload = function(){
-								/*리사이즈를 위해 캔버스 객체 생성*/
+								//리사이즈를 위해 캔버스 객체 생성
 								var canvas = document.createElement('canvas');
 								var canvasContext = canvas.getContext("2d");
 
-								/*캔버스 크기 설정*/
+								//캔버스 크기 설정
 								canvas.width = 1105;
 								canvas.height = 315;
 
-								/*이미지를 캔버스에 그리기*/
+								//이미지를 캔버스에 그리기
 								canvasContext.drawImage(this, 0 , 0, 1105, 315);
 
-								/*캔버스에 그린 이미지를 다시 data-uri 형태로 변환*/
+								//캔버스에 그린 이미지를 다시 data-uri 형태로 변환
 								var dataURI = canvas.toDataURL("image/jpeg");
 
-								/*썸네일 이미지 보여주기*/
+								//썸네일 이미지 보여주기
 								document.querySelector('.cover-pic').src = dataURI
 							};
 						};
@@ -116,9 +117,10 @@
 
 					<div class="button"><a href="#profilemodal" id="modaltrigger1">프로필사진 변경</a></div>
 					<div id="profilemodal" style="display:none;">
-					<form method="post" action="">
+					<form method="post" action="/HereThere/profileUp" enctype="multipart/form-data">
 					<h3>PROFILE 사진 변경</h3> <br>
-					<input type="file" id="theFileInput2" accept="image/*" size="40">
+					<input type="file" id="theFileInput2" accept="image/*" size="40" name="profilefile">
+					<input type="hidden" name="memberid" value=<%= member.getMemberId() %>>
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
@@ -182,7 +184,7 @@
 					 </select>
 				</div>
 				<div class="select-local col-lg-6">
-					<button type="button" class="btn2" href="/HereThere/boardWriterForm.jsp"> 
+					<button type="button" class="btn2" onclick="location.href='/HereThere/board/boardWriteForm.jsp'"> 
 						게시물 올리기
 					</button>
 				</div>

@@ -72,4 +72,26 @@ public class MemberService {
 		return 0;
 	}
 
+	public int coverUpdate(Member member) {
+		Connection con = getConnection();
+		int result = new MemberDao().coverUp(con, member);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		return result;
+	}
+
+	public int profileUpdate(Member member) {
+		Connection con = getConnection();
+		int result = new MemberDao().profileUp(con, member);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		return result;
+	}
+
 }

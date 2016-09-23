@@ -14,6 +14,10 @@ public class Member implements java.io.Serializable{
 	private String phone; //회원의 전화번호
 	private Date joinDate;  //회원의 가입날짜
 	private char managerYN; //회원의 매니저 여부
+	private String originalCoverName; //회원 원래 커버사진이름
+	private String renameCoverName;	//새로 지은 회원 커버사진이름
+	private String originalProfileName; //회원 원래 프로필사진이름
+	private String renameProfileName;	//새로 지은 회원 프로필사진이름
 	
 	
 	
@@ -41,6 +45,45 @@ public class Member implements java.io.Serializable{
 		this.phone = phone;
 		this.joinDate = joinDate;
 		this.managerYN = managerYN;
+	}
+
+	public Member(String memberId, String originalCoverName, String renameCoverName) {
+		super();
+		this.memberId = memberId;
+		this.originalCoverName = originalCoverName;
+		this.renameCoverName = renameCoverName;
+	}
+
+	public String getOriginalCoverName() {
+		return originalCoverName;
+	}
+
+	public void setOriginalCoverName(String originalCoverName) {
+		this.originalCoverName = originalCoverName;
+	}
+
+	public String getRenameCoverName() {
+		return renameCoverName;
+	}
+
+	public void setRenameCoverName(String renameCoverName) {
+		this.renameCoverName = renameCoverName;
+	}
+
+	public String getOriginalProfileName() {
+		return originalProfileName;
+	}
+
+	public void setOriginalProfileName(String originalProfileName) {
+		this.originalProfileName = originalProfileName;
+	}
+
+	public String getRenameProfileName() {
+		return renameProfileName;
+	}
+
+	public void setRenameProfileName(String renameProfileName) {
+		this.renameProfileName = renameProfileName;
 	}
 
 	public String getMemberId() {
