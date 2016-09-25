@@ -13,16 +13,16 @@ import board.model.service.BoardService;
 import board.model.vo.Board;
 
 /**
- * Servlet implementation class BoardDeleteServlet
+ * Servlet implementation class BoardUpdateViewServlet
  */
-@WebServlet(name = "BoardDelete", urlPatterns = { "/BoardDelete" })
-public class BoardDeleteServlet extends HttpServlet {
+@WebServlet("/BoardUpView")
+public class BoardUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDeleteServlet() {
+    public BoardUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,18 +34,21 @@ public class BoardDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
+		//파라미터 부분
 		int boardNo = Integer.parseInt(request.getParameter("bno"));
-		System.out.println(boardNo);
+				
+		Board board = new BoardService().selectOne(boardNo);
 		
-		int result = new BoardService().deleteBoard(boardNo);
-		
-		if(result > 0){
-			response.sendRedirect("/HereThere/boardView.jsp");
+		RequestDispatcher view = null;
+		if(board != null){
+			view = request.getRequestDispatcher("board/boardUpdateForm.jsp");
+			request.setAttribute("board", board);
+			view.forward(request, response);
 		}else{
-			RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
-			request.setAttribute("code", "bdelete");
-			error.forward(request, response);
-		}	
+			view = request.getRequestDispatcher("board/boardError.jsp");
+			request.setAttribute("code", "bupView");
+			view.forward(request, response);
+		}
 	}
 
 	/**
