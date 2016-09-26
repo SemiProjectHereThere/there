@@ -4,6 +4,7 @@
 <%
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 	String userId = (String)request.getAttribute("userId");
+	String userName = (String)request.getAttribute("username");
 	
 	int listSize = 0;
 	int listSize2 = 0;
@@ -68,7 +69,7 @@
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= userId %>"><%= userName %></a></div>
 			
 				<!-- 로그인 정보 입력 -->
 			
