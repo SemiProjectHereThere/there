@@ -110,53 +110,7 @@ public class BoardDao {
 	}
 
 
-	public ArrayList<Board> selectPartByStarPt(Connection con) {
-		//별점순별로 분류된 게시물을 list에 담는 메소드
-		ArrayList<Board> list = null;
-		
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		String query = "";		//등록순으로 정렬하여 list에 담는다.
-		
-		Board bd = null;
-		try {
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(rset);
-			close(stmt);
-		}
-		
-		return list;		
-	}
 
-	public ArrayList<Board> selectPartByCommentCnt(Connection con) {
-		//댓글개수 순별로 분류된 게시물을 list에 담는 메소드
-		ArrayList<Board> list = null;
-		
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		String query = "";		//등록순으로 정렬하여 list에 담는다.
-		
-		Board bd = null;
-		try {
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(rset);
-			close(stmt);
-		}
-		
-		return list;		
-	}
 
 	public ArrayList<Board> selectAll(Connection con, String userId) {
 		// 전체게시물을 list에 저장하는 메소드
@@ -652,6 +606,289 @@ public class BoardDao {
 				
 				list.add(b);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+
+	public ArrayList<Board> selectPartByStarPt(Connection con) {
+		//별점순별로 분류된 게시물을 list에 담는 메소드
+ArrayList<Board> list = null;
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board order by BD_STARPOINT desc";//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;		
+	}
+
+	public ArrayList<Board> selectPartByStarPt(Connection con, Board board) {
+		// 별점별
+		ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board where BD_LOCATION = ? and BD_CATEGORY = ? order by BD_STARPOINT desc";		//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, board.getBdLocation());
+			pstmt.setString(2, board.getBdCategory());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<Board> selectPartByEnrollDate(Connection con) {
+ArrayList<Board> list = null;
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board order by BD_ENROLLDATE desc";//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;	
+	}
+
+	public ArrayList<Board> selectPartByEnrollDate(Connection con, Board board) {
+		// 등록일자별
+		ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board where BD_LOCATION = ? and BD_CATEGORY = ? order by BD_ENROLLDATE desc";		//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, board.getBdLocation());
+			pstmt.setString(2, board.getBdCategory());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	public ArrayList<Board> selectPartByCommentCnt(Connection con) {
+		//댓글개수 순별로 분류된 게시물을 list에 담는 메소드
+		ArrayList<Board> list = null;
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board order by BD_COMMENT_COUNT desc";//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
+		
+		return list;	
+	}
+
+	public ArrayList<Board> selectPartByCommentCnt(Connection con, Board board) {
+ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board where BD_LOCATION = ? and BD_CATEGORY = ? order by BD_COMMENT_COUNT desc";		//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, board.getBdLocation());
+			pstmt.setString(2, board.getBdCategory());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

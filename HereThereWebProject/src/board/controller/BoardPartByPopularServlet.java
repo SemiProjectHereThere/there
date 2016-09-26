@@ -40,22 +40,16 @@ public class BoardPartByPopularServlet extends HttpServlet {
 		
 		String location = request.getParameter("location");
 		String category = request.getParameter("category");
-		System.out.println(category);
+		//System.out.println(category);
 		ArrayList<Board> list = null;
 		switch(category){
 		case "0" : list = new BoardService().selectPartByPopular(); break;
 		default : Board board = new Board(category, location);
 				list = new BoardService().selectPartByPopular(board); break;
 		}
-		
-		
-		
+
 		//System.out.println(location + "location" + ", " + category + "category");
-		
-		
-		
-		
-		
+
 		if(list != null){
 			RequestDispatcher view = request.getRequestDispatcher("board/boardView.jsp");
 			request.setAttribute("list", list);
@@ -65,8 +59,6 @@ public class BoardPartByPopularServlet extends HttpServlet {
 			
 		}else{
 			//db 불러오기 실패 페이지로 sendRedirect함.
-			
-			
 			RequestDispatcher view = request.getRequestDispatcher("board/boardView.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("location", location);

@@ -103,8 +103,7 @@
 						<button type="submit" class="btn3">전체보기</button>
 					</form>
 				</div>
-				<div class="col-lg-2-5">
-					
+				<div class="col-lg-2-5">	
 					<form action="BoardPartByPopular" method="post">
 					<!-- <a href="BoardPartByPopular" class="btn3" id="popular" value="1">인기순</a> -->
 					<input type="hidden" name="location" value="<%=location%>" />
@@ -114,13 +113,27 @@
 					
 				</div>
 				<div class="col-lg-2-5">
- 					<a href="#" class="btn3" >별점순</a>
+ 					<form action="BoardPartByStarPt" method="post">
+					<input type="hidden" name="location" value="<%=location%>" />
+					<input type="hidden" name="category" value="<%=category%>" />
+					<button type="submit" class="btn3">별점순</button>
+					</form>
 				</div>
 				<div class="col-lg-2-5">
-					<a href="#" class="btn3">등록일자순</a>
+					<form action="BoardPartByEnrollDate" method="post">
+					<input type="hidden" name="location" value="<%=location%>" />
+					<input type="hidden" name="category" value="<%=category%>" />
+					<button type="submit" class="btn3">등록일자순</button>
+					</form>
+					
 				</div> 
 				<div class="col-lg-2-5">
-					<a href="#" class="btn3">댓글순</a>
+					<form action="BoardPartByCommentCnt" method="post">
+					<input type="hidden" name="location" value="<%=location%>" />
+					<input type="hidden" name="category" value="<%=category%>" />
+					<button type="submit" class="btn3">댓글순</button>
+					</form>
+					
 				</div>
 			</div>
 			<!-- 두번째 라인 End -->

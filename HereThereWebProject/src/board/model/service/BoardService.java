@@ -35,21 +35,6 @@ public class BoardService {
 		return list;
 	}
 
-	public ArrayList<Board> selectPartByStarPt() {
-		ArrayList<Board> list = null;
-		Connection con = getConnection();
-		list = new BoardDao().selectPartByStarPt(con);
-		close(con);
-		return list;
-	}
-
-	public ArrayList<Board> selectPartByCommentCnt() {
-		ArrayList<Board> list = null;
-		Connection con = getConnection();
-		list = new BoardDao().selectPartByCommentCnt(con);
-		close(con);
-		return list;
-	}
 
 	public ArrayList<Board> selectAll(String userId) {
 		ArrayList<Board> list = null;
@@ -126,49 +111,94 @@ public class BoardService {
 		close(con);
 		return list;
 	}
-	public ArrayList<Board> selectBoard(Board 
+	public ArrayList<Board> selectBoard(Board board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectBoard(con, board);
+		close(con);
+		return list;
+	}
 
-			board) {
-					ArrayList<Board> list = null;
-					Connection con = getConnection();
-					list = new BoardDao().selectBoard(con, board);
-					close(con);
-					return list;
-				}
+	public ArrayList<Board> selectABoard(Board board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectABoard(con, board);
+		close(con);
+		return list;
+	}
 
-				public ArrayList<Board> selectABoard(Board 
+	public ArrayList<Board> selectPartByPopular() {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByPopular(con);
+		close(con);
+		return list;
+	}
 
-			board) {
-					ArrayList<Board> list = null;
-					Connection con = getConnection();
-					list = new BoardDao().selectABoard(con, board);
-					close(con);
-					return list;
-				}
-
-				public ArrayList<Board> selectPartByPopular() {
-					ArrayList<Board> list = null;
-					Connection con = getConnection();
-					list = new BoardDao().selectPartByPopular(con);
-					close(con);
-					return list;
-				}
-
-				public ArrayList<Board> selectPartByPopular(Board board) {
-					ArrayList<Board> list = null;
-					Connection con = getConnection();
-					list = new BoardDao().selectPartByPopular(con, board);
-					close(con);
-					return list;
-				}
+	public ArrayList<Board> selectPartByPopular(Board board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByPopular(con, board);
+		close(con);
+		return list;
+	}
 				
-				public ArrayList<Board> selectMine(String userId) {
-					Connection con = getConnection();
-					ArrayList<Board> list = null;
-					list = new BoardDao().selectMine(con, userId);
-					close(con);
-					return list;
-				}
+	public ArrayList<Board> selectMine(String userId) {
+		Connection con = getConnection();
+		ArrayList<Board> list = null;
+		list = new BoardDao().selectMine(con, userId);
+		close(con);
+		return list;
+	}
+	
+	public ArrayList<Board> selectPartByStarPt() {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByStarPt(con);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Board> selectPartByStarPt(Board board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByStarPt(con, board);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Board> selectPartByEnrollDate() {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByEnrollDate(con);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Board> selectPartByEnrollDate(Board board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByEnrollDate(con, board);
+		close(con);
+		return list;
+	}
+	public ArrayList<Board> selectPartByCommentCnt() {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByCommentCnt(con);
+		close(con);
+		return list;
+	}
+	public ArrayList<Board> selectPartByCommentCnt(Board board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectPartByCommentCnt(con, board);
+		close(con);
+		return list;
+	}
+	
+	
+				
 	
 
 }
