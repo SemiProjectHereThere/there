@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="board.model.vo.Board, java.util.ArrayList " %>
 <%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
+<%  String location = "0"; %>
+<%  String category = "0"; %>
+<% 	location = (String)request.getAttribute("location"); %>
+<%  category = (String)request.getAttribute("category"); %>
+<%  System.out.println(location + "< " + category); %>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +37,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="/HereThere/index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="#" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left">이름/사진</div>
@@ -44,43 +49,68 @@
 		<!-- Container Start -->
 		<div class="container pt-80">
 			<!-- 첫번째 라인 -->
+			<form action="boardselect" method="post">
 			<div class="col-lg-12 first-line"> 
 				<div class="select-local col-lg-4">
-					<select>
-						<option value="">지역</option>
-						<option value="">서울</option>
-						<option value="">부산</option>
-						<option value="">인천</option>
-						<option value="">경기</option>
+					<select class="boardVLocation" name="boardVLocation">
+						<option value="0">지역전체</option>
+						<option value="1">서울</option>
+						<option value="2">인천</option>
+						<option value="3">부산</option>
+						<option value="4">울산</option>
+						<option value="5">대구</option>
+						<option value="6">대전</option>
+						<option value="7">광주</option>
+						<option value="8">경기도</option>
+						<option value="9">강원도</option>
+						<option value="10">충청북도</option>
+						<option value="11">충청남도</option>
+						<option value="12">전라북도</option>
+						<option value="13">전라남도</option>
+						<option value="14">경상북도</option>
+						<option value="15">경상남도</option>
+						<option value="16">제주도</option>
 					 </select>
 				</div>
 				<div class="select-local col-lg-4">
-					<button type="button" class="btn2"> 
-						맛집
-					</button>
+					<select name="boardVCategory">
+						<option value="0" selected>전체보기</option>
+						<option value="1">맛집</option>
+						<option value="2">코스</option>
+						<option value="3">명소</option>
+					</select>
 				</div>
 				<div class="select-local col-lg-4">
-					<button type="button" class="btn2"> 
-						코스
+					<button type="submit" class="btn2" value="검색"> 
+						검색
 					</button>
 				</div>
 			</div>
+			</form>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
 			<div class="col-lg-12 seconde-line no-padder">
-				<div class="col-lg-2-5">
+				<div class="col-lg-2-5"> 
 					<a href="#" class="btn3">
 						전체보기				
 					</a>
+					<!-- <form action="" method="post"></form> -->
 				</div>
 				<div class="col-lg-2-5">
-					<a href="#" class="btn3">인기순</a>
+					
+					<form action="BoardPartByPopular" method="post">
+					<!-- <a href="BoardPartByPopular" class="btn3" id="popular" value="1">인기순</a> -->
+					<input type="hidden" name="location" value="<%=location%>" />
+					<input type="hidden" name="category" value="<%=category%>" />
+					<button type="submit" class="btn3">인기순</button>
+					</form>
+					
 				</div>
 				<div class="col-lg-2-5">
- 					<a href="#" class="btn3">별점순</a>
+ 					<a href="#" class="btn3" >별점순</a>
 				</div>
 				<div class="col-lg-2-5">
-					<a href="#" class="btn3">등록일자순	</a>
+					<a href="#" class="btn3">등록일자순</a>
 				</div> 
 				<div class="col-lg-2-5">
 					<a href="#" class="btn3">댓글순</a>
@@ -94,18 +124,22 @@
 		<div class="bg-color">
 			<div class="container wrapper">
 			<!-- contant Start -->
-			<%for(int i = 1; i<list.size()/2 + 1; i++){ %>
+			<%try{%>
+			<%int a = 0; %>
+			
+			<%if(list.size()%2 == 0){ %>
+			<%a= list.size()/2 + 1; %>
+			<%}else{%>
+			<%a= list.size()/2 + 2; %>
+			<%}for(int i = 1; i<a; i++){ %>
 				<div class="col-lg-12 photo-link">
 				
 				<%for(int j = i*2-1; j<i*2 + 1; j++){ %>
-					<%Board b = list.get(j-1); %>
+					
+					<%Board b = list.get(j-1); %>	
 					<% 
 						String k ="";
      					String s = b.getBdContent(); 
-     					System.out.println("======================================");
-      					System.out.println(s.indexOf("/HereThere/SE2"));
-      					System.out.println(s.indexOf("&#10;&#10;"));
-      					System.out.println("======================================");
       					if(s.indexOf("/HereThere/SE2")!= -1){
       					k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
       					}
@@ -127,7 +161,6 @@
 					<img src="<%=k %>" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
 					<%} %>
 					</div>
-				<%System.out.println(list.size()); %>
 				<%if(j == (list.size())){ %>
 		
 				<% break;}} %>
@@ -137,9 +170,12 @@
 					<img src="/HereThere/image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
 					</div> -->
 				</div>
+		
+				<%}}catch (Exception e){ %>
+				<% System.out.println("검색결과 없음"); %>
+				<div>검색결과없음</div>
 				
 				<%} %>
-				
 
 			<!-- contant End -->
 			</div>
@@ -154,6 +190,16 @@
 	 	 	$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';
 
 	 		$('.score').raty({readOnly:true, score: 2.8 });
+	 		
+	 		$('#popular').click(function(){
+	 			
+	 			
+	 			$('#ingi').submit();
+	 		});
+	 		
+	 		$('.boardVLocation').click(function(){
+	 			
+	 		});
 	</script>
 	</body>
 </html>

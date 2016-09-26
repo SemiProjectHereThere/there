@@ -3,6 +3,7 @@ package board.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,13 +37,43 @@ public class BoardPartByPopularServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		ArrayList<Board> list = new BoardService().selectPartByPopular();
+		
+		String location = request.getParameter("location");
+		String category = request.getParameter("category");
+		System.out.println(category);
+		ArrayList<Board> list = null;
+		switch(category){
+		case "0" : list = new BoardService().selectPartByPopular(); break;
+		default : Board board = new Board(category, location);
+				list = new BoardService().selectPartByPopular(board); break;
+		}
+		
+		
+		
+		//System.out.println(location + "location" + ", " + category + "category");
+		
+		
+		
+		
 		
 		if(list != null){
-			//RequestDispatcer를 이용 게시물jsp로 list를 넘김.
+			RequestDispatcher view = request.getRequestDispatcher("board/boardView.jsp");
+			request.setAttribute("list", list);
+			request.setAttribute("location", location);
+			request.setAttribute("category", category);
+			view.forward(request, response);
+			
 		}else{
 			//db 불러오기 실패 페이지로 sendRedirect함.
+			
+			
+			RequestDispatcher view = request.getRequestDispatcher("board/boardView.jsp");
+			request.setAttribute("list", list);
+			request.setAttribute("location", location);
+			request.setAttribute("category", category);
+			view.forward(request, response);
 		}
+		
 	}
 
 	/**

@@ -35,14 +35,6 @@ public class BoardService {
 		return list;
 	}
 
-	public ArrayList<Board> selectPartByPopular() {
-		ArrayList<Board> list = null;
-		Connection con = getConnection();
-		list = new BoardDao().selectPartByPopular(con);
-		close(con);
-		return list;
-		}
-
 	public ArrayList<Board> selectPartByStarPt() {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
@@ -134,6 +126,41 @@ public class BoardService {
 		close(con);
 		return list;
 	}
+	public ArrayList<Board> selectBoard(Board 
+
+			board) {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectBoard(con, board);
+					close(con);
+					return list;
+				}
+
+				public ArrayList<Board> selectABoard(Board 
+
+			board) {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectABoard(con, board);
+					close(con);
+					return list;
+				}
+
+				public ArrayList<Board> selectPartByPopular() {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectPartByPopular(con);
+					close(con);
+					return list;
+				}
+
+				public ArrayList<Board> selectPartByPopular(Board board) {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectPartByPopular(con, board);
+					close(con);
+					return list;
+				}
 
 	
 

@@ -19,6 +19,12 @@ public class Board implements java.io.Serializable{
 	private String bdMap;				//게시글에 들어갈 지도 좌표 정보
 	
 	public Board(){}
+	
+	public Board(String bdLocation, String bdCategoey){
+		super();
+		this.bdLocation = bdLocation;
+		this.bdCategory = bdCategoey;
+	}
 
 	public Board(String bdTitle, String bdContent, String bdWriter, String bdCategory, String bdLocation, String bdMap) {
 		super();
@@ -55,6 +61,11 @@ public class Board implements java.io.Serializable{
 		this.bdStarPt = bdStarPt;
 		this.bdShingoCnt = bdShingoCnt;
 		this.bdMap = bdMap;
+	}
+
+	public Board(String bdLocation) {
+		super();
+		this.bdLocation = bdLocation;
 	}
 
 	public String getBdTitle() {
