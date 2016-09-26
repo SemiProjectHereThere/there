@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList, member.model.vo.Member" %>
 <%
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-	String userId = (String)request.getAttribute("userId");
+	String userId = (String)request.getAttribute("userid");
 	
 	int listSize = 0;
 	int listSize2 = 0;
@@ -86,7 +86,7 @@
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="container">
 				<!-- 게시판 페이지 -->
-				<form action="/HereThere/mdel?userid=<%= userId %>&pg=<%= pg %>" method="post">
+				<form action="/HereThere/MembersDelete?userid=<%= userId %>&pg=<%= pg %>" method="post">
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
 				   <tr height="130"><td width="5"></td></tr>
 				   <tr style="background:url('/HereThere/image/table_mid.gif') repeat-x; text-align:center;">
@@ -176,12 +176,28 @@
 			  		<td align="right" width="50px"><input type="submit" value="적용"></td>
 			  		<%--  <% } %> --%>
 					</tr>
-				
+
 			 </table>
 			 </form>
+			 <table width="100%" cellpadding="0" cellspacing="0" border="0">
+			  <tr><td colspan="4" height="5"></td></tr>
+			 <tr>
+					<td align="center">
+					<form action="/HereThere/MemberSearch?userid=<%= userId %>&pg=<%= pg %>" method="post">
+						<select name="search">
+						<option value="검색종류">검색종류 선택</option>
+						<option value="id" >아이디로 검색</option>
+						<option value="name" >이름으로 검색</option>
+						</select>&nbsp;&nbsp;
+						<input type="text" name="keyword" size="30">
+						<input type="submit" value="검색">
+					</form>
+					</td>
+			</tr>
+			</table>
 		</div>
 		<!-- container2 컨텐츠 내용END -->
-		
+	
 		<!-- footer Start -->
 		
 		<!-- footer End -->
