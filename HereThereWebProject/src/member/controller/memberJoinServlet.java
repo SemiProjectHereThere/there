@@ -49,7 +49,7 @@ public class memberJoinServlet extends HttpServlet {
 				String hp1 =request.getParameter("hp1");
 				String hp2 =request.getParameter("hp2");
 				String hp3 =request.getParameter("hp3");
-				String phone = hp1 + hp2 + hp3; 
+				String phone = hp1+ "-" + hp2 + "-" + hp3; 
 			
 				
 				

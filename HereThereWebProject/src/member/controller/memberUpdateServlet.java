@@ -36,14 +36,20 @@ public class memberUpdateServlet extends HttpServlet {
 		// 회원 정보 수정 처리용 컨트롤러
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		
-		String memberId= request.getParameter("mbid");
-		String memberPwd = request.getParameter("mbpwd");
-		String memberName = request.getParameter("mbname");
+		System.out.println("::: update start::");
+		String memberId = request.getParameter("userId");
+		String memberPwd = request.getParameter("pwd");
+		String memberName = request.getParameter("name");
 		String email = request.getParameter("email");
 		char gender = request.getParameter("gender").charAt(0);
 		Date birthday = Date.valueOf(request.getParameter("birthdate"));
-		String phone = request.getParameter("phone");
+		String hp1 =request.getParameter("hp1");
+		String hp2 =request.getParameter("hp2");
+		String hp3 =request.getParameter("hp3");
+		String phone = hp1+ "-" + hp2 + "-" + hp3; 
+		
+
+		
 		
 		
 		//전송된 값이 2개 이상이면, 객체에 저장함

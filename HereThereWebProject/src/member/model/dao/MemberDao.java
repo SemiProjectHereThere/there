@@ -177,6 +177,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String query = "select * from member order by mb_manager_yn desc, mb_name";
+		String query = "select * from member";
 		
 		try {
 			stmt = con.createStatement();
@@ -412,4 +413,6 @@ public class MemberDao {
 		
 		return list;
 	}
+
+
 }

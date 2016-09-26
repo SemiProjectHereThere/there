@@ -49,9 +49,9 @@ public class MemberService {
 		return result;
 	}
 
-	public int memberDelete(String[] mbIds) {
+	public int memberDelete(String mbId) {
 		Connection con = getConnection();
-		int result = new MemberDao().memberDelete(con, mbIds);
+		int result = new MemberDao().memberDelete(con, mbId);
 		if(result > 0){
 			commit(con);
 		}else{
@@ -118,16 +118,12 @@ public class MemberService {
 		return result;
 	}
 
-	public int memberModifyYN(String[] managerYN) {
+	public int checkid(String mbid) {
 		Connection con = getConnection();
-		int result = new MemberDao().memberModifyYN(con, managerYN);
-		if(result > 0){
-			commit(con);
-		}else{
-			rollback(con);
-		}
+		int result = new MemberDao().idcheck(con, mbid);
 		close(con);
 		return result;
+		
 	}
 
 	public ArrayList<Member> selectId(String keyword) {

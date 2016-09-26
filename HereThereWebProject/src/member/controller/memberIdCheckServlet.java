@@ -1,7 +1,6 @@
-package board.controller;
+package member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,22 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.model.service.BoardService;
-import board.model.vo.Board;
-import board.model.vo.Comment;
-import board.model.vo.Picture;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardDetailViewServlet
+ * Servlet implementation class memberIdCheckServlet
  */
-@WebServlet("/BoardDetailView")
-public class BoardDetailViewServlet extends HttpServlet {
+@WebServlet("/midcheck")
+public class memberIdCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDetailViewServlet() {
+    public memberIdCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,30 +31,23 @@ public class BoardDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 게시판jsp에서 세부정보를 보기위해 게시물 제목 클릭시 작동되는 servlet
-		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		System.out.println("idCheckstart");
+		String mbid = request.getParameter("userId");
+		System.out.println(mbid);
 		
-		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
-		System.out.println(boardNo);
-		
-		Board board = new BoardService().selectOne(boardNo);
-		ArrayList<Comment> list = new BoardService().selectAllCm(boardNo);
+		int result = new MemberService().checkid(mbid);
 		
 		RequestDispatcher view = null;
-		if(board != null){
-			view = request.getRequestDispatcher("board/boardDetailView.jsp");
-			request.setAttribute("board", board);
-			request.setAttribute("cmlist", list);
-			view.forward(request, response);
-		}else{
-			view = request.getRequestDispatcher("board/boardError.jsp");
-			request.setAttribute("code", "bdView");
-			view.forward(request, response);
-		}	
-		
+		view = request.getRequestDispatcher("member/idcheck.jsp");
+		System.out.println(result);
+		String count = result+ "";
+		request.setAttribute("count", count);
+		request.setAttribute("memberId", mbid);
+		view.forward(request, response);
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

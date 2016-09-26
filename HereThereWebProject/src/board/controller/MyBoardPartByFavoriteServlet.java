@@ -1,6 +1,8 @@
 package board.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -8,6 +10,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import board.model.service.BoardService;
 import board.model.vo.Board;
@@ -33,20 +38,48 @@ public class MyBoardPartByFavoriteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 마이페이지에서 찜한게시물부분 클릭시 작동하는 servlet
 		
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		String userId = request.getParameter("userid");
-		
-		ArrayList<Board> list = new BoardService().selectFavorite(userId);
-		
-		if(list != null){
-			//RequestDispatcer를 이용 마이페이지jsp로 list를 넘김.
-		}else{
-			//db 불러오기 실패 페이지로 sendRedirect함.
-		}	
-		
-	}	
+		String memberId = request.getParameter("memberid");
+				
+				ArrayList<Board> list = new BoardService().selectFavorite(memberId);
+				/*Iterator iter = list.iterator();
+				for(Board b : list){
+					while(iter.hasNext()){
+						System.out.println(iter.next());
+					}
+				}*/
+
+				//전송할 최종 json 객체
+				JSONObject json = new JSONObject();
+				JSONArray jarr = new JSONArray();
+				
+				
+				for(Board b : list){
+					//하나의 게시물 정보를 저장할 json 객체
+					JSONObject job = new JSONObject();
+					job.put("bdNo", b.getBdNo());
+					job.put("bdTitle", URLEncoder.encode(b.getBdTitle(), "UTF-8"));
+					job.put("bdContent", URLEncoder.encode(b.getBdContent(), "UTF-8"));
+					job.put("bdWriter", b.getBdWriter());
+					job.put("bdEnrolldate", b.getBdEnrollDate().toString());
+					job.put("bdCategory", b.getBdCategory());
+					job.put("bdLocation", b.getBdLocation());
+					job.put("bdCount", b.getBdReadCnt());
+					job.put("bdCommentCnt", b.getBdCommentCnt());
+					job.put("bdStar", b.getBdStarPt());
+					job.put("bdSingo", b.getBdShingoCnt());
+					job.put("bdMap", b.getBdMap());
+					
+					jarr.add(job);
+				}
+				
+				json.put("list", jarr);
+				//System.out.println(json.toJSONString());
+				response.setContentType("application/json");
+				PrintWriter out = response.getWriter();
+				out.print(json.toJSONString());
+				out.flush();
+				out.close();
+			}		
 	
 
 

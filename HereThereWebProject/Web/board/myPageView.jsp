@@ -37,10 +37,8 @@
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
 						<li><a href="/HereThere/logout">로그아웃</a></li>
-						<li><a href="/HereThere/myInfo?userid=<%= member.getMemberId() %>">마이페이지</a></li>
 						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
-						<li><a href="#">내 정보 수정</a>
-						<li><a href="/HereThere/nlist">공지사항</a></li>
+						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
 						<li><a href="/HereThere/help.html">도움말</a></li>
 					</ul>
 				</div>
@@ -120,10 +118,10 @@
 			<!-- 두번째 라인 Start -->
 			<div class="col-lg-12 first-line">
 				<div class="select-local col-lg-6">
-					<select>
-						<option value="">전체보기</option>
-						<option value="">찜한 게시물</option>
-						<option value="">내가 올린 게시물</option>
+					<select id="mySelect">
+						<option value="myall">전체보기</option>
+						<option value="myfavorite">찜한 게시물</option>
+						<option value="mymine">내가 올린 게시물</option>
 					 </select>
 				</div>
 				<div class="select-local col-lg-6">
@@ -132,6 +130,79 @@
 					</button>
 				</div>
 			</div>
+			<script type="text/javascript"> //셀렉트박스 값 변경시
+				$(function(){
+					$('#mySelect').on('change', function(){
+						if($('#mySelect').val() == "myall"){
+							//alert("my all");
+							$("#p1").html("");
+							$.ajax({
+								url : "MyBoardList?memberid=<%= member.getMemberId() %>",
+								data : {memberid : "<%= member.getMemberId() %>"},
+								type : "post",
+								dataType : "json",
+								success : function(data){
+									var jsonStr = JSON.stringify(data);
+									var json = JSON.parse(jsonStr);
+									var values = $("#p1").html();
+									
+									for(var i in json.list){
+										values += decodeURIComponent(json.list[i].bdTitle) + "<br>";
+									}
+									$("#p1").html('<a href="index.jsp"><h2>'+values+'</h2></a>');
+								},
+								error:function(request,status,error){
+							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							       }
+							});
+						}else if($('#mySelect').val() == "myfavorite"){
+							//alert("my favorite");
+							$("#p1").html("");
+							$.ajax({
+								url : "MyBoardPartByFavorite?memberid=<%= member.getMemberId() %>",
+								data : {memberid : "<%= member.getMemberId() %>"},
+								type : "post",
+								dataType : "json",
+								success : function(data){
+									var jsonStr = JSON.stringify(data);
+									var json = JSON.parse(jsonStr);
+									var values = $("#p1").html();
+									
+									for(var i in json.list){
+										values += decodeURIComponent(json.list[i].bdContent) + "<br>";
+									}
+									$("#p1").html(values);
+								},
+								error:function(request,status,error){
+							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							       }
+							});
+						}else{
+							//alert("my mine");
+							$("#p1").html("");
+							$.ajax({
+								url : "MyBoardPartByMine?memberid=<%= member.getMemberId() %>",
+								data : {memberid : "<%= member.getMemberId() %>"},
+								type : "post",
+								dataType : "json",
+								success : function(data){
+									var jsonStr = JSON.stringify(data);
+									var json = JSON.parse(jsonStr);
+									var values = $("#p1").html();
+									
+									for(var i in json.list){
+										values += decodeURIComponent(json.list[i].bdContent) + "<br>";
+									}
+									$("#p1").html(values);
+								},
+								error:function(request,status,error){
+							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							       }
+							});
+						}
+					});
+				});
+			</script>
 			<!-- 두번째 라인 End -->
 		</div>
 		<!-- container End -->
@@ -140,30 +211,19 @@
 		<div class="bg-color">
 			<div class="container wrapper">
 			<!-- contant Start -->
-				<div class="col-lg-12 photo-link">
+			<%
+				// 전체, 찜, 내가 올린 게시물 갯수 만큼 div 생성, 클릭시 해당 게시물로 넘어가게 링크걸기
+			%>
+				<!-- <div class="col-lg-12 photo-link">
 					<div class="col-lg-12">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
+					 <p class="naming">가을엔 남한산성 단풍 나들이!!</p>
 					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
 					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-12">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" />
-					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-12">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img3.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
-					</div>
-				</div>
-				<div class="col-lg-12 photo-link">
-					<div class="col-lg-12">
-					<p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img4.png" class="img-rounded center-block" alt="남한산성사진" />
-					</div>
-				</div>
+				</div> -->
+			<%
+				
+			%>
+			<div id="p1" style="width:500px; height:200px; border:1px solid red;"></div>
 			<!-- contant End -->
 			</div>
 		</div>

@@ -24,19 +24,18 @@
   padding-left: 10px;
 }
 </style>
-<script type="text/javascript" src="../smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/HereThere/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
 <form id="frm" action="/HereThere/BoardUpdate" method="post" accept-charset="utf-8">
-<input type="text" id="xy" name="xy" size="300" value="<%=b.getBdMap() %>>" />
+<input type="text" id="xy" name="xy" size="300" />
 <input type="hidden" name="id" value="<%=b.getBdWriter()%>">
-<input type="hidden" name="no" value="<%=b.getBdNo()%>">
 <table width="100%">
 
 		<tr>
 			<td>제목</td>
-			<td><input type="text" id="title" name="title" value="<%=b.getBdTitle() %>>" /></td>
+			<td><input type="text" id="title" name="title" /></td>
 		</tr>
 		<tr>
 			<td>지역분류</td>
@@ -65,12 +64,12 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;" value="<%=b.getBdContent() %>>"></textarea></td>
+			<td><textarea name="upsmart" id="upsmart" rows="10" cols="100" style="width:766px; height:412px;"></textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" id="save" value="수정"/>
-				<input type="button" id="back" value="취소"/>
+				<input type="button" id="save" value="저장"/>
+				<input type="button" value="취소"/>
 			</td>
 		</tr>
 </table>
@@ -97,8 +96,8 @@ $(function(){
      
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: editor_object,
-        elPlaceHolder: "smarteditor",
-        sSkinURI: "../smarteditor/SmartEditor2Skin.html", 
+        elPlaceHolder: "upsmart",
+        sSkinURI: "/HereThere/smarteditor/SmartEditor2Skin.html", 
         htParams : {
             // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
             bUseToolbar : true,             
@@ -112,7 +111,7 @@ $(function(){
     //전송버튼 클릭이벤트
     $("#save").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
+        editor_object.getById["upsmart"].exec("UPDATE_CONTENTS_FIELD", []);
          
         // 이부분에 에디터 validation 검증
          

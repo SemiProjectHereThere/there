@@ -36,13 +36,13 @@ public class memberUpdateViewServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String mbid = request.getParameter("mbid");
+		String mbid = request.getParameter("userId");
 		
 		Member member = new MemberService().selectOne(mbid);
 		
 		RequestDispatcher view = null;
 		if(member != null){
-			view = request.getRequestDispatcher("member/memberUpdateView.jsp");
+			view = request.getRequestDispatcher("member/memberUpdateView1.jsp");
 			request.setAttribute("member", member);
 			view.forward(request, response);
 		}else{

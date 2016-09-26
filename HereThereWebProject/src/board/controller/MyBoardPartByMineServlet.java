@@ -18,16 +18,16 @@ import board.model.service.BoardService;
 import board.model.vo.Board;
 
 /**
- * Servlet implementation class MyBoardListServlet
+ * Servlet implementation class MyBoardPartByMineServlet
  */
-@WebServlet("/MyBoardList")
-public class MyBoardListServlet extends HttpServlet {
+@WebServlet("/MyBoardPartByMine")
+public class MyBoardPartByMineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyBoardListServlet() {
+    public MyBoardPartByMineServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,13 +36,10 @@ public class MyBoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 마이페이지에서 전체보기부분 클릭시 작동하는 servlet
-		
-				/*request.setCharacterEncoding("utf-8");
-				response.setContentType("text/html; charset=utf-8");*/
-				String memberId = request.getParameter("memberid");
+		// 마이페이지에서 내가 올린 게시물 부분 클릭시 작동하는 servlet
+		String memberId = request.getParameter("memberid");
 				
-				ArrayList<Board> list = new BoardService().selectAll(memberId);
+				ArrayList<Board> list = new BoardService().selectMine(memberId);
 				/*Iterator iter = list.iterator();
 				for(Board b : list){
 					while(iter.hasNext()){
@@ -80,19 +77,9 @@ public class MyBoardListServlet extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.print(json.toJSONString());
 				out.flush();
-				out.close();
-				
-				/*RequestDispatcher view = null;
-				if(list != null){
-					view = request.getRequestDispatcher("board/myPageView?memberid="+memberId);
-					request.setAttribute("list", list);
-					view.forward(request, response);
-				}else{
-					view = request.getRequestDispatcher("board/boardError.jsp");
-					request.setAttribute("code", "mylist");
-				}	*/
-				
+				out.close();	
 			}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

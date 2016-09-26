@@ -6,6 +6,7 @@ import static common.JDBCTemplate.*;
 
 import board.model.dao.BoardDao;
 import board.model.vo.Board;
+import board.model.vo.Comment;
 import board.model.vo.Picture;
 
 public class BoardService {
@@ -33,14 +34,6 @@ public class BoardService {
 		close(con);
 		return list;
 	}
-
-	public ArrayList<Board> selectPartByPopular() {
-		ArrayList<Board> list = null;
-		Connection con = getConnection();
-		list = new BoardDao().selectPartByPopular(con);
-		close(con);
-		return list;
-		}
 
 	public ArrayList<Board> selectPartByStarPt() {
 		ArrayList<Board> list = null;
@@ -126,6 +119,56 @@ public class BoardService {
 		return result;
 	}
 
+	public ArrayList<Comment> selectAllCm(int boardNo) {
+		ArrayList<Comment> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectAllCm(con, boardNo);
+		close(con);
+		return list;
+	}
+	public ArrayList<Board> selectBoard(Board 
+
+			board) {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectBoard(con, board);
+					close(con);
+					return list;
+				}
+
+				public ArrayList<Board> selectABoard(Board 
+
+			board) {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectABoard(con, board);
+					close(con);
+					return list;
+				}
+
+				public ArrayList<Board> selectPartByPopular() {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectPartByPopular(con);
+					close(con);
+					return list;
+				}
+
+				public ArrayList<Board> selectPartByPopular(Board board) {
+					ArrayList<Board> list = null;
+					Connection con = getConnection();
+					list = new BoardDao().selectPartByPopular(con, board);
+					close(con);
+					return list;
+				}
+				
+				public ArrayList<Board> selectMine(String userId) {
+					Connection con = getConnection();
+					ArrayList<Board> list = null;
+					list = new BoardDao().selectMine(con, userId);
+					close(con);
+					return list;
+				}
 	
 
 }
