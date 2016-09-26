@@ -11,13 +11,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Board Detail View</title>
+<style type="text/css">
+#map {
+        height: 300px;
+		width: 300px;
+      }
+#floating-panel {
+  width:180px;
+  top: 10px;
+
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
+}
+</style>
 <script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
 	<div>제목<%=b.getBdTitle() %></div>
 	<div>글쓴이<%=b.getBdWriter() %></div>
 	<div>내용<%=b.getBdContent() %></div>
-	<div>지도<%=b.getBdMap() %></div>
 	<br>
 	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
 	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
@@ -36,13 +54,13 @@
 			<textarea name="comment" cols="20" rows="4"></textarea>
 			<input type="submit" value="댓글달기">
 		</form>
-	</div>	
-</body>
+	</div>
+	<div id="map"></div>	
 <script type="text/javascript">
 	$(function(){
 		$.ajax({
-			url : "test5.do",
-			data : {no : "t5"},
+			url : "cmList",
+			data : {bno : <%=b.getBdNo()%>, writer : <%=m.getMemberId()%>},
 			type : "post",
 			dataType : "json",
 			success : function(data){
@@ -55,13 +73,91 @@
 				
 				for(var i in json.list){
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
-					values += json.list[i].userId + ", " + json.list[i].userPwd + ", " + 
-							decodeURIComponent(json.list[i].userName) + 
-							", " + json.list[i].age + ", " + json.list[i].email + ", " + json.list[i].phone + "<br>";
+					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
 				}	
 				$("#p5").html(values);
 			}
 		});
 	});
 </script>
+<script>
+
+// In the following example, markers appear when the user clicks on the map.
+// The markers are stored in an array.
+// The user can then click an option to hide, show or delete the markers.
+var map;
+var markers = [];
+var xy = [];
+
+var geocoder;
+var positions = "";
+
+function initMap() {
+<% 
+	Double x[] = new Do 
+	Double y[] = 
+	String[] maplist = b.getBdMap().split("/");
+	
+	for(int i=0; i<maplist.length; i++){
+		x.add(maplist[i].substring(maplist[i].indexOf("(") + 1, maplist[i].indexOf(",")));
+		y.add(maplist[i].substring(maplist[i].indexOf(",") + 1, maplist[i].indexOf(")")));
+	}
+%>
+
+  geocoder = new google.maps.Geocoder(); 
+  var haightAshbury = {lat: <%=x.get(0)%> , lng: <%=y.get(0)%>};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 16,
+    center: haightAshbury,
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  });
+  
+  <%for(int i=0; i<maplist.length; i++){%>
+  addMarker({lat: <%=x.get(i)%> , lng: <%=y.get(i)%>});
+  System.out.print(x.get(i));
+  <% } %>
+  // Adds a marker at the center of the map.
+  <%-- <%for(int i=0; i<maplist.length; i++){%>
+  addMarker(haightAshbury);
+  info();
+  <% } %> --%>
+}
+
+// Adds a marker to the map and push to the array.
+function addMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  markers.push(marker);
+ 
+  info();
+  
+}
+
+// Sets the map on all markers in the array.
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map); 
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
+  
+  
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setMapOnAll(map);
+}
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4UBimRxsMtoVBMV5a4PsiQCuN4asQ7IU&signed_in=true&callback=initMap">
+</script>
+</body>
 </html>
