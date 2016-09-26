@@ -119,7 +119,7 @@
 			<div class="col-lg-12 first-line">
 				<div class="select-local col-lg-6">
 					<select id="mySelect">
-						<option value="myall">전체보기</option>
+						<option value="myall" selected>전체보기</option>
 						<option value="myfavorite">찜한 게시물</option>
 						<option value="mymine">내가 올린 게시물</option>
 					 </select>
@@ -130,12 +130,36 @@
 					</button>
 				</div>
 			</div>
+			<script type="text/javascript">
+				$('document').ready(function(){
+					$("#mycontent").html("");
+					$.ajax({
+						url : "MyBoardList?memberid=<%= member.getMemberId() %>",
+						data : {memberid : "<%= member.getMemberId() %>"},
+						type : "post",
+						dataType : "json",
+						success : function(data){
+							var jsonStr = JSON.stringify(data);
+							var json = JSON.parse(jsonStr);
+							var values = $("#mycontent").html();
+							
+							for(var i in json.list){
+								values += ('<div style="border: 1px solid red"><a href="index.jsp"><h2>'+decodeURIComponent(json.list[i].bdTitle)+'</h2></a></div>') + "<br>";
+							}
+							$("#mycontent").html(values);
+						},
+						error:function(request,status,error){
+					        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					       }
+					});
+				});
+			</script>
 			<script type="text/javascript"> //셀렉트박스 값 변경시
 				$(function(){
 					$('#mySelect').on('change', function(){
 						if($('#mySelect').val() == "myall"){
 							//alert("my all");
-							$("#p1").html("");
+							$("#mycontent").html("");
 							$.ajax({
 								url : "MyBoardList?memberid=<%= member.getMemberId() %>",
 								data : {memberid : "<%= member.getMemberId() %>"},
@@ -144,12 +168,12 @@
 								success : function(data){
 									var jsonStr = JSON.stringify(data);
 									var json = JSON.parse(jsonStr);
-									var values = $("#p1").html();
+									var values = $("#mycontent").html();
 									
 									for(var i in json.list){
-										values += decodeURIComponent(json.list[i].bdTitle) + "<br>";
+										values += ('<div style="border: 1px solid red"><a href="/HereThere/BoardDetailView?boardNo="json.list[i].bdNo><h2>'+decodeURIComponent(json.list[i].bdTitle)+'</h2></a></div>') + "<br>";
 									}
-									$("#p1").html('<a href="index.jsp"><h2>'+values+'</h2></a>');
+									$("#mycontent").html(values);
 								},
 								error:function(request,status,error){
 							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -157,7 +181,7 @@
 							});
 						}else if($('#mySelect').val() == "myfavorite"){
 							//alert("my favorite");
-							$("#p1").html("");
+							$("#mycontent").html("");
 							$.ajax({
 								url : "MyBoardPartByFavorite?memberid=<%= member.getMemberId() %>",
 								data : {memberid : "<%= member.getMemberId() %>"},
@@ -166,12 +190,12 @@
 								success : function(data){
 									var jsonStr = JSON.stringify(data);
 									var json = JSON.parse(jsonStr);
-									var values = $("#p1").html();
+									var values = $("#mycontent").html();
 									
 									for(var i in json.list){
 										values += decodeURIComponent(json.list[i].bdContent) + "<br>";
 									}
-									$("#p1").html(values);
+									$("#mycontent").html(values);
 								},
 								error:function(request,status,error){
 							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -179,7 +203,7 @@
 							});
 						}else{
 							//alert("my mine");
-							$("#p1").html("");
+							$("#mycontent").html("");
 							$.ajax({
 								url : "MyBoardPartByMine?memberid=<%= member.getMemberId() %>",
 								data : {memberid : "<%= member.getMemberId() %>"},
@@ -188,12 +212,12 @@
 								success : function(data){
 									var jsonStr = JSON.stringify(data);
 									var json = JSON.parse(jsonStr);
-									var values = $("#p1").html();
+									var values = $("#mycontent").html();
 									
 									for(var i in json.list){
 										values += decodeURIComponent(json.list[i].bdContent) + "<br>";
 									}
-									$("#p1").html(values);
+									$("#mycontent").html(values);
 								},
 								error:function(request,status,error){
 							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -209,7 +233,7 @@
 
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="bg-color">
-			<div class="container wrapper">
+			<div class="container wrapper" id="mycontent">
 			<!-- contant Start -->
 			<%
 				// 전체, 찜, 내가 올린 게시물 갯수 만큼 div 생성, 클릭시 해당 게시물로 넘어가게 링크걸기
@@ -220,10 +244,6 @@
 					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
 					</div>
 				</div> -->
-			<%
-				
-			%>
-			<div id="p1" style="width:500px; height:200px; border:1px solid red;"></div>
 			<!-- contant End -->
 			</div>
 		</div>
