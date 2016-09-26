@@ -139,4 +139,28 @@ public class MemberService {
 		close(con);
 		return list;
 	}
+
+	public int membersDelete(String[] mbId) {
+		Connection con = getConnection();
+		int result = new MemberDao().membersDelete(con, mbId);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int memberModifyYN(String[] yn) {
+		Connection con = getConnection();
+		int result = new MemberDao().memberModifyYN(con, yn);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 }

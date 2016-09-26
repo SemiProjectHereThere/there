@@ -145,7 +145,29 @@ public class MemberDao {
 		return result;
 	}
 
-	public int memberDelete(Connection con, String[] mbIds) {
+	public int memberDelete(Connection con, String mbIds) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+				
+		String query = "delete from member where mb_id = ?";
+				
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mbIds);
+					
+			result = pstmt.executeUpdate();
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);	
+		}
+	
+		return result;
+	}
+	
+	public int membersDelete(Connection con, String[] mbIds) {
 		int result = 0;
 		
 		if(mbIds != null){
@@ -177,7 +199,7 @@ public class MemberDao {
 		ResultSet rset = null;
 		
 		String query = "select * from member order by mb_manager_yn desc, mb_name";
-		String query = "select * from member";
+		
 		
 		try {
 			stmt = con.createStatement();
@@ -412,6 +434,28 @@ public class MemberDao {
 		}
 		
 		return list;
+	}
+	
+	public int idcheck(Connection con, String mbid) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select count(*) as count from member where mb_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, mbid);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				result = rset.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 
 

@@ -86,7 +86,7 @@
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="container">
 				<!-- 게시판 페이지 -->
-				<form action="/HereThere/mdel?userid=<%= userId %>&pg=<%= pg %>" method="post">
+				<form action="/HereThere/MembersDelete?userid=<%= userId %>&pg=<%= pg %>" method="post">
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
 				   <tr height="130"><td width="5"></td></tr>
 				   <tr style="background:url('/HereThere/image/table_mid.gif') repeat-x; text-align:center;">
