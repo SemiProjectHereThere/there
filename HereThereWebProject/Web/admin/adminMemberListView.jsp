@@ -3,7 +3,7 @@
 <%@ page import="java.util.ArrayList, member.model.vo.Member" %>
 <%
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-	String userId = (String)request.getAttribute("userId");
+	String userId = (String)request.getAttribute("userid");
 	
 	int listSize = 0;
 	int listSize2 = 0;
@@ -176,12 +176,28 @@
 			  		<td align="right" width="50px"><input type="submit" value="적용"></td>
 			  		<%--  <% } %> --%>
 					</tr>
-				
+
 			 </table>
 			 </form>
+			 <table width="100%" cellpadding="0" cellspacing="0" border="0">
+			  <tr><td colspan="4" height="5"></td></tr>
+			 <tr>
+					<td align="center">
+					<form action="/HereThere/MemberSearch?userid=<%= userId %>&pg=<%= pg %>" method="post">
+						<select name="search">
+						<option value="검색종류">검색종류 선택</option>
+						<option value="id" >아이디로 검색</option>
+						<option value="name" >이름으로 검색</option>
+						</select>&nbsp;&nbsp;
+						<input type="text" name="keyword" size="30">
+						<input type="submit" value="검색">
+					</form>
+					</td>
+			</tr>
+			</table>
 		</div>
 		<!-- container2 컨텐츠 내용END -->
-		
+	
 		<!-- footer Start -->
 		
 		<!-- footer End -->

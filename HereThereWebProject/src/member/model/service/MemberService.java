@@ -129,4 +129,18 @@ public class MemberService {
 		close(con);
 		return result;
 	}
+
+	public ArrayList<Member> selectId(String keyword) {
+		Connection con = getConnection();
+		ArrayList<Member> list = new MemberDao().selectId(con, keyword);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Member> selectName(String keyword) {
+		Connection con = getConnection();
+		ArrayList<Member> list = new MemberDao().selectName(con, keyword);
+		close(con);
+		return list;
+	}
 }
