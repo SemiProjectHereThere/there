@@ -32,6 +32,25 @@
 			self.close();
 		}
 	</script>
+<style>
+.b1{
+	text-align: center;
+	}
+.s1{
+	align: center;
+	}
+.c1{
+	width: 80px;
+	
+	}
+.c1:hover{
+			 -webkit-box-shadow: 0 0 5px 1px #6B6B6B;
+  			 -moz-box-shadow: 0 0 5px 1px #6B6B6B;
+    		  box-shadow: 0 0 5px 1px #6B6B6B;
+    		  color:#409fff;
+		}
+</style>
+	
 </head>
 
 <body>
@@ -39,14 +58,15 @@
 	if( count > 0 ){
 %>
 	<span> <%=memberId %> 는 이미 사용중인 아디입니다.</span>
-	<input button value="닫기" onclick="self.close();">
+	<input type="button" value="닫 &nbsp;기" class="c1" onclick="self.close();">
 <%
 	}else {
 %>
-	<span> <%=memberId %> 은 사용가능한 아이디입니다.</span>
-	<input button value="사용" onclick="confirmIdCheck();">
-	<input button value="닫기" onclick="self.close();">
-
+	<span class="s1"> <%=memberId %> 은 사용가능한 아이디입니다.</span><br><br>
+	<div class="b1">
+	<input type="button" value="사용하기" class="c1"onclick="confirmIdCheck();">&nbsp; &nbsp; 
+	<input type="button" value="닫&nbsp;기" class="c1" onclick="self.close();">
+	</div>
 <%
 	}
 %>
