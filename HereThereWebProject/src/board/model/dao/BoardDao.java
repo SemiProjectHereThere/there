@@ -351,7 +351,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from Comment where=?";		//등록순으로 정렬하여 list에 담는다.
+		String query = "select * from bd_comment where cm_board_no=?";		
 		
 		boolean flag = true;
 		try {
@@ -1052,5 +1052,26 @@ ArrayList<Board> list = null;
 		}
 		
 		return list;
+	}
+	
+	public int insertComment(Connection con, Comment cmt) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into bd_comment values(?, ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, cmt.getCmWriter());
+			pstmt.setInt(2, cmt.getCmBoardNo());
+			pstmt.setString(3, cmt.getCmContent());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 }

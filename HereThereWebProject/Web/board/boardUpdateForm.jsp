@@ -25,7 +25,8 @@
 }
 </style>
 <script type="text/javascript" src="/HereThere/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
+
 </head>
 <body>
 <form id="frm" action="/HereThere/BoardUpdate" method="post" accept-charset="utf-8">

@@ -45,26 +45,23 @@
 		<% } %>
 	<% } %>
 	<div>
-		
+	<p id="p5"></p>
 	</div>
 	<div>
-		<form action="" method="get">
-			<input type="hidden" name="bno" value="<%=b.getBdNo()%>">
 			<input type="hidden" name="writer" value="">
-			<textarea name="comment" cols="20" rows="4"></textarea>
-			<input type="submit" value="댓글달기">
-		</form>
+			<textarea id="comment" name="comment" cols="20" rows="4"></textarea>
+			<input type="button" id="cmInsert" value="댓글달기">
 	</div>
 	<div id="map"></div>	
 <script type="text/javascript">
 	$(function(){
 		$.ajax({
 			url : "cmList",
-			data : {bno : <%=b.getBdNo()%>, writer : <%=m.getMemberId()%>},
+			data : {bno : <%=b.getBdNo()%>},
 			type : "post",
 			dataType : "json",
 			success : function(data){
-				//console.log(data);
+// 				console.log(data);
 				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
 				//console.log(jsonStr);
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
@@ -73,11 +70,30 @@
 				
 				for(var i in json.list){
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
-					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
+// 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
+					values += json.list[i].writer + ", " + json.list[i].content;
 				}	
 				$("#p5").html(values);
 			}
 		});
+		
+		$('#cmInsert').click(function(){
+			var comment = $('#comment').val(); 
+// 			console.log(comment);
+			$.ajax({
+				url : "cmInsert",
+				data : {bno : <%=b.getBdNo()%>, comment : comment},
+				type : "get",
+				dataType : "json",
+				success : function(data){
+					var values = $("#p5").html();
+					$("#p5").html("");
+					
+					values += data.writer + "," + data.comment;
+					$("#p5").html(values);
+				}
+		});
+	});
 	});
 </script>
 <script>
@@ -94,8 +110,8 @@ var positions = "";
 
 function initMap() {
 <% 
-	Double x[] = new Do 
-	Double y[] = 
+	ArrayList x = new ArrayList();
+	ArrayList y = new ArrayList();
 	String[] maplist = b.getBdMap().split("/");
 	
 	for(int i=0; i<maplist.length; i++){

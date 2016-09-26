@@ -214,7 +214,17 @@ public class BoardService {
 		return list;
 	}
 	
-	
+	public int insertComment(Comment cmt) {
+		Connection con = getConnection();
+		int result = new BoardDao().insertComment(con, cmt);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 				
 	
 
