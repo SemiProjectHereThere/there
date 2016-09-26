@@ -145,22 +145,27 @@ public class MemberDao {
 		return result;
 	}
 
-	public int memberDelete(Connection con, String mbId) {
+	public int memberDelete(Connection con, String[] mbIds) {
 		int result = 0;
-		PreparedStatement pstmt = null;
 		
-		String query = "delete from member where mb_id = ?";
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, mbId);
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(pstmt);	
+		if(mbIds != null){
+			for(int i = 0; i < mbIds.length; i++){
+				PreparedStatement pstmt = null;
+				
+				String query = "delete from member where mb_id = ?";
+				
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, mbIds[i]);
+					
+					result = pstmt.executeUpdate();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally{
+					close(pstmt);	
+				}
+			}
 		}
 		
 		return result;
@@ -171,7 +176,7 @@ public class MemberDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from member";
+		String query = "select * from member order by mb_name";
 		
 		try {
 			stmt = con.createStatement();
@@ -193,6 +198,10 @@ public class MemberDao {
 				member.setPhone(rset.getString("mb_phone"));
 				member.setJoinDate(rset.getDate("mb_joindate"));
 				member.setManagerYN(rset.getString("mb_manager_yn").charAt(0));
+				member.setOriginalCoverName(rset.getString("ORIGINAL_COVER"));
+				member.setRenameCoverName(rset.getString("RENAME_COVER"));
+				member.setOriginalProfileName(rset.getString("ORIGINAL_PROFILE"));
+				member.setRenameProfileName(rset.getString("RENAME_PROFILE"));
 				
 				list.add(member);
 			}
@@ -283,6 +292,32 @@ public class MemberDao {
 			e.printStackTrace();
 		}finally{
 			close(pstmt);
+		}
+		return result;
+	}
+
+	public int memberModifyYN(Connection con, String[] managerYN) {
+		int result = 0;
+		for(int i = 0; i < managerYN.length; i++){
+			PreparedStatement pstmt = null;
+			String[] str = managerYN[i].split(":");
+			String userId = str[0];
+			String yn = str[1];
+			
+			String query = "update member set mb_manager_yn=? where mb_id = ?";
+			
+			try {
+				pstmt = con.prepareStatement(query);
+				
+				pstmt.setString(1, yn);
+				pstmt.setString(2, userId);
+				
+				result = pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				close(pstmt);
+			}
 		}
 		return result;
 	}

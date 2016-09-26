@@ -35,16 +35,18 @@ public class memberDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		String mbId = request.getParameter("mbid");
+		String userId = request.getParameter("userid");
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		String[] deleteUserIds = request.getParameterValues("delete");
+		String[] managerYN = request.getParameterValues("manager");
 		
-		int result = new MemberService().memberDelete(mbId);
-		
-		if(result > 0){
-			response.sendRedirect("logout");
+		int result1 = new MemberService().memberDelete(deleteUserIds);
+		int result2 = new MemberService().memberModifyYN(managerYN);
+		if(result1 > 0 || result2 > 0){
+			response.sendRedirect("mall");
 		}else{
-			RequestDispatcher error = request.getRequestDispatcher("member/memberError.jsp");
-			request.setAttribute("code", "mdel");
-			error.forward(request, response);
+			//에러, 안내창 띄우기
+			
 		}
 	}
 

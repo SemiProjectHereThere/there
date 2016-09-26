@@ -58,11 +58,9 @@
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="container">
 				<!-- 게시판 페이지 -->
-				
 				<table class="bd">
 				  <tr>
 				   <td>
-				   
 				    <table width="100%" cellpadding="0" cellspacing="0" border="0">
 				    <tr height="100"><td width="5"></td>
 				    <td width="" bgcolor=""></td></tr>
@@ -74,33 +72,28 @@
 				    </table>
 				   <table width="764">
 				     <tr>
-				      
 				      <td align="center" width="76">글번호</td>
 				      <td width="319"><%= n.getNoticeNo() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 					 <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				    <tr>
-				      
 				      <td align="center" width="76">아이디</td>
 				      <td width="319"><%= n.getNoticeWriter() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 					 <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				    <tr>
-				      
 				      <td align="center" width="76">작성일</td>
 				      <td width="319"><%= n.getNoticeDate() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				    <tr>
-				      
 				      <td align="center" width="76">조회수</td>
 				      <td width="319"><%= n.getCountView() %></td>
 				      <td width="0">&nbsp;</td>
 				     </tr>
-				      
 				     <tr height="1" bgcolor="#dddddd"><td colspan="4" width="407"></td></tr>
 				                <tr>
 				      <td width="0"></td>

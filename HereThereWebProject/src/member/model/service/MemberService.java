@@ -49,9 +49,9 @@ public class MemberService {
 		return result;
 	}
 
-	public int memberDelete(String mbId) {
+	public int memberDelete(String[] mbIds) {
 		Connection con = getConnection();
-		int result = new MemberDao().memberDelete(con, mbId);
+		int result = new MemberDao().memberDelete(con, mbIds);
 		if(result > 0){
 			commit(con);
 		}else{
@@ -109,6 +109,18 @@ public class MemberService {
 	public int profileDelete(String memberId) {
 		Connection con = getConnection();
 		int result = new MemberDao().profileDelete(con, memberId);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int memberModifyYN(String[] managerYN) {
+		Connection con = getConnection();
+		int result = new MemberDao().memberModifyYN(con, managerYN);
 		if(result > 0){
 			commit(con);
 		}else{

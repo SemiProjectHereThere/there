@@ -19,6 +19,7 @@
 
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
  </head>
 
  <body>
@@ -61,7 +62,7 @@
 				}else{
 			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href=""><%= member.getMemberName() %></a></div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/mall?userid=<%= member.getMemberId() %>"><%= member.getMemberName() %></a></div>
 				<!-- 마이페이지로 이동 -->
 			
 				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>

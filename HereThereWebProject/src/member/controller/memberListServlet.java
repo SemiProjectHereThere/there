@@ -38,17 +38,16 @@ public class memberListServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		ArrayList<Member> list = new MemberService().selectAll();
+		String userId = request.getParameter("userid");
 		
 		RequestDispatcher view = null;
 		if(list != null){
-			//RequestDispatcher는 상대경로밖에 사용 못함
-			view = request.getRequestDispatcher("member/memberListView.jsp");
+			view = request.getRequestDispatcher("admin/adminMemberListView.jsp");
 			request.setAttribute("list", list);
+			request.setAttribute("userid", userId);
 			view.forward(request, response);
 		}else{
-			view = request.getRequestDispatcher("member/memberError.jsp");
-			request.setAttribute("code", "mall");
-			view.forward(request, response);
+			
 		}
 	}
 
