@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="board.model.vo.Board, java.util.ArrayList " %>
 <%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
-<%  String location = "0"; %>
-<%  String category = "0"; %>
+<%  String location = ""; %>
+<%  String category = ""; %>
 <% 	location = (String)request.getAttribute("location"); %>
 <%  category = (String)request.getAttribute("category"); %>
-<%  System.out.println(location + "< " + category); %>
+<%  if(location == null){ %>
+<%  location = "0"; %>
+<%  category = "0"; %>
+<%  } %>
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +40,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="#" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left">이름/사진</div>
@@ -74,7 +77,7 @@
 				</div>
 				<div class="select-local col-lg-4">
 					<select name="boardVCategory">
-						<option value="0" selected>전체보기</option>
+						<option value="0" selected>선택하기</option>
 						<option value="1">맛집</option>
 						<option value="2">코스</option>
 						<option value="3">명소</option>
@@ -91,10 +94,14 @@
 			<!-- 두번째 라인 Start -->
 			<div class="col-lg-12 seconde-line no-padder">
 				<div class="col-lg-2-5"> 
-					<a href="#" class="btn3">
+					<!-- <a href="#" class="btn3">
 						전체보기				
-					</a>
-					<!-- <form action="" method="post"></form> -->
+					</a> -->
+					<form action="boardselect" method="post">
+						<input type="hidden" name="boardVLocation" value="0" />
+						<input type="hidden" name="boardVCategory" value="0" />
+						<button type="submit" class="btn3">전체보기</button>
+					</form>
 				</div>
 				<div class="col-lg-2-5">
 					
