@@ -55,7 +55,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, sysdate, 'N','null','null','null','null')";
+		String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, sysdate, 'N','null','null','null','null' )";
 		
 		try {
 			pstmt = con.prepareStatement(query);
