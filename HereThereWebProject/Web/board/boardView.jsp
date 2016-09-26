@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="board.model.vo.Board, java.util.ArrayList " %>
-<%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
-<%  String location = ""; %>
-<%  String category = ""; %>
-<% 	location = (String)request.getAttribute("location"); %>
-<%  category = (String)request.getAttribute("category"); %>
-<%  if(location == null){ %>
-<%  location = "0"; %>
-<%  category = "0"; %>
-<%  } %>
+<%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+  	String location = ""; 
+  	String category = ""; 
+  	String option = ""; 
+ 	
+  	location = (String)request.getAttribute("location"); 
+  	category = (String)request.getAttribute("category"); 
+  	option = (String)request.getAttribute("option"); 
+  	
+  	if(location == null){ 
+  		location = "0"; 
+  		category = "0";
+		option = "0";
+  	} %>
 
 <!DOCTYPE html>
 <html>
@@ -54,7 +59,7 @@
 			<!-- 첫번째 라인 -->
 			<form action="boardselect" method="post">
 			<div class="col-lg-12 first-line"> 
-				<div class="select-local col-lg-4">
+				<div class="select-local col-lg-3">
 					<select class="boardVLocation" name="boardVLocation">
 						<option value="0">지역전체</option>
 						<option value="1">서울</option>
@@ -75,15 +80,24 @@
 						<option value="16">제주도</option>
 					 </select>
 				</div>
-				<div class="select-local col-lg-4">
-					<select name="boardVCategory">
-						<option value="0" selected>선택하기</option>
+				<div class="select-local col-lg-3">
+					<select class="boardVCategory" name="boardVCategory">
+						<option value="0">카테고리</option>
 						<option value="1">맛집</option>
 						<option value="2">코스</option>
 						<option value="3">명소</option>
 					</select>
 				</div>
-				<div class="select-local col-lg-4">
+				<div class="select-local col-lg-3">
+					<select class="boardVOption" name="boardVOption">
+						<option value="0">옵션</option>
+						<option value="1">인기순</option>
+						<option value="2">별점순</option>
+						<option value="3">등록일자순</option>
+						<option value="4">댓글순</option>
+					</select>
+				</div>
+				<div class="select-local col-lg-3">
 					<button type="submit" class="btn2" value="검색"> 
 						검색
 					</button>
@@ -92,7 +106,7 @@
 			</form>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
-			<div class="col-lg-12 seconde-line no-padder">
+			<%-- <div class="col-lg-12 seconde-line no-padder">
 				<div class="col-lg-2-5"> 
 					<!-- <a href="#" class="btn3">
 						전체보기				
@@ -136,8 +150,9 @@
 					
 				</div>
 			</div>
-			<!-- 두번째 라인 End -->
+			<!-- 두번째 라인 End --> --%>
 		</div>
+		<br><br>
 		<!-- container End -->
 
 		<!-- container2 컨텐츠 내용시작 -->
@@ -212,14 +227,16 @@
 	 		$('.score').raty({readOnly:true, score: 2.8 });
 	 		
 	 		$('#popular').click(function(){
-	 			
-	 			
+	
 	 			$('#ingi').submit();
 	 		});
-	 		
-	 		$('.boardVLocation').click(function(){
 	 			
-	 		});
+	 		$('.boardVLocation option:eq(<%=location%>)').attr("selected", "selected");
+	 		$('.boardVCategory option:eq(<%=category%>)').attr("selected", "selected");
+	 		$('.boardVOption option:eq(<%=option%>)').attr("selected", "selected");
+	 		
+	 		
+	 		
 	</script>
 	</body>
 </html>

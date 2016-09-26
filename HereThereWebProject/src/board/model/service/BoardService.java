@@ -6,6 +6,7 @@ import static common.JDBCTemplate.*;
 
 import board.model.dao.BoardDao;
 import board.model.vo.Board;
+import board.model.vo.BoardS;
 import board.model.vo.Comment;
 import board.model.vo.Picture;
 
@@ -193,6 +194,22 @@ public class BoardService {
 		ArrayList<Board> list = null;
 		Connection con = getConnection();
 		list = new BoardDao().selectPartByCommentCnt(con, board);
+		close(con);
+		return list;
+	}
+//9.26 저녁 수정 + 추가BoardS
+	public ArrayList<Board> selectCOBoard(BoardS board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectCOBoard(con, board);
+		close(con);
+		return list;
+	}
+
+	public ArrayList<Board> selectLCOBoard(BoardS board) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectLCOBoard(con, board);
 		close(con);
 		return list;
 	}

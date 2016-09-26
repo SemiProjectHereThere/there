@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
 import board.model.vo.Board;
+import board.model.vo.BoardS;
 
 /**
  * Servlet implementation class BoardSelectServlet
@@ -39,6 +40,7 @@ public class BoardSelectServlet extends HttpServlet {
 		//파라미터 부분
 		String location = request.getParameter("boardVLocation");
 		String category = request.getParameter("boardVCategory");
+		String option = request.getParameter("boardVOption");
 		//System.out.println(location + "location" + ", " + category + "category");
 		
 		ArrayList<Board> list = null;
@@ -50,12 +52,12 @@ public class BoardSelectServlet extends HttpServlet {
 			System.out.println(list + "if");*/
 		//}else{
 			//System.out.println(list + "else");
-		Board board = null;
-		switch(category){
-		case "0" :  board = new Board(location);
-					list = new BoardService().selectABoard(board); break;
-		default : board = new Board(location, category);
-					list = new BoardService().selectBoard(board); break;
+		BoardS board = null;
+		switch(location){
+		case "0" :  board = new BoardS(category, option);
+					list = new BoardService().selectCOBoard(board); break;
+		default : board = new BoardS(location, category, option);
+					list = new BoardService().selectLCOBoard(board); break;
 		}
 			//----Board board = new Board(category, location);
 			//System.out.println(board);
@@ -68,17 +70,19 @@ public class BoardSelectServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			request.setAttribute("location", location);
 			request.setAttribute("category", category);
+			request.setAttribute("option", option);
 			view.forward(request, response);
 		}else{
 			//db 불러오기 실패 페이지로 sendRedirect함.
-			switch(location){
+			/*switch(location){
 			case "0" : list = new BoardService().selectAll(); break;
 			//default : list = new BoardService().selectBoard(board); break;
-			}
+			}*/
 			RequestDispatcher view = request.getRequestDispatcher("board/boardView.jsp");
-			request.setAttribute("list", list);
+			request.setAttribute("list", null);
 			request.setAttribute("location", location);
 			request.setAttribute("category", category);
+			request.setAttribute("option", option);
 			view.forward(request, response);
 		}
 	}
