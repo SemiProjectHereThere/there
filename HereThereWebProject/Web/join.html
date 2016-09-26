@@ -44,6 +44,7 @@
 		<script>
 		function checking()
 		{
+			
 			if(document.writeForm.name.value == "")
 				{
 				alert("이름을 입력하세요")
@@ -83,6 +84,11 @@
 				document.writeForm.userId.select()
 				return false;
 				}
+			if(document.writeForm.idCheck.value != 1){
+				alert("아이디 중복체크를 해주세요.");
+				return false;
+			}
+			
 			// 비밀번호 입력하지 않았을시
 			else if(document.writeForm.pwd.value == "")
 			{
@@ -106,27 +112,65 @@
 				return false;
 			}
 			else if(document.writeForm.email.value == "")alert("이메일을 입력하세요")
-		/* 	else document.writeForm.submit() */
-		}
-		
-	/* 	function checkId()
-		{
-			var sid = document.writeForm.userId.value   // 아이디값 가져오기
-			if(sid == "") alert("입력된 아이디가 없습니다.")	// 없는 경우 메세지 출력
+	
+			}
+		function jungbok(){
 			
-			else window.open("checkId.jsp?id="+ sid,"", "width=400 height=150")
-		} */
+			
+			//아이디 입력여부 검사
+			 if(document.writeForm.userId.value == ""){
+				alert("아이디를 입력하세요")
+				document.writeForm.userId.focus()
+				return false;
+			}
+			//아이디 유효성 검사(영문소문자, 숫자만)
+			for(i=0; i<document.writeForm.userId.value.length; i++)
+			{
+				ch=document.writeForm.userId.value.charAt(i)
+				if(!(ch >= '0' && ch<='9')&&!(ch>= 'a' && ch<='z'))
+					{
+					alert("아이디는 공백없이 소문자, 숫자만 입력가능합니다.")
+					document.writeForm.userId.focus()
+					document.writeForm.userId.select()
+					return false;
+					}
+			}
+			//아이디에 공백 사용하지 않기 
+			if(document.writeForm.userId.value.indexOf(" ")>=0)
+				{
+				alert("아이디에 공백을 사용할수 없습니다.")
+				document.writeForm.userId.focus()
+				document.writeForm.userId.select()
+				return false;
+				}
+			//아이디 길이 체크(6~12자)
+			if(document.writeForm.userId.value.length <6 || document.writeForm.userId.value.length > 12)
+				{
+				alert("아이디를 6~12자까지 입력해주세요.")
+				document.writeForm.userId.focus()
+				document.writeForm.userId.select()
+				return false;
+				}
+			var url = "/HereThere/midcheck?userId="+ document.writeForm.userId.value;
+			
+		//	window.location.replace(url);
+		//	var url1 = "member/idcheck.jsp?userId="+ document.writeForm.userId.value;
+			
+			
+			window.open(url,'중복체크','width=300, height=300, menubar=no, status=no, toolbar=no');
+		}
 		</script>
 		<!-- container 컨텐츠 내용시작 -->
 		<div class="container">
 				<section id="content">
 						<form method="post" action="/HereThere/mjoin" name="writeForm" onsubmit="return checking()">
+							<input type="hidden" name="idCheck" value="0" />
 							<h1>Join Us</h1>
 							
 							<div><input type="text" placeholder="Username" id="username" name="name"></div>
 							
 							<div><input type="text" placeholder="UserId" id="userid" name="userId">
-							<input type="button" value="Id Check" id="idcheck"></input></div>
+							<input type="button" value="Id Check" id="idcheck" onclick="jungbok();"></input></div>
 							<div><input type="password" placeholder="Password" id="password1"name="pwd"></div>
 							<div><input type="password" placeholder="Confirm Password" id="password2"name="repwd" ></div>
 							<div><input type="email" placeholder="Email" id="email"name="email" ></div>
