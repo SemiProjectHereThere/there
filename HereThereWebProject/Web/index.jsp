@@ -49,7 +49,7 @@
 				}else if(!member.getMemberId().equals("admin")){
 			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= member.getMemberId()%>"><%= member.getMemberName() %></a></div>
+				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= member.getMemberId() %>"><%= member.getMemberName() %></a></div>
 				<!-- 마이페이지로 이동 -->
 			
 				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>

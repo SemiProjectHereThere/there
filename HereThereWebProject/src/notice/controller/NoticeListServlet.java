@@ -39,11 +39,13 @@ public class NoticeListServlet extends HttpServlet {
 		ArrayList<Notice> list = new NoticeService().selectList();
 		String userId = request.getParameter("userid");
 		int pg = Integer.parseInt(request.getParameter("pg"));
+		String userName = request.getParameter("username");
 		
 		RequestDispatcher view = request.getRequestDispatcher("notice/noticeListView.jsp");
 		request.setAttribute("list", list);
 		request.setAttribute("userId", userId);
 		request.setAttribute("pg", pg);
+		request.setAttribute("username", userName);
 		view.forward(request, response);
 		
 	}
