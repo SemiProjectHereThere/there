@@ -160,51 +160,99 @@ public class BoardDao {
 
 	public ArrayList<Board> selectAll(Connection con, String userId) {
 		// 전체게시물을 list에 저장하는 메소드
-		ArrayList<Board> list = null;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = "";		//등록순으로 정렬하여 list에 담는다. Board 테이블에서 userId로 select all함.
-		
-		Board bd = null;
-		try {
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;		
+		// 전체게시물을 list에 저장하는 메소드
+				ArrayList<Board> list = null;
+				
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				
+				String query = "select BD_NO, BD_TITLE, BD_CONTENT, BD_WRITER, BD_ENROLLDATE, BD_CATEGORY, "
+								+ "BD_LOCATION, BD_COUNT, BD_COMMENT_COUNT, BD_STARPOINT, BD_SINGO, BD_MAP " +
+								"from board, favorite where board.BD_NO = favorite.FA_BD_NO and favorite.FA_MB_ID = ?";		
+				//등록순으로 정렬하여 list에 담는다. Board 테이블에서 userId로 select all함.
+				
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, userId);
+					
+					rset = pstmt.executeQuery();
+					boolean flag = true;
+					while(rset.next()){
+						if(flag == true){
+							list = new ArrayList<Board>();
+							flag = false;
+						}
+						Board b = new Board();
+						b.setBdNo(rset.getInt("bd_no"));
+						b.setBdTitle(rset.getString("bd_title"));
+						b.setBdContent(rset.getString("bd_content"));
+						b.setBdWriter(rset.getString("bd_writer"));
+						b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+						b.setBdCategory(rset.getString("bd_category"));
+						b.setBdLocation(rset.getString("bd_location"));
+						b.setBdReadCnt(rset.getInt("bd_count"));
+						b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+						b.setBdStarPt(rset.getInt("bd_starpoint"));
+						b.setBdShingoCnt(rset.getInt("bd_singo"));
+						b.setBdMap(rset.getString("bd_map"));
+						
+						list.add(b);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally{
+					close(rset);
+					close(pstmt);
+				}
+				
+				return list;			
 	}
 
 	public ArrayList<Board> selectFavorite(Connection con, String userId) {
 		// 전체게시물을 list에 저장하는 메소드
-		ArrayList<Board> list = null;
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = "";		//Favorite 테이블에서 userId로 select all함.
-								//FA_BD_NO로 orderby해서 list에 담는다.
-		
-		Board bd = null;
-		try {
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;		
+		// 찜한게시물을 list에 저장하는 메소드
+				ArrayList<Board> list = null;
+				
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				
+				String query = "select * from favorite, board where favorite.FA_BD_NO = board.BD_NO and favorite.FA_MB_ID = ? order by fa_bd_no desc";		//Favorite 테이블에서 userId로 select all함.
+										//FA_BD_NO로 orderby해서 list에 담는다.
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, userId);
+					
+					rset = pstmt.executeQuery();
+					boolean flag = true;
+					while(rset.next()){
+						if(flag == true){
+							list = new ArrayList<Board>();
+							flag = false;
+						}
+						Board b = new Board();
+						b.setBdNo(rset.getInt("bd_no"));
+						b.setBdTitle(rset.getString("bd_title"));
+						b.setBdContent(rset.getString("bd_content"));
+						b.setBdWriter(rset.getString("bd_writer"));
+						b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+						b.setBdCategory(rset.getString("bd_category"));
+						b.setBdLocation(rset.getString("bd_location"));
+						b.setBdReadCnt(rset.getInt("bd_count"));
+						b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+						b.setBdStarPt(rset.getInt("bd_starpoint"));
+						b.setBdShingoCnt(rset.getInt("bd_singo"));
+						b.setBdMap(rset.getString("bd_map"));
+						
+						list.add(b);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally{
+					close(rset);
+					close(pstmt);
+				}
+				
+				return list;		
 	}
 
 	public Board selectOne(Connection con, int boardNo) {
@@ -569,5 +617,48 @@ public class BoardDao {
 		return list;		
 		}
 
+	public ArrayList<Board> selectMine(Connection con, String userId) {
+		ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board where bd_writer = ? order by bd_no desc";
 
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			boolean flag = true;
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 }

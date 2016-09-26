@@ -161,7 +161,14 @@ public class BoardService {
 					close(con);
 					return list;
 				}
-
+				
+				public ArrayList<Board> selectMine(String userId) {
+					Connection con = getConnection();
+					ArrayList<Board> list = null;
+					list = new BoardDao().selectMine(con, userId);
+					close(con);
+					return list;
+				}
 	
 
 }
