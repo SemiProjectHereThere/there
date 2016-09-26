@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import board.model.vo.Board;
+import board.model.vo.Comment;
 import board.model.vo.Picture;
 
 import static common.JDBCTemplate.*;
@@ -363,5 +364,41 @@ public class BoardDao {
 		}
 		
 		return result;
+	}
+
+	public ArrayList<Comment> selectAllCm(Connection con, int boardNo) {
+		ArrayList<Comment> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from Comment where=?";		//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Comment>();
+					flag = false;
+				}
+				Comment c = new Comment();
+				c.setCmBoardNo(boardNo);
+				c.setCmWriter(rset.getString("cm_writer"));
+				c.setCmContent(rset.getString("cm_content"));
+				
+				list.add(c);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }

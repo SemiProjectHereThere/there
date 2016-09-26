@@ -6,6 +6,7 @@ import static common.JDBCTemplate.*;
 
 import board.model.dao.BoardDao;
 import board.model.vo.Board;
+import board.model.vo.Comment;
 import board.model.vo.Picture;
 
 public class BoardService {
@@ -124,6 +125,14 @@ public class BoardService {
 		}
 		close(con);
 		return result;
+	}
+
+	public ArrayList<Comment> selectAllCm(int boardNo) {
+		ArrayList<Comment> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().selectAllCm(con, boardNo);
+		close(con);
+		return list;
 	}
 
 	

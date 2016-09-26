@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.model.service.BoardService;
 import board.model.vo.Board;
+import board.model.vo.Comment;
 import board.model.vo.Picture;
 
 /**
@@ -42,11 +43,13 @@ public class BoardDetailViewServlet extends HttpServlet {
 		System.out.println(boardNo);
 		
 		Board board = new BoardService().selectOne(boardNo);
+		ArrayList<Comment> list = new BoardService().selectAllCm(boardNo);
 		
 		RequestDispatcher view = null;
 		if(board != null){
 			view = request.getRequestDispatcher("board/boardDetailView.jsp");
 			request.setAttribute("board", board);
+			request.setAttribute("cmlist", list);
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("board/boardError.jsp");

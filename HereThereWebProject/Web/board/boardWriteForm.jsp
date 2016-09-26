@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
-<% Member member = (Member)session.getAttribute("member"); %>
+<% 
+	Member member = (Member)session.getAttribute("member"); 
+%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -24,7 +26,7 @@
   padding-left: 10px;
 }
 </style>
-<script type="text/javascript" src="../smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/HereThere/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
 <body>
@@ -35,7 +37,7 @@
 
 		<tr>
 			<td>제목</td>
-			<td><input type="text" id="title" name="title" /></td>
+			<td><input type="text" id="title" name="title"/></td>
 		</tr>
 		<tr>
 			<td>지역분류</td>
@@ -97,7 +99,7 @@ $(function(){
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: editor_object,
         elPlaceHolder: "smarteditor",
-        sSkinURI: "../smarteditor/SmartEditor2Skin.html", 
+        sSkinURI: "/HereThere/smarteditor/SmartEditor2Skin.html", 
         htParams : {
             // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
             bUseToolbar : true,             
