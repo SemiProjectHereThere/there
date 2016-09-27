@@ -156,4 +156,30 @@ public class NoticeDao {
 		return result;
 	}
 
+	public int noticesDelete(Connection con, String[] noticeNoS) {
+		int result = 0;
+		
+		if(noticeNoS != null){
+			for(int i = 0; i < noticeNoS.length; i++){
+				PreparedStatement pstmt = null;
+				
+				int noticeNo = Integer.parseInt(noticeNoS[i]);
+				
+				String query = "delete from adminboard where adb_no = ?";
+				
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setInt(1, noticeNo);
+					
+					result = pstmt.executeUpdate();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally{
+					close(pstmt);
+				}
+			}
+		}
+		return result;
+	}
+
 }
