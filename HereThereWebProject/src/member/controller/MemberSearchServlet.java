@@ -39,7 +39,9 @@ public class MemberSearchServlet extends HttpServlet {
 		
 		String search = request.getParameter("search");		// 검색종류
 		String keyword = request.getParameter("keyword");	// 검색명	
+		String userName = request.getParameter("username");
 		String userId = request.getParameter("userid");
+		String managerYN = request.getParameter("manageryn");
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		ArrayList<Member> list = null;
@@ -53,7 +55,9 @@ public class MemberSearchServlet extends HttpServlet {
 		if(list != null){
 			view = request.getRequestDispatcher("admin/adminMemberListView.jsp");
 			request.setAttribute("list", list);
+			request.setAttribute("username", userName);
 			request.setAttribute("userid", userId);
+			request.setAttribute("manageryn", managerYN);
 			request.setAttribute("pg", pg);
 			view.forward(request, response);
 		}else{

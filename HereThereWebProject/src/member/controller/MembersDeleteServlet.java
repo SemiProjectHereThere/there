@@ -33,7 +33,9 @@ public class MembersDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 	
+		String userName = request.getParameter("username");
 		String userId = request.getParameter("userid");
+		String managerYN = request.getParameter("manageryn");
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		String[] mbId = request.getParameterValues("delete");
 		String[] yn = request.getParameterValues("manager");
@@ -46,6 +48,9 @@ public class MembersDeleteServlet extends HttpServlet {
 		if(result1 > 0 || result2 > 0){
 			view = request.getRequestDispatcher("mall");
 			request.setAttribute("userid", userId);
+			request.setAttribute("username", userName);
+			request.setAttribute("manageryn", managerYN);
+			request.setAttribute("pg", pg);
 			view.forward(request, response);
 		}else{
 			

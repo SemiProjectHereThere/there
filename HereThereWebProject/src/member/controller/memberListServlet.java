@@ -39,12 +39,18 @@ public class memberListServlet extends HttpServlet {
 		
 		ArrayList<Member> list = new MemberService().selectAll();
 		String userId = request.getParameter("userid");
+		String userName = request.getParameter("username");
+		String managerYN = request.getParameter("manageryn");
+		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		RequestDispatcher view = null;
 		if(list != null){
 			view = request.getRequestDispatcher("admin/adminMemberListView.jsp");
 			request.setAttribute("list", list);
 			request.setAttribute("userid", userId);
+			request.setAttribute("username", userName);
+			request.setAttribute("manageryn", managerYN);
+			request.setAttribute("pg", pg);
 			view.forward(request, response);
 		}else{
 			
