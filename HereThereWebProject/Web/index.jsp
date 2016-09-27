@@ -40,7 +40,7 @@
 				
 				<!-- 회원가입 정보 입력 -->
 				
-				<div class="col-lg-4 pull-left">도움말</div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/member/helpPage.jsp" >도움말</div>
 				
 				<!-- 도움말 페이지 -->
 				

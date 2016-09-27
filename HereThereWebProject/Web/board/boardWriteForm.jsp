@@ -99,11 +99,38 @@
 		<% } %>
 	</div>
 	<!-- header End -->
+	<script>
+	var a = markers.length;
+	alert(a);
+	//유효성 검사 제목, 내용, 마커3개이하
+	function checking1(){
+		if(document.frm.title.value == ""){
+			alert("제목을 입력하세요")
+			return false;
+		}else if(document.frm.smarteditor.value == "<p>&nbsp;</p>"){
+			alert("내용을 입력하세요")
+			return false;
+		}else if(document.frm.xyz.value == ""){
+			alert("장소를 1개 이상 선택하세요...")
+			return false;
+		}else if(!(document.frm.xyz.value == "1" || document.frm.xyz.value == "2" || document.frm.xyz.value == "3")){
+			alert("장소를 3개 이하로 선택하세요...")
+			return false;
+		}else {
+			alert(document.frm.xyz.value)
+			alert("됫다");
+		}
+			//alert(markers.length);
+			
+	}
+	
+	</script>
 <div class="container pt-80">
-	<form id="frm" action="/HereThere/BoardInsert" method="post"
+	<form id="frm" name="frm" action="/HereThere/BoardInsert" method="post" onsubmit="return checking1()"
 		accept-charset="utf-8">
-		<input type="text" id="xy" name="xy" size="300" /> <input
-			type="hidden" name="id" value="<%=member.getMemberId()%>">
+		<input type="text" id="xy" name="xy" size="300" /> 
+		<input type="hidden" name="id" value="<%=member.getMemberId()%>">
+		<input type="hidden" class="xyz" name="xyz"/>
 		<table width="100%">
 
 			<tr>
@@ -145,14 +172,14 @@
 			</tr>
 		</table>
 		<div>
-			<input id="address" type="textbox" value="Sydney, NSW"> <input
+			<input id="address" type="textbox" value="지역을 검색하세요"> <input
 				type="button" value="검색" onclick="codeAddress()">
 		</div>
 		<div id="r"></div>
 		<div id="floating-panel">
-			<input onclick="clearMarkers();" type=button value="숨김"> <input
-				onclick="showMarkers();" type=button value="모두보기"> <input
-				onclick="deleteMarkers();" type=button value="삭제">
+			<input onclick="clearMarkers();" type=button value="숨김"> 
+			<input onclick="showMarkers();" type=button value="모두보기"> 
+			<input onclick="deleteMarkers();" type=button value="삭제">
 		</div>
 		<div id="map"></div>
 		<p></p>
@@ -211,7 +238,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: haightAshbury,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
   // This event listener will call addMarker() when the map is clicked.
@@ -220,7 +247,7 @@ function initMap() {
   });
 
   // Adds a marker at the center of the map.
-  addMarker(haightAshbury);
+  addMarker(aa);
   info();
 }
 
@@ -269,13 +296,15 @@ function info(){
 	
 	for(var i = 0; i < markers.length; i++) {
 		//alert(markers[i].getPosition());
-
+		
 		positions += markers[i].getPosition() + "/";
 		
 			
-		$("#xy").val(positions);;
+		//$("#xy").val(positions);
+		$(".xyz").val(markers.length);
 	}
 	positions = "";
+	
 	
 }
 
@@ -311,4 +340,5 @@ function codeAddress(){
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4UBimRxsMtoVBMV5a4PsiQCuN4asQ7IU&signed_in=true&callback=initMap"></script>
 </body>
-</html>
+</html>	
+

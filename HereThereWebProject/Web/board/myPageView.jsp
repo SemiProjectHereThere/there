@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>my page view</title>
+<title>YOGI JOGI</title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -56,21 +56,22 @@
 				<% System.out.println(request.getContextPath());%> --%>
 				
 				<% if(member.getRenameCoverName() == null){ %>
-				<img class="cover-pic" src="uploadfiles/cover.jpg">
+				<img class="img-responsive cover-pic" src="uploadfiles/cover.jpg">
 				<% }else{ %>
-				<img class="cover-pic" src="<%=request.getContextPath()%>\uploadfiles\<%= member.getMemberId() %>cover.png">
+				<img class="img-responsive cover-pic" src="<%=request.getContextPath()%>\uploadfiles\<%= member.getMemberId() %>cover.png">
 				<% } %>
 				
 				<% if(member.getRenameProfileName() == null){ %>
-				<img class="profile-pic" src="uploadfiles/profile.jpg">
+				<img class="img-responsive profile-pic" src="uploadfiles/profile.jpg">
 				<% }else{ %>
-				<img class="profile-pic" src="<%=request.getContextPath()%>\uploadfiles\<%= member.getMemberId() %>profile.png">
+				<img class="img-responsive profile-pic" src="<%=request.getContextPath()%>\uploadfiles\<%= member.getMemberId() %>profile.png">
 				<% } %>
 				<div class="name-div">
 					<%= member.getMemberName() %>
 				</div>
 				
 			</div>
+			<div class="col-lg-12 first-line-btns">
 			<div class="pic-change-btns">
 					<div class="button"><a href="#covermodal" id="modaltrigger">커버사진 변경</a></div> &nbsp; &nbsp;
 					<div id="covermodal" style="display:none;">
@@ -116,6 +117,7 @@
 				});
 			</script>
 			<!--//모달윈도우부분-->
+				</div>
 				</div>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
@@ -171,7 +173,7 @@
       					
   					 %>
 					
-					<div class="col-lg-6" onclick="location.href='index.jsp'">
+					<div class="col-lg-6" onclick="location.href='BoardDetailView?boardNo=<%= b.getBdNo()%>'">
 					<p class="naming"><%=b.getBdTitle() %></p>
 						<%if(b.getBdCategory().equals("1")){ %>
 							<img class="aared" src="/HereThere/image/eat.png" />

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="board.model.vo.Board, java.util.ArrayList " %>
+<%@ page import="board.model.vo.Board, java.util.ArrayList, member.model.vo.Member " %>
 <%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-  	String location = ""; 
+	Member member = (Member)session.getAttribute("member");
+	String location = ""; 
   	String category = ""; 
   	String option = ""; 
  	
@@ -43,15 +44,69 @@
  <body>
 	<div>
 		<!-- header Start -->
-		<div class="header clearfix">
+				<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="/HereThere/index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
+			<%
+				if(member == null){
+			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left">이름/사진</div>
-				<div class="col-lg-4 pull-left">도움말</div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+			
+				<!-- 로그인 정보 입력 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+				
+				<!-- 회원가입 정보 입력 -->
+				
+				<div class="col-lg-4 pull-left"><a href="/HereThere/member/helpPage.jsp" >도움말</div>
+				
+				<!-- 도움말 페이지 -->
+				
 			</div>
-		</div> 
+			<%
+				}else if(member.getManagerYN() != 'Y'){
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><a href="MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0"><%= member.getMemberName() %></a></div>
+				<!-- 마이페이지로 이동 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
+				
+				<div class="col-lg-4 pull-left menubar1">더보기
+					<ul class="submenu">
+						<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">도움말</a></li>
+					</ul>
+				</div>
+			</div>
+			<%
+				}else{
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><%= member.getMemberName() %></a></div>
+				<!-- 마이페이지로 이동 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
+				
+				<div class="col-lg-4 pull-left menubar1">더보기
+				<!-- 더보기 메뉴 -->
+					<ul class="submenu">
+						<li><a href="/HereThere/mall?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">회원관리</a></li>
+						<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">도움말</a></li>
+					</ul>
+				</div>
+			</div>
+			<%
+				}
+			%>
+		</div>  
 		<!-- header End -->
 
 		<!-- Container Start -->
@@ -103,6 +158,7 @@
 					</button>
 				</div>
 			</div>
+			<!-- 첫번째 -->
 			</form>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
@@ -152,7 +208,17 @@
 			</div>
 			<!-- 두번째 라인 End --> --%>
 		</div>
-		<br><br>
+			<!-- 검색바 검색텍스트 Start -->
+		<div class="textbar1">
+			<a class="textbar1-a" href="boardselect?boardVLocation=0">전체보기</a>
+			<form class="textbar2" action="boardtextbar">
+				<input class="textbar2-1" type=text name="boardt" placeholder="제목을 입력하세요"/>  
+				<input class="textbtn1" type=submit value="찾기">
+				
+			</form>
+		</div>
+			<!-- 검색바 검색텍스트 End -->
+		<br>
 		<!-- container End -->
 
 		<!-- container2 컨텐츠 내용시작 -->
@@ -244,9 +310,7 @@
 	 		$('.boardVLocation option:eq(<%=location%>)').attr("selected", "selected");
 	 		$('.boardVCategory option:eq(<%=category%>)').attr("selected", "selected");
 	 		$('.boardVOption option:eq(<%=option%>)').attr("selected", "selected");
-	 		
-	 		
-	 		
+
 	</script>
 	</body>
 </html>

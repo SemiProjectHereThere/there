@@ -853,7 +853,7 @@ ArrayList<Board> list = null;
 	}
 
 	public ArrayList<Board> selectPartByCommentCnt(Connection con, Board board) {
-ArrayList<Board> list = null;
+		ArrayList<Board> list = null;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -1073,5 +1073,54 @@ ArrayList<Board> list = null;
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public ArrayList<Board> boardtextbar(Connection con, String boardt) {
+		ArrayList<Board> list = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from board where BD_TITLE like ?";		//등록순으로 정렬하여 list에 담는다.
+		
+		boolean flag = true;
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,'%' + boardt + '%');;
+
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){
+				if(flag == true){
+					list = new ArrayList<Board>();
+					flag = false;
+				}
+				Board b = new Board();
+				b.setBdNo(rset.getInt("bd_no"));
+				b.setBdTitle(rset.getString("bd_title"));
+				b.setBdContent(rset.getString("bd_Content"));
+				b.setBdWriter(rset.getString("bd_writer"));
+				b.setBdEnrollDate(rset.getDate("bd_enrolldate"));
+				b.setBdCategory(rset.getString("bd_category"));
+				b.setBdLocation(rset.getString("bd_location"));
+				b.setBdReadCnt(rset.getInt("bd_count"));
+				b.setBdCommentCnt(rset.getInt("bd_comment_count"));
+				b.setBdStarPt(rset.getInt("bd_starpoint"));
+				b.setBdShingoCnt(rset.getInt("bd_singo"));
+				b.setBdMap(rset.getString("bd_map"));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 }
