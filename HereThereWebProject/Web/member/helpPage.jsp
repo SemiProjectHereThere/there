@@ -1,0 +1,215 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+<%
+	Member member = (Member)session.getAttribute("member");
+%>
+
+<html>
+<head>
+  <title> YOGI JOGI </title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/custom.css" />
+	<Link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+	<!-- 합쳐지고 최소화된 최신 CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<!-- 부가적인 테마 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
+ </head>
+
+ <body onload="hi();">
+		<!-- header Start -->
+		<div class="header clearfix">
+			<h1 class="pull-left">
+				<a href="index.jsp" title="여기저기">여기저기 here there</a>
+			</h1>
+			<%
+				if(member == null){
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+			
+				<!-- 로그인 정보 입력 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+				
+				<!-- 회원가입 정보 입력 -->
+				
+				<div class="col-lg-4 pull-left">도움말</div>
+				
+				<!-- 도움말 페이지 -->
+				
+			</div>
+			<%
+				}else if(!member.getMemberId().equals("admin")){
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= member.getMemberId() %>"><%= member.getMemberName() %></a></div>
+				<!-- 마이페이지로 이동 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
+				
+				<div class="col-lg-4 pull-left menubar1">더보기
+					<ul class="submenu">
+						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
+						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html">도움말</a></li>
+					</ul>
+				</div>
+			</div>
+			<%
+				}else{
+			%>
+			<div class="pull-right lnb">
+				<div class="col-lg-4 pull-left"><a href="/HereThere/mall?userid=<%= member.getMemberId() %>"><%= member.getMemberName() %></a></div>
+				<!-- 마이페이지로 이동 -->
+			
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
+				
+				<div class="col-lg-4 pull-left">더보기</div>
+				<!-- 더보기 메뉴 -->
+			</div>
+			<%
+				}
+			%>
+		</div> 
+		<!-- header End -->
+		<!-- contant Start -->
+		
+		
+<style>
+	.container9{
+	padding-top:80px;
+
+	}
+
+dl{
+	width:800px;
+	margin:50px auto;
+	
+}
+dt{
+	width:800;
+	margin: auto;
+	height:80px;
+	padding:20px; 
+	background: gray;
+	vartical-align:middle;
+	)
+}
+dd{
+	margin:5px;
+	
+	height:30px;
+	
+}
+dd p{
+
+	text-indent:2em;
+	
+}
+</style>
+		<script type="text/javascript">
+ 		$(function hi(){
+			$("dd").hide();
+		}); 
+		
+ 		 $(document).ready(function () {
+ 			 /* boolean flag = false; */
+		 $("#t1").click(function () {
+			/*  if(flag ==false){ */
+			$("#d1").show();
+			 /* flag = true; */
+			 /* }else{ */
+			 /*  $("#d1").hide(); */
+			  /* flag = false; */
+	    });    
+ 		   }); 
+ 		 
+ 		 $(document).ready(function () {
+ 			 $("#t2").click(function () {
+ 				$("#d2").show();
+ 		    });    
+ 	 		   });     
+ 		 
+ 		 $(document).ready(function () {
+ 			 $("#t3").click(function () {
+ 				$("#d3").show();
+ 		    });    
+ 	 		   });   
+ 		 
+ 		 $(document).ready(function () {
+ 			 $("#t4").click(function () {
+ 				$("#d4").show();
+ 		    });    
+ 	 		   });   
+ 		 
+ 		 $(document).ready(function () {
+ 			 $("#t5").click(function () {
+ 				$("#d5").show();
+ 		    });    
+ 	 		   });   
+		</script>
+
+	
+<div class="container9">
+		<section id="content">
+	     <div>
+		<dl>
+			<dt id="t1">1.회원가입은 어떻게 할수 있나요?</dt>
+				<dd id="d1" ><p>우측상단에 회원관리 탭을 클릭후 회원가입을 하시면 됩니다 </p></dd>
+			<dt id="t2">2.회원탈퇴는 어떻게 해야하나요?</dt>
+				<dd id="d2"><p>로그인을 한뒤에 정보수정메뉴에가서 회원탈퇴 버튼을 클릭하면 회원탈퇴가 이루어집니다. </p></dd>
+			<dt id="t3">3.자주 가고 싶은 곳을 저장하고 싶은데 어떻게 해야하나요?</dt>
+				<dd id="d3"><p>우리 사이트는 찜하기 메뉴가 있습니다 다시보고싶은곳에서 찜하기 버튼을 클릭하면 마이페이지에 저장이 됩니다.</p></dd>
+			<dt id="t4">3.자주 가고 싶은 곳을 저장하고 싶은데 어떻게 해야하나요?</dt>
+				<dd id="d4"><p>우리 사이트는 찜하기 메뉴가 있습니다 다시보고싶은곳에서 찜하기 버튼을 클릭하면 마이페이지에 저장이 됩니다.</p></dd>
+			<dt id="t5">3.자주 가고 싶은 곳을 저장하고 싶은데 어떻게 해야하나요?</dt>
+				<dd id="d5"><p>우리 사이트는 찜하기 메뉴가 있습니다 다시보고싶은곳에서 찜하기 버튼을 클릭하면 마이페이지에 저장이 됩니다.</p></dd>
+			
+		</dl>
+		</div>
+			</section>
+				</div>
+		
+		
+		
+		
+		
+		
+		<!-- contant End -->
+	<!-- footer Start -->
+		<div class="footer">
+			<div class="cs">
+			<ul>
+				<li><h4>C/S Center 및 광고문의</h4></li>
+				<li>전화: 02-1234-5678</li>
+				<li>팩스: 02-1234-5555</li>
+				<li>이메일 : Yogijogi@naver.com</li>
+				<li>카카오톡ID : Yogijogi</li>
+			</ul>
+			</div>
+			<div class="cs">
+			<ul>
+				<li><h4>회사정보</h4></li>
+				<li>회사명 : KHCompany</li>
+				<li>대표 : 홍길동</li>
+				<li>주소 : 서울특별시 강남구 역삼동 KH빌딩 2층</li>
+				<li>개인정보관리 책임자 : 홍길동 (Yogijogi@naver.com)</li>
+			</ul>
+			</div><br>
+			<div class="cs2">
+			Copyrightⓒ KHCompany. All Rights Reserved.
+			</div>
+			
+		</div>
+		<!-- footer End -->
+	</body>
+</html>
