@@ -187,9 +187,9 @@
 						<%if(c.equals("1")){ %>
 							<img class="aared" src="/HereThere/image/eat.png" />
 						<%}else if(c.equals("2")){ %>
-							<img class="aagreen" src="/HereThere/image/pic.png" />
+							<img class="aagreen" src="/HereThere/image/view.png" />
 						<%}else if(c.equals("3")){ %>
-							<img class="aablue" src="/HereThere/image/view.png" />
+							<img class="aablue" src="/HereThere/image/pic.png" />
 						<%} %>
 						
 						

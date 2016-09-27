@@ -3,9 +3,7 @@
 <%@page import="java.util.ArrayList, member.model.vo.Member, board.model.vo.Board"%>
 <%
 	Member member = (Member)request.getAttribute("member");
-%>
-<%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
-<%
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
 	String mySelect = (String)request.getParameter("mySelect");
 %>
 <!DOCTYPE html>
@@ -175,6 +173,13 @@
 					
 					<div class="col-lg-6" onclick="location.href='index.jsp'">
 					<p class="naming"><%=b.getBdTitle() %></p>
+						<%if(b.getBdCategory().equals("1")){ %>
+							<img class="aared" src="/HereThere/image/eat.png" />
+						<%}else if(b.getBdCategory().equals("2")){ %>
+							<img class="aagreen" src="/HereThere/image/pic.png" />
+						<%}else if(b.getBdCategory().equals("3")){ %>
+							<img class="aablue" src="/HereThere/image/view.png" />
+						<%} %>
 					<div class="<%=b.getBdNo() %> score1"></div>
 					
 					<script>
