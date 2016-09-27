@@ -65,6 +65,7 @@ public class MyBoardListServlet extends HttpServlet {
 					view = request.getRequestDispatcher("myInfo?memberid="+memberId);
 					request.setAttribute("list", list);
 					request.setAttribute("member", member);
+					request.setAttribute("mySelect", mySelect);
 					view.forward(request, response);
 				}else{
 					view = request.getRequestDispatcher("myInfo?memberid="+memberId);

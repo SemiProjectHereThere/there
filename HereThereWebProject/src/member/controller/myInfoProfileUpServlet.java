@@ -71,7 +71,7 @@ public class myInfoProfileUpServlet extends HttpServlet {
 		int result = new MemberService().profileUpdate(member);
 		
 		if(result > 0){
-			response.sendRedirect("myInfo?memberId="+memberId);
+			response.sendRedirect("MyBoardList?memberId="+member.getMemberId()+"&mySelect=0");
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("member/memberError.jsp");
 			request.setAttribute("code", "Profileup");

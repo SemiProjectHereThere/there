@@ -79,7 +79,7 @@ public class myInfoCoverUpServlet extends HttpServlet {
 		
 		
 		if(result > 0){
-			response.sendRedirect("myInfo?memberId="+memberId);
+			response.sendRedirect("MyBoardList?memberId="+member.getMemberId()+"&mySelect=0");
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("member/memberError.jsp");
 			request.setAttribute("code", "Coverup");

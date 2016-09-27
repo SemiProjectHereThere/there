@@ -5,6 +5,9 @@
 	Member member = (Member)request.getAttribute("member");
 %>
 <%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
+<%
+	String mySelect = (String)request.getParameter("mySelect");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +37,7 @@
 				<a href="/HereThere/index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><%= member.getMemberName() %></div>
+				<div class="col-lg-4 pull-left" onclick="window.scrollTo(0,0);"><%= member.getMemberName() %></div>
 				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
@@ -71,7 +74,7 @@
 				
 			</div>
 			<div class="pic-change-btns">
-					<div class="button"><a href="#covermodal" id="modaltrigger" style="text-decoration:none; color:#fff;">커버사진 변경</a></div> &nbsp; &nbsp;
+					<div class="button"><a href="#covermodal" id="modaltrigger">커버사진 변경</a></div> &nbsp; &nbsp;
 					<div id="covermodal" style="display:none;">
 					<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
 					<h3>COVER 사진 변경</h3> <br>
@@ -94,7 +97,7 @@
 			</script>
 			<!--//모달윈도우부분-->
 
-					<div class="button"><a href="#profilemodal" id="modaltrigger1" style="text-decoration:none; color:#fff;">프로필사진 변경</a></div>
+					<div class="button"><a href="#profilemodal" id="modaltrigger1">프로필사진 변경</a></div>
 					<div id="profilemodal" style="display:none;">
 					<form method="post" action="/HereThere/profileUp" enctype="multipart/form-data" name="profileform">
 					<h3>PROFILE 사진 변경</h3> <br>
@@ -122,7 +125,7 @@
 			<form action="MyBoardList" method="post">
 				<div class="select-local col-lg-4">
 					
-					<select id="mySelect" name="mySelect">
+					<select id="mySelect" name="mySelect" class="mySelect">
 						<option value="0" selected>전체보기</option>
 						<option value="1">찜한 게시물</option>
 						<option value="2">내가 올린 게시물</option>
@@ -201,6 +204,7 @@
 		</div>
 		<!-- container2 컨텐츠 내용END -->
 		<script>
-	</script>
+			$('.mySelect option:eq(<%=mySelect%>)').attr("selected", "selected");
+		</script>
 </body>
 </html>
