@@ -11,19 +11,16 @@
 <link rel="shortcut icon" href="/HereThere/image/111.png.ico">
 <link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
 <link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
-<Link rel="stylesheet" type="text/css"
-	href="/HereTherecss/bootstrap.css" />
+<Link rel="stylesheet" type="text/css" href="/HereThere/css/bootstrap.css" />
 <!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/HereThere/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 <style type="text/css">
 #map {
@@ -102,6 +99,7 @@
 		</div>
 		<% } %>
 	</div>
+<div class="container pt-80">
 <form id="frm" action="/HereThere/BoardUpdate" method="post" accept-charset="utf-8">
 <input type="text" id="xy" name="xy" size="300" />
 <input type="hidden" name="id" value="<%=b.getBdWriter()%>">
@@ -164,6 +162,7 @@
 		<input onclick="info()" type=button value="전송">
 	</div>
 </form>
+</div>
 <script type="text/javascript">
 $(function(){
     //전역변수선언
