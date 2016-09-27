@@ -178,11 +178,21 @@
       					if(s.indexOf("/HereThere/SE2")!= -1){
       					k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
       					}
+      					String c = b.getBdCategory();
       					
   					 %>
 					
 					<div class="col-lg-6">
 					<p class="naming"><%=b.getBdTitle() %></p>
+						<%if(c.equals("1")){ %>
+							<img class="aared" src="/HereThere/image/eat.png" />
+						<%}else if(c.equals("2")){ %>
+							<img class="aagreen" src="/HereThere/image/pic.png" />
+						<%}else if(c.equals("3")){ %>
+							<img class="aablue" src="/HereThere/image/view.png" />
+						<%} %>
+						
+						
 					<div class="<%=b.getBdNo() %> score1"></div>
 					
 					<script>
