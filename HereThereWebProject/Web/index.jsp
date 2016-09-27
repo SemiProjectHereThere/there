@@ -46,7 +46,7 @@
 				
 			</div>
 			<%
-				}else if(!member.getMemberId().equals("admin")){
+				}else if(member.getManagerYN() != 'Y'){
 			%>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= member.getMemberId() %>"><%= member.getMemberName() %></a></div>
@@ -57,7 +57,7 @@
 				
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
-						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
+						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
 						<li><a href="/HereThere/help.html">도움말</a></li>
 					</ul>
@@ -67,14 +67,21 @@
 				}else{
 			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="/HereThere/mall?userid=<%= member.getMemberId() %>"><%= member.getMemberName() %></a></div>
+				<div class="col-lg-4 pull-left"><%= member.getMemberName() %></a></div>
 				<!-- 마이페이지로 이동 -->
 			
 				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
 				<!-- 로그아웃 -->
 				
-				<div class="col-lg-4 pull-left">더보기</div>
+				<div class="col-lg-4 pull-left menubar1">더보기
 				<!-- 더보기 메뉴 -->
+					<ul class="submenu">
+						<li><a href="/HereThere/mall?userid=<%= member.getMemberId() %>&pg=1">회원관리</a></li>
+						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html">도움말</a></li>
+					</ul>
+				</div>
 			</div>
 			<%
 				}

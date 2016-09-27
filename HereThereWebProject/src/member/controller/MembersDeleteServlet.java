@@ -37,11 +37,6 @@ public class MembersDeleteServlet extends HttpServlet {
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		String[] mbId = request.getParameterValues("delete");
 		String[] yn = request.getParameterValues("manager");
-	
-		for(int i = 0; i < yn.length; i++)
-			System.out.println(yn[i]);
-		for(int i = 0; i < mbId.length; i++)
-			System.out.println(mbId[i]);
 		
 		int result1 = new MemberService().memberModifyYN(yn);
 		int result2 = new MemberService().membersDelete(mbId);
