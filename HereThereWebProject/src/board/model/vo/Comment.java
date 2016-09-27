@@ -22,7 +22,6 @@ public class Comment implements java.io.Serializable{
 		this.cmContent = cmContent;
 		this.cmNo = cmNo;
 	}
-
 	public int getCmBoardNo() {
 		return cmBoardNo;
 	}

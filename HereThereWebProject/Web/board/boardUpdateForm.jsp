@@ -253,7 +253,6 @@ function initMap() {
 		y.add(maplist[i].substring(maplist[i].indexOf(",") + 1, maplist[i].indexOf(")")));
 	}
 %>	
-	
   geocoder = new google.maps.Geocoder(); 
   var haightAshbury = {lat: <%=x.get(0)%>, lng: <%=y.get(0)%>};
 

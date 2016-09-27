@@ -29,7 +29,6 @@ public class CommentListServlet extends HttpServlet {
      */
     public CommentListServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

@@ -104,14 +104,9 @@ public class BoardDao {
 		}finally{
 			close(rset);
 			close(stmt);
-		}
-		
-		return list;	
-		
+		}	
+		return list;		
 	}
-
-
-
 
 	public ArrayList<Board> selectAll(Connection con, String userId) {
 		// 전체게시물을 list에 저장하는 메소드
