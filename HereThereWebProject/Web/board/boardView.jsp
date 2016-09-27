@@ -103,6 +103,7 @@
 					</button>
 				</div>
 			</div>
+			<!-- 첫번째 -->
 			</form>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
@@ -152,6 +153,16 @@
 			</div>
 			<!-- 두번째 라인 End --> --%>
 		</div>
+			<!-- 검색바 검색텍스트 Start -->
+		<div>
+			<a href="boardselect?boardVLocation=0">전체보기</a>
+			<form action="boardtextbar">
+				<input type=text name="boardt" placeholder="제목을 입력하세요"/>  
+				<input type=submit value="찾기">
+				
+			</form>
+		</div>
+			<!-- 검색바 검색텍스트 End -->
 		<br><br>
 		<!-- container End -->
 
@@ -244,9 +255,7 @@
 	 		$('.boardVLocation option:eq(<%=location%>)').attr("selected", "selected");
 	 		$('.boardVCategory option:eq(<%=category%>)').attr("selected", "selected");
 	 		$('.boardVOption option:eq(<%=option%>)').attr("selected", "selected");
-	 		
-	 		
-	 		
+
 	</script>
 	</body>
 </html>

@@ -225,6 +225,14 @@ public class BoardService {
 		close(con);
 		return result;
 	}
+
+	public ArrayList<Board> boardtextbar(String boardt) {
+		ArrayList<Board> list = null;
+		Connection con = getConnection();
+		list = new BoardDao().boardtextbar(con, boardt);
+		close(con);
+		return list;
+	}
 				
 	
 
