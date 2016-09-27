@@ -41,6 +41,12 @@ public class BoardSelectServlet extends HttpServlet {
 		String location = request.getParameter("boardVLocation");
 		String category = request.getParameter("boardVCategory");
 		String option = request.getParameter("boardVOption");
+		if(category == null){
+			category = "0";
+		}
+		if(option == null){
+			option = "0";
+		}
 		//System.out.println(location + "location" + ", " + category + "category");
 		
 		ArrayList<Board> list = null;

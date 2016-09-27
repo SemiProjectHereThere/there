@@ -107,35 +107,35 @@
 				<div class="col-lg-12 photo-link">
 					<div class="col-lg-6-2">
 					<p class="naming">Seoul</p>
-					<a href="BoardPartByLoc?loc=seoul"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+					<a href="boardselect?boardVLocation=1"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
 					</div>
 					<div class="col-lg-6-2">
 					<p class="naming">Daejeon</p>
-					<a href="BoardPartByLoc?loc=daejeon"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+					<a href="boardselect?boardVLocation=6"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-2">
 					<p class="naming">Gwangju</p>
-					<a href="BoardPartByLoc?loc=gwangju"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+					<a href="boardselect?boardVLocation=7"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-3">
 					<p class="naming">Busan</p>
-					<a href="BoardPartByLoc?loc=busan"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+					<a href="boardselect?boardVLocation=3"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
 					</div>
 					<div class="col-lg-6-4">
 					<p class="naming">Ulsan</p>
-					<a href="BoardPartByLoc?loc=ulsan"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+					<a href="boardselect?boardVLocation=4"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-5">
 					<p class="naming">Daegu</p>
-					<a href="BoardPartByLoc?loc=daegu"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+					<a href="boardselect?boardVLocation=5"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
 					</div>
 					<div class="col-lg-6-5">
 					<p class="naming">Jeju</p>
-					<a href="BoardPartByLoc?loc=jeju"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+					<a href="boardselect?boardVLocation=16"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 					<div class="col-lg-6-5">
 					<p class="naming">Incheon</p>
-					<a href="BoardPartByLoc?loc=incheon"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+					<a href="boardselect?boardVLocation=2"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 					</div>
 
 				</div>
