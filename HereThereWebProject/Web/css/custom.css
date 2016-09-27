@@ -194,11 +194,55 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	z-index:2;
 	font-size:15pt;
 }
+
+.container .photo-link .col-lg-6 .aared{
+	
+	position:absolute;
+	margin:0;
+	width:40px;
+	height:40px;
+	bottom:250px;
+	z-index:2;
+	background:rgba(255, 0, 0, 0.7);
+	border-radius:20px;
+	left:40px;
+
+}
+
+.container .photo-link .col-lg-6 .aagreen{
+	
+	position:absolute;
+	margin:0;
+	width:40px;
+	height:40px;
+	bottom:250px;
+	z-index:2;
+	background:rgba(255, 255, 100, 0.8);
+	border-radius:20px;
+	left:40px;
+
+}
+.container .photo-link .col-lg-6 .aablue{
+	
+	position:absolute;
+	margin:0;
+	width:40px;
+	height:40px;
+	bottom:250px;
+	z-index:2;
+	background:rgba(30, 150, 100, 0.8);
+	border-radius:20px;
+	left:40px;
+
+}
+
+
 .container .pic-change-btns{
 	width: 350px;
 	float: right;
 	margin-top: 20px;
 }
+
 
 .container .photo-link .col-lg-6 .score1 img{
 	
