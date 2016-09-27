@@ -97,11 +97,12 @@
 				return false;
 			}
 			// 비밀번호 길이체크(4~8자 까지 허용 )
-			if(document.writeForm.pwd.value.length<4 || document.writeForm.pwd.value.length>8)
+			if(document.writeForm.pwd.value.length<4 || document.writeForm.pwd.value.length> 8)
 			{
 				alert("비밀번호를 4~8자 까지 입력해주세요")
 				document.writeForm.pwd.focus()
 				document.writeForm.pwd.select()
+				return false;
 			}	
 			else if(document.writeForm.pwd.value != document.writeForm.repwd.value)
 			{
