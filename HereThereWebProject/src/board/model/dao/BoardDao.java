@@ -122,8 +122,8 @@ public class BoardDao {
 				ResultSet rset = null;
 				
 				String query = "select BD_NO, BD_TITLE, BD_CONTENT, BD_WRITER, BD_ENROLLDATE, BD_CATEGORY, "
-								+ "BD_LOCATION, BD_COUNT, BD_COMMENT_COUNT, BD_STARPOINT, BD_SINGO, BD_MAP " +
-								"from board, favorite where board.BD_NO = favorite.FA_BD_NO and favorite.FA_MB_ID = ?";		
+								+ "BD_LOCATION, BD_COUNT, BD_COMMENT_COUNT, BD_STARPOINT, BD_SINGO, BD_MAP "
+								+ "from board full outer join favorite on board.BD_NO = favorite.FA_BD_NO where board.bd_writer = ?";		
 				//등록순으로 정렬하여 list에 담는다. Board 테이블에서 userId로 select all함.
 				
 				try {

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,8 @@ import org.json.simple.JSONObject;
 
 import board.model.service.BoardService;
 import board.model.vo.Board;
+import member.model.service.MemberService;
+import member.model.vo.Member;
 
 /**
  * Servlet implementation class MyBoardListServlet
@@ -38,59 +42,39 @@ public class MyBoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 마이페이지에서 전체보기부분 클릭시 작동하는 servlet
 		
-				/*request.setCharacterEncoding("utf-8");
-				response.setContentType("text/html; charset=utf-8");*/
-				String memberId = request.getParameter("memberid");
+				request.setCharacterEncoding("utf-8");
+				response.setContentType("text/html; charset=utf-8");
+				String memberId = request.getParameter("memberId");
+				String mySelect = request.getParameter("mySelect");
+				//System.out.println(mySelect + ", " + memberId);
 				
-				ArrayList<Board> list = new BoardService().selectAll(memberId);
-				/*Iterator iter = list.iterator();
-				for(Board b : list){
-					while(iter.hasNext()){
-						System.out.println(iter.next());
-					}
-				}*/
+				ArrayList<Board>list = null;
+				Member member = null;
 				
-				//전송할 최종 json 객체
-				JSONObject json = new JSONObject();
-				JSONArray jarr = new JSONArray();
-				
-				
-				for(Board b : list){
-					//하나의 게시물 정보를 저장할 json 객체
-					JSONObject job = new JSONObject();
-					job.put("bdNo", b.getBdNo());
-					job.put("bdTitle", URLEncoder.encode(b.getBdTitle(), "UTF-8"));
-					job.put("bdContent", URLEncoder.encode(b.getBdContent(), "UTF-8"));
-					job.put("bdWriter", b.getBdWriter());
-					job.put("bdEnrolldate", b.getBdEnrollDate().toString());
-					job.put("bdCategory", b.getBdCategory());
-					job.put("bdLocation", b.getBdLocation());
-					job.put("bdCount", b.getBdReadCnt());
-					job.put("bdCommentCnt", b.getBdCommentCnt());
-					job.put("bdStar", b.getBdStarPt());
-					job.put("bdSingo", b.getBdShingoCnt());
-					job.put("bdMap", b.getBdMap());
-					
-					jarr.add(job);
+				switch(mySelect){
+				case "0":list = new BoardService().selectAll(memberId);
+						 member = new MemberService().selectOne(memberId);break;
+				case "1":list = new BoardService().selectFavorite(memberId); 
+						 member = new MemberService().selectOne(memberId); break;
+				case "2":list = new BoardService().selectMine(memberId); 
+						 member = new MemberService().selectOne(memberId); break;
 				}
 				
-				json.put("list", jarr);
-				//System.out.println(json.toJSONString());
-				response.setContentType("application/json");
-				PrintWriter out = response.getWriter();
-				out.print(json.toJSONString());
-				out.flush();
-				out.close();
-				
-				/*RequestDispatcher view = null;
+				RequestDispatcher view = null;
 				if(list != null){
-					view = request.getRequestDispatcher("board/myPageView?memberid="+memberId);
+					view = request.getRequestDispatcher("myInfo?memberid="+memberId);
 					request.setAttribute("list", list);
+					request.setAttribute("member", member);
 					view.forward(request, response);
 				}else{
-					view = request.getRequestDispatcher("board/boardError.jsp");
+					view = request.getRequestDispatcher("myInfo?memberid="+memberId);
+					request.setAttribute("list", list);
+					request.setAttribute("member", member);
+					view.forward(request, response);
+					/*view = request.getRequestDispatcher("board/boardError.jsp");
 					request.setAttribute("code", "mylist");
-				}	*/
+					view.forward(request, response);*/
+				}	
 				
 			}
 

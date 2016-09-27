@@ -194,7 +194,11 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	z-index:2;
 	font-size:15pt;
 }
-
+.container .pic-change-btns{
+	width: 350px;
+	float: right;
+	margin-top: 20px;
+}
 
 .container .photo-link .col-lg-6 .score1 img{
 	
@@ -416,11 +420,6 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	top: 280px;
 	/*border: 1px solid black;*/
 }
-.container .pic-change-btns{
-	position: absolute;
-	left: 775px;
-	top: 275px;
-}
 .container .pic-change-btns .button{
 	background-color: #f57115;
 	border: none;
@@ -445,6 +444,15 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 .container .first-line-400 .name-div{
 	font-size: 20pt;
 }
+.container .first-line-my{
+	width: 100%;
+    height: 50px;
+    border: 2px solid #f57115;
+    border-radius: 30px;
+    margin-top: 90px;
+    margin-bottom: 30px;
+}
+
 /* 부트스트랩 보조 클래스 */
 .no-padder{
 	padding:0 !important; 
@@ -608,6 +616,10 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	color:#fff;
 	z-index:1;
 	font-size:15pt;
+	}
+	.container .pic-change-btns{
+	width: auto;
+	float: none;
 	}
 }
 

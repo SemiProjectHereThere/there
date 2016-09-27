@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="member.model.vo.Member, member.model.service.MemberService"%>
+<%@page import="java.util.ArrayList, member.model.vo.Member, board.model.vo.Board"%>
 <%
 	Member member = (Member)request.getAttribute("member");
 %>
+<%	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +35,9 @@
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left"><%= member.getMemberName() %></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
-						<li><a href="/HereThere/logout">로그아웃</a></li>
 						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1&username=<%= member.getMemberName() %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
 						<li><a href="/HereThere/help.html">도움말</a></li>
@@ -67,8 +68,10 @@
 				<div class="name-div">
 					<%= member.getMemberName() %>
 				</div>
-				<div class="pic-change-btns">
-					<div class="button"><a href="#covermodal" id="modaltrigger">커버사진 변경</a></div> &nbsp; &nbsp;
+				
+			</div>
+			<div class="pic-change-btns">
+					<div class="button"><a href="#covermodal" id="modaltrigger" style="text-decoration:none; color:#fff;">커버사진 변경</a></div> &nbsp; &nbsp;
 					<div id="covermodal" style="display:none;">
 					<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
 					<h3>COVER 사진 변경</h3> <br>
@@ -91,7 +94,7 @@
 			</script>
 			<!--//모달윈도우부분-->
 
-					<div class="button"><a href="#profilemodal" id="modaltrigger1">프로필사진 변경</a></div>
+					<div class="button"><a href="#profilemodal" id="modaltrigger1" style="text-decoration:none; color:#fff;">프로필사진 변경</a></div>
 					<div id="profilemodal" style="display:none;">
 					<form method="post" action="/HereThere/profileUp" enctype="multipart/form-data" name="profileform">
 					<h3>PROFILE 사진 변경</h3> <br>
@@ -113,121 +116,31 @@
 			</script>
 			<!--//모달윈도우부분-->
 				</div>
-			</div>
 			<!-- 첫번째 라인 End -->
 			<!-- 두번째 라인 Start -->
 			<div class="col-lg-12 first-line">
-				<div class="select-local col-lg-6">
-					<select id="mySelect">
-						<option value="myall" selected>전체보기</option>
-						<option value="myfavorite">찜한 게시물</option>
-						<option value="mymine">내가 올린 게시물</option>
+			<form action="MyBoardList" method="post">
+				<div class="select-local col-lg-4">
+					
+					<select id="mySelect" name="mySelect">
+						<option value="0" selected>전체보기</option>
+						<option value="1">찜한 게시물</option>
+						<option value="2">내가 올린 게시물</option>
 					 </select>
+					 
+					 
 				</div>
-				<div class="select-local col-lg-6">
+				<div class="select-local col-lg-4">
+					<input type="hidden" name="memberId" value="<%= member.getMemberId() %>"/>
+					 <button type="submit" value="검색">검색</button>
+				</div>
+				</form>
+				<div class="select-local col-lg-4">
 					<button type="button" class="btn2" onclick="location.href='/HereThere/board/boardWriteForm.jsp'"> 
 						게시물 올리기
 					</button>
 				</div>
 			</div>
-			<script type="text/javascript">
-				$('document').ready(function(){
-					$("#mycontent").html("");
-					$.ajax({
-						url : "MyBoardList?memberid=<%= member.getMemberId() %>",
-						data : {memberid : "<%= member.getMemberId() %>"},
-						type : "post",
-						dataType : "json",
-						success : function(data){
-							var jsonStr = JSON.stringify(data);
-							var json = JSON.parse(jsonStr);
-							var values = $("#mycontent").html();
-							
-							for(var i in json.list){
-								values += ('<div style="border: 1px solid red"><a href="index.jsp"><h2>'+decodeURIComponent(json.list[i].bdTitle)+'</h2></a></div>') + "<br>";
-							}
-							$("#mycontent").html(values);
-						},
-						error:function(request,status,error){
-					        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					       }
-					});
-				});
-			</script>
-			<script type="text/javascript"> //셀렉트박스 값 변경시
-				$(function(){
-					$('#mySelect').on('change', function(){
-						if($('#mySelect').val() == "myall"){
-							//alert("my all");
-							$("#mycontent").html("");
-							$.ajax({
-								url : "MyBoardList?memberid=<%= member.getMemberId() %>",
-								data : {memberid : "<%= member.getMemberId() %>"},
-								type : "post",
-								dataType : "json",
-								success : function(data){
-									var jsonStr = JSON.stringify(data);
-									var json = JSON.parse(jsonStr);
-									var values = $("#mycontent").html();
-									
-									for(var i in json.list){
-										values += ('<div style="border: 1px solid red"><a href="/HereThere/BoardDetailView?boardNo="json.list[i].bdNo><h2>'+decodeURIComponent(json.list[i].bdTitle)+'</h2></a></div>') + "<br>";
-									}
-									$("#mycontent").html(values);
-								},
-								error:function(request,status,error){
-							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-							       }
-							});
-						}else if($('#mySelect').val() == "myfavorite"){
-							//alert("my favorite");
-							$("#mycontent").html("");
-							$.ajax({
-								url : "MyBoardPartByFavorite?memberid=<%= member.getMemberId() %>",
-								data : {memberid : "<%= member.getMemberId() %>"},
-								type : "post",
-								dataType : "json",
-								success : function(data){
-									var jsonStr = JSON.stringify(data);
-									var json = JSON.parse(jsonStr);
-									var values = $("#mycontent").html();
-									
-									for(var i in json.list){
-										values += decodeURIComponent(json.list[i].bdContent) + "<br>";
-									}
-									$("#mycontent").html(values);
-								},
-								error:function(request,status,error){
-							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-							       }
-							});
-						}else{
-							//alert("my mine");
-							$("#mycontent").html("");
-							$.ajax({
-								url : "MyBoardPartByMine?memberid=<%= member.getMemberId() %>",
-								data : {memberid : "<%= member.getMemberId() %>"},
-								type : "post",
-								dataType : "json",
-								success : function(data){
-									var jsonStr = JSON.stringify(data);
-									var json = JSON.parse(jsonStr);
-									var values = $("#mycontent").html();
-									
-									for(var i in json.list){
-										values += decodeURIComponent(json.list[i].bdContent) + "<br>";
-									}
-									$("#mycontent").html(values);
-								},
-								error:function(request,status,error){
-							        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-							       }
-							});
-						}
-					});
-				});
-			</script>
-			<!-- 두번째 라인 End -->
 		</div>
 		<!-- container End -->
 
@@ -235,18 +148,59 @@
 		<div class="bg-color">
 			<div class="container wrapper" id="mycontent">
 			<!-- contant Start -->
-			<%
-				// 전체, 찜, 내가 올린 게시물 갯수 만큼 div 생성, 클릭시 해당 게시물로 넘어가게 링크걸기
-			%>
-				<!-- <div class="col-lg-12 photo-link">
-					<div class="col-lg-12">
-					 <p class="naming">가을엔 남한산성 단풍 나들이!!</p>
-					<img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" />
+			<%try{%>
+			<%int a = 0; %>
+			
+			<%if(list.size()%2 == 0){ %>
+			<%a= list.size()/2 + 1; %>
+			<%}else{%>
+			<%a= list.size()/2 + 2; %>
+			<%}for(int i = 1; i<a; i++){ %>
+				<div class="col-lg-12 photo-link">
+				
+				<%for(int j = i*2-1; j<i*2 + 1; j++){ %>
+					
+					<%Board b = list.get(j-1); %>	
+					<% 
+						String k ="";
+     					String s = b.getBdContent(); 
+      					if(s.indexOf("/HereThere/SE2")!= -1){
+      					k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
+      					}
+      					
+  					 %>
+					
+					<div class="col-lg-6" onclick="location.href='index.jsp'">
+					<p class="naming"><%=b.getBdTitle() %></p>
+					<div class="<%=b.getBdNo() %> score1"></div>
+					
+					<script>
+	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
+
+	 				$('.' + <%=b.getBdNo()%>).raty({readOnly:true, score: <%=b.getBdStarPt() %> });
+					</script>
+					<%if(k==""){ %>
+					<img src="/HereThere/image/img2.png" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
+					<%}else{ %>
+					<img src="<%=k %>" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
+					<%} %>
 					</div>
-				</div> -->
+				<%if(j == (list.size())){ %>
+		
+				<% break;}} %>
+				</div>
+		
+				<%}}catch (Exception e){ %>
+				<% System.out.println("검색결과 없음"); %>
+				<div>검색결과없음</div>
+				
+				<%} %>
+
 			<!-- contant End -->
 			</div>
 		</div>
 		<!-- container2 컨텐츠 내용END -->
+		<script>
+	</script>
 </body>
 </html>
