@@ -98,11 +98,13 @@
 		<div class="container">
 				<section id="content">
 						<form method="post" action="/HereThere/mupdate" name="writeForm" onsubmit="return checking()">
-							<input type="hidden" id="UserId" name = "userId" value="<%=member.getMemberId()%>">
-							<input type="hidden" id="CheckId" name = "checkId" value="0"> 
+							
+							
 							<h1>정보수정</h1>
 							
-							<div><input type="text" placeholder="Username" id="username" name="name" value="<%= member.getMemberName()%>"></div>
+							<div><input type="text" placeholder="Username" id="username" name="name" readonly value="<%= member.getMemberName()%>" ></div>
+							<div><input type="text" id="userid" name = "userId" readonly value="<%=member.getMemberId()%>">
+							<input type="button"  id="idcheck" name = "checkId" realonly  value="Id Check"></div>
 							<div><input type="password" placeholder="Password" id="password1"name="pwd" value="<%= member.getMemberPwd()%>"></div>
 							<div><input type="password" placeholder="Confirm Password" id="password2"name="repwd" ></div>
 							<div><input type="email" placeholder="Email" id="email"name="email" value="<%= member.getEmail()%>"></div>
