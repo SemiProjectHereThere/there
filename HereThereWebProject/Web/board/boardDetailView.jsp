@@ -9,15 +9,15 @@
 <head>
   <title> YOGI JOGI </title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-	<link rel="stylesheet" type="text/css" href="css/common.css" />
-	<link rel="stylesheet" type="text/css" href="css/custom.css" />
-	<Link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
+	<Link rel="stylesheet" type="text/css" href="/HereThere/css/bootstrap.css" />
 	<!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 	<!-- 부가적인 테마 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 <style type="text/css">
 #map {
 	height: 300px;
@@ -114,7 +114,7 @@
 	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
 	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
 	<div>
-	<p id="p5"></p>
+	<p id="cmtbox"></p>
 	</div>
 	<div>
 			<input type="hidden" name="writer" value="">
@@ -125,6 +125,42 @@
 </div>
 <script type="text/javascript">
 	$(function(){
+		cmlist();
+		
+		$('#cmInsert').click(function(){
+			var comment = $('#comment').val(); 
+// 			console.log(comment);
+			$.ajax({
+				url : "cmInsert",
+				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
+				type : "get",
+				success : function(data){
+					if(data != null){
+						$('#cmtbox').empty();
+						cmlist();
+					}
+				}
+			});
+		});
+		
+		$('#cmDelete').click(function(){
+			var comment = $('#comment').val(); 
+// 			console.log(comment);
+			$.ajax({
+				url : "cmDelete",
+				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
+				type : "get",
+				dataType : "json",
+				success : function(data){
+					var values = $("#p5").html();
+					$("#cmtbox").html("");
+					values += "글쓴이 : " + data.writer + "<br>내용 : " + data.comment + "<br><hr>";
+					$("#cmtbox").html(values);
+				}
+		});
+	});
+});
+	function cmlist(){
 		$.ajax({
 			url : "cmList",
 			data : {bno :<%=b.getBdNo()%>},
@@ -141,29 +177,12 @@
 				for(var i in json.list){
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + "<br><hr>";
+					values += "<div>글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + " &nbsp; <input type='button' id='cmDelete' value='삭제'><hr></div>";
 				}	
-				$("#p5").html(values);
+				$("#cmtbox").html(values);
 			}
 		});
-		
-		$('#cmInsert').click(function(){
-			var comment = $('#comment').val(); 
-// 			console.log(comment);
-			$.ajax({
-				url : "cmInsert",
-				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
-				type : "get",
-				dataType : "json",
-				success : function(data){
-					var values = $("#p5").html();
-					$("#p5").html("");
-					values += "글쓴이 : " + data.writer + "<br>내용 : " + data.comment + "<br><hr>";
-					$("#p5").html(values);
-				}
-		});
-	});
-});
+	}
 </script>
 <script>
 
