@@ -131,7 +131,7 @@
 					  <% if(managerYN.equals("Y")) { %>
 					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?pg=<%= endPg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
 					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';">
-					  <input type=button id="Btn" value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';" >
+					  <input type=button id="Btn" value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>&delete=9999';" >
 					  <% } %>
 				      <td width="0">&nbsp;</td>
 				     </tr>

@@ -35,14 +35,16 @@ public class NoticeDeleteServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
+		String[] noticeNoS = request.getParameterValues("delete");
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		String userId = request.getParameter("userid");
 		String userName = request.getParameter("username");
 		String managerYN = request.getParameter("manageryn");
 		
-		int result = new NoticeService().noticeDelete(noticeNo);
+		int result1 = new NoticeService().noticeDelete(noticeNo);
+		int result2 = new NoticeService().noticesDelete(noticeNoS);
 		
-		if(result > 0 ){
+		if(result1 > 0 || result2 > 0){
 			RequestDispatcher view = request.getRequestDispatcher("nlist");
 			request.setAttribute("userid", userId);
 			request.setAttribute("pg", pg);	

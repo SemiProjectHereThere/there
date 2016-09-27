@@ -106,15 +106,19 @@
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="container">
 				<!-- 게시판 페이지 -->
+				<form action="/HereThere/ndelete?username=<%= userName %>&userid=<%= userId %>&pg=<%= pg %>&manageryn=<%= managerYN %>&noticeno=9999" method="post">
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
 				   <tr height="130"><td width="5"></td></tr>
 				   <tr style="background:url('/HereThere/image/table_mid.gif') repeat-x; text-align:center;">
 				   <td width="5"><img src="/HereThere/image/table_left.gif" width="5" height="30" /></td>
 				   <td width="73">번호</td>
-				   <td width="379">제목</td>
+				   <td width="329">제목</td>
 				   <td width="73">작성자</td>
 				   <td width="164">작성일</td>
 				   <td width="58">조회수</td>
+				   <% if(managerYN.equals("Y")){ %>
+				   <td width="50">삭제</td>
+				   <% } %>
 				   <td width="7"><img src="/HereThere/image/table_right.gif" width="5" height="30" /></td>
 				   </tr>
 				   <% if(total == 0){ %>
@@ -133,10 +137,20 @@
 				    <td align="center"><%= n.getNoticeWriter() %></td>
 				    <td align="center"><%= n.getNoticeDate() %></td>
 				    <td align="center"><%= n.getCountView() %></td>
+				    <% if(managerYN.equals("Y")){ %>
+				    <td align="center"><input type="checkbox" name="delete" value="<%= n.getNoticeNo() %>"></td>
+				    <% } %>
 				    <td align="center">&nbsp;</td>
+				    <% if(managerYN.equals("Y")){ %>
+				    <tr height="1" bgcolor="#f58218"><td colspan="7"></td></tr>
+				    <% }else{ %>
 				    <tr height="1" bgcolor="#f58218"><td colspan="6"></td></tr>
-				   <% } } %>
+				    <% } } } %>
+				    <% if(managerYN.equals("Y")){ %>
+				    <tr height="1" bgcolor="#f58218"><td colspan="7" width="752"></td></tr>
+				    <% }else{ %>
 				    <tr height="1" bgcolor="#f58218"><td colspan="6" width="752"></td></tr>
+				    <% } %>
 			</table>
 			<table width="100%" cellpadding="0" cellspacing="0" border="0">
 			  <tr><td colspan="4" height="5"></td></tr>
@@ -175,11 +189,14 @@
 				%>
 					</td>
 					<% if(managerYN.equals("Y")){ %>
-			  		<td align="right" width="50px"><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>&username=<%= userName%>&manageryn=<%= managerYN %>';"></td>
+			  		<td align="right" width="50px"><input type=button value="글쓰기" style="margin-right:40px;" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>&username=<%= userName%>&manageryn=<%= managerYN %>';"></td>
+			  		<td align="right" width="50px"><input type="submit" value="삭제" style="margin-right:30px;"></td>
 			  		<% } %>
+			  		
 					</tr>
 				
 			 </table>
+			 </form>
 		</div>
 		<!-- container2 컨텐츠 내용END -->
 		

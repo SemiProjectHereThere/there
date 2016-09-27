@@ -178,7 +178,7 @@
 				%>
 					</td>
 					<%-- <% if(userId.equals("admin")){ %> --%>
-			  		<td align="right" width="50px"><input type="submit" value="적용"></td>
+			  		<td align="right" width="50px"><input type="submit" value="적용" style="margin-right:65px;"></td>
 			  		<%--  <% } %> --%>
 					</tr>
 
