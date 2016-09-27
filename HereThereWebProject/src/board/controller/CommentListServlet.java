@@ -54,6 +54,7 @@ public class CommentListServlet extends HttpServlet {
 					//json에서 한글 깨짐을 막으려면, java.net.URLEncoder 클래스의 encode() 메소드로 인코딩 처리
 //					job.put("content", URLEncoder.encode(c.getCmContent(), "UTF-8"));
 					job.put("content", c.getCmContent());
+					job.put("no", c.getCmNo());
 					
 					jarr.add(job);
 				}

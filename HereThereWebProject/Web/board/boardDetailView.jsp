@@ -144,18 +144,17 @@
 		});
 		
 		$('#cmDelete').click(function(){
-			var comment = $('#comment').val(); 
+			var cmNo = $('#cmtDel').val(); 
 // 			console.log(comment);
 			$.ajax({
 				url : "cmDelete",
-				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
+				data : {cmNo : cmNo},
 				type : "get",
-				dataType : "json",
 				success : function(data){
-					var values = $("#p5").html();
-					$("#cmtbox").html("");
-					values += "글쓴이 : " + data.writer + "<br>내용 : " + data.comment + "<br><hr>";
-					$("#cmtbox").html(values);
+					if(data != null){
+					$('#cmtbox').empty();
+					cmlist();
+					}
 				}
 		});
 	});
@@ -172,12 +171,13 @@
 				//console.log(jsonStr);
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
 				
-				var values = $("#p5").html();
+				var values = $("#cmtbox").html();
 				
 				for(var i in json.list){
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "<div>글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + " &nbsp; <input type='button' id='cmDelete' value='삭제'><hr></div>";
+					values += "<div><input type='hidden' id='cmtDel' value='" + json.list[i].no + "'>"
+					"글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + " &nbsp; <input type='button' id='cmDelete' value='삭제'><hr></div>";
 				}	
 				$("#cmtbox").html(values);
 			}
@@ -217,7 +217,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
   
-  <%for(int i=0; i<maplist.length; i++){%>
+  <%for(int i=1; i<maplist.length; i++){%>
   addMarker({lat: <%=x.get(i)%> , lng: <%=y.get(i)%>});
   <% } %>
   // Adds a marker at the center of the map.

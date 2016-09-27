@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="board.model.vo.Board, member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="board.model.vo.Board, member.model.vo.Member, java.util.ArrayList"%>
 <% 
 	Board b = (Board)request.getAttribute("board"); 
 	Member member = (Member)session.getAttribute("member");
@@ -111,27 +111,59 @@
 		</tr>
 		<tr>
 			<td>지역분류</td>
-			<td><select name="location">
-				<option value="1">서울특별시</option>
-				<option value="2">인천광역시</option>
-				<option value="3">부산광역시</option>
-				<option value="4">울산광역시</option>
-				<option value="5">대구광역시</option>
-				<option value="6">대전광역시</option>
-				<option value="7">광주광역시</option>
-				<option value="8">경기도</option>
-				<option value="9">강원도</option>
-				<option value="10">충청북도</option>
-				<option value="11">충청남도</option>
-				<option value="12">전라북도</option>
-				<option value="13">전라남도</option>
-				<option value="14">경상북도</option>
-				<option value="15">경상남도</option>
-				<option value="16">제주도</option>
+			<td>
+			<%
+				String loc = b.getBdLocation();
+				String[] select = new String[16];
+				if(loc.equals("1")) select[0] = "selected";
+				if(loc.equals("2")) select[1] = "selected";
+				if(loc.equals("3")) select[2] = "selected";
+				if(loc.equals("4")) select[3] = "selected";
+				if(loc.equals("5")) select[4] = "selected";
+				if(loc.equals("6")) select[5] = "selected";
+				if(loc.equals("7")) select[6] = "selected";
+				if(loc.equals("8")) select[7] = "selected";
+				if(loc.equals("9")) select[8] = "selected";
+				if(loc.equals("10")) select[9] = "selected";
+				if(loc.equals("11")) select[10] = "selected";
+				if(loc.equals("12")) select[11] = "selected";
+				if(loc.equals("13")) select[12] = "selected";
+				if(loc.equals("14")) select[13] = "selected";
+				if(loc.equals("15")) select[14] = "selected";
+				if(loc.equals("16")) select[15] = "selected";
+				
+			%>
+			<select name="location">
+				<option value="1" <%=select[0] %>>서울특별시</option>
+				<option value="2" <%=select[1] %>>인천광역시</option>
+				<option value="3" <%=select[2] %>>부산광역시</option>
+				<option value="4" <%=select[3] %>>울산광역시</option>
+				<option value="5" <%=select[4] %>>대구광역시</option>
+				<option value="6" <%=select[5] %>>대전광역시</option>
+				<option value="7" <%=select[6] %>>광주광역시</option>
+				<option value="8" <%=select[7] %>>경기도</option>
+				<option value="9" <%=select[8] %>>강원도</option>
+				<option value="10" <%=select[9] %>>충청북도</option>
+				<option value="11" <%=select[10] %>>충청남도</option>
+				<option value="12" <%=select[11] %>>전라북도</option>
+				<option value="13" <%=select[12] %>>전라남도</option>
+				<option value="14" <%=select[13] %>>경상북도</option>
+				<option value="15" <%=select[14] %>>경상남도</option>
+				<option value="16" <%=select[15] %>>제주도</option>
 			</select> &nbsp; &nbsp;
-			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
+			<% if(b.getBdCategory() == "1"){ %>
+			<input type="radio" name="category" value="1" checked>코스 &nbsp; &nbsp;
 			<input type="radio" name="category" value="2">맛집 &nbsp; &nbsp;
 			<input type="radio" name="category" value="3">명소 
+			<%}else if(b.getBdCategory() == "2"){ %>
+			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
+			<input type="radio" name="category" value="2" checked>맛집 &nbsp; &nbsp;
+			<input type="radio" name="category" value="3">명소 
+			<%}else if(b.getBdCategory() == "3"){ %>
+			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
+			<input type="radio" name="category" value="2">맛집 &nbsp; &nbsp;
+			<input type="radio" name="category" value="3" checked>명소 
+			<% } %>
 			</td>
 		</tr>
 		<tr>
@@ -210,15 +242,30 @@ var xy = [];
 var geocoder;
 var positions = "";
 
-function initMap() {
+function initMap() {	
+<% 
+	ArrayList x = new ArrayList();
+	ArrayList y = new ArrayList();
+	String[] maplist = b.getBdMap().split("/");
+	
+	for(int i=0; i<maplist.length; i++){
+		x.add(maplist[i].substring(maplist[i].indexOf("(") + 1, maplist[i].indexOf(",")));
+		y.add(maplist[i].substring(maplist[i].indexOf(",") + 1, maplist[i].indexOf(")")));
+	}
+%>	
+	
   geocoder = new google.maps.Geocoder(); 
-  var haightAshbury = {lat: 37.5, lng: 127.0124};
+  var haightAshbury = {lat: <%=x.get(0)%>, lng: <%=y.get(0)%>};
 
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: haightAshbury,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+  
+  <%for(int i=1; i<maplist.length; i++){%>
+  addMarker({lat: <%=x.get(i)%> , lng: <%=y.get(i)%>});
+  <% } %>
 
   // This event listener will call addMarker() when the map is clicked.
   map.addListener('click', function(event) {

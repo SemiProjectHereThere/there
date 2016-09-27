@@ -368,6 +368,7 @@ public class BoardDao {
 				c.setCmBoardNo(boardNo);
 				c.setCmWriter(rset.getString("cm_writer"));
 				c.setCmContent(rset.getString("cm_content"));
+				c.setCmNo(rset.getInt("cm_no"));
 				
 				list.add(c);
 			}
@@ -1058,7 +1059,7 @@ ArrayList<Board> list = null;
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into bd_comment values(?, ?, ?)";
+		String query = "insert into bd_comment values(?, ?, ?, bd_comment_seq.NEXTVAL)";
 		
 		try {
 			pstmt = con.prepareStatement(query);

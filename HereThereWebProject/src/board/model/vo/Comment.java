@@ -4,14 +4,23 @@ public class Comment implements java.io.Serializable{
 	private int cmBoardNo;			//댓글이 쓰여진 게시글의 번호
 	private String cmWriter;		//댓글 작성자
 	private String cmContent;		//댓글의 내용
+	private int cmNo;				//댓글의 기본키
 	
 	public Comment(){}
-	
+
 	public Comment(int cmBoardNo, String cmWriter, String cmContent) {
 		super();
 		this.cmBoardNo = cmBoardNo;
 		this.cmWriter = cmWriter;
 		this.cmContent = cmContent;
+	}
+
+	public Comment(int cmBoardNo, String cmWriter, String cmContent, int cmNo) {
+		super();
+		this.cmBoardNo = cmBoardNo;
+		this.cmWriter = cmWriter;
+		this.cmContent = cmContent;
+		this.cmNo = cmNo;
 	}
 
 	public int getCmBoardNo() {
@@ -38,10 +47,21 @@ public class Comment implements java.io.Serializable{
 		this.cmContent = cmContent;
 	}
 
+	public int getCmNo() {
+		return cmNo;
+	}
+
+	public void setCmNo(int cmNo) {
+		this.cmNo = cmNo;
+	}
+
 	@Override
 	public String toString() {
-		return cmBoardNo + ", " + cmWriter + ", " + cmContent;
+		return cmBoardNo + ", " + cmWriter + ", " + cmContent + ", "
+				+ cmNo;
 	}
+	
+	
 	
 	
 }

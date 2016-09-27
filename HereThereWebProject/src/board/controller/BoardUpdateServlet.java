@@ -38,7 +38,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String location = request.getParameter("location");
 		String category = request.getParameter("category");
-		String content = request.getParameter("smarteditor");
+		String content = request.getParameter("upsmart");
 		String map = request.getParameter("xy");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
@@ -48,7 +48,7 @@ public class BoardUpdateServlet extends HttpServlet {
 		int result = new BoardService().updateBoard(board);
 		
 		if(result > 0){
-			response.sendRedirect("/HereThere/board/boardView.jsp");
+			response.sendRedirect("/HereThere/BoardList");
 		}else{
 			RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
 			request.setAttribute("code", "bupdate");
