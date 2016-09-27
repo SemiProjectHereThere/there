@@ -37,13 +37,17 @@ public class NoticeDeleteServlet extends HttpServlet {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		String userId = request.getParameter("userid");
+		String userName = request.getParameter("username");
+		String managerYN = request.getParameter("manageryn");
 		
 		int result = new NoticeService().noticeDelete(noticeNo);
 		
 		if(result > 0 ){
 			RequestDispatcher view = request.getRequestDispatcher("nlist");
 			request.setAttribute("userid", userId);
-			request.setAttribute("pg", pg);
+			request.setAttribute("pg", pg);	
+			request.setAttribute("username", userName);
+			request.setAttribute("mangeryn", managerYN);
 			view.forward(request, response);
 		}else{
 			//에러

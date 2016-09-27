@@ -44,6 +44,8 @@ public class NoticeInsertServlet extends HttpServlet {
 		String noticeTitle = request.getParameter("title");
 		String noticeWriter = request.getParameter("userid");
 		String noticeContent = request.getParameter("smarteditor");
+		String userName = request.getParameter("username");
+		String managerYN = request.getParameter("manageryn");
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		
 		Notice notice = new Notice(noticeWriter, noticeTitle, noticeContent);
@@ -51,13 +53,13 @@ public class NoticeInsertServlet extends HttpServlet {
 		
 		if(result > 0){
 			RequestDispatcher view = request.getRequestDispatcher("nlist");
+			request.setAttribute("username", userName);
+			request.setAttribute("manageryn", managerYN);
 			request.setAttribute("userid", noticeWriter);
 			request.setAttribute("pg", pg);
 			view.forward(request, response);
 		}else{
-			RequestDispatcher view = request.getRequestDispatcher("notice/noticeError.jsp");
-			request.setAttribute("code", "ninsert");
-			view.forward(request, response);
+			
 		}
 				
 	}

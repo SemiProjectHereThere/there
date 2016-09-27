@@ -38,6 +38,9 @@ public class NoticeDetailServlet extends HttpServlet {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		int endPg = Integer.parseInt(request.getParameter("endpg"));
+		String userId = request.getParameter("userid");
+		String userName = request.getParameter("username");
+		String managerYN = request.getParameter("manageryn");
 		
 		//조회수 1 증가 처리
 		int result = new NoticeService().addReadCount(noticeNo);
@@ -52,6 +55,9 @@ public class NoticeDetailServlet extends HttpServlet {
 			request.setAttribute("noticeno", noticeNo);
 			request.setAttribute("pg", pg);
 			request.setAttribute("endpg", endPg);
+			request.setAttribute("userid", userId);
+			request.setAttribute("username", userName);
+			request.setAttribute("manageryn", managerYN);
 			view.forward(request, response);
 		}else{
 			//공지글 상세보기 에러페이지

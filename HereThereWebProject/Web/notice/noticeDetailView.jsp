@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="notice.model.vo.Notice, member.model.vo.Member"%>
 <%
-	Member member = (Member)session.getAttribute("member");
 	Notice n = (Notice)request.getAttribute("notice");
 	int noticeNo = (Integer)request.getAttribute("noticeno");
 	int pg = (Integer)request.getAttribute("pg");
 	int endPg = (Integer)request.getAttribute("endpg");
+	String userId = (String)request.getAttribute("userid");
+	String userName = (String)request.getAttribute("username");
+	String managerYN = (String)request.getAttribute("manageryn");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,16 +42,37 @@
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+				<% if(!managerYN.equals("Y")){ %>
+				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= userId %>"><%= userName %></a></div>
+				<% }else{ %>
+				<div class="col-lg-4 pull-left"><%= userName %></div>
+				<% } %>
 			
 				<!-- 로그인 정보 입력 -->
 			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
 				
 				<!-- 회원가입 정보 입력 -->
 				
-				<div class="col-lg-4 pull-left">도움말</div>
-				
+				<% if(!managerYN.equals("Y")){ %>
+				<div class="col-lg-4 pull-left menubar1">더보기
+					<ul class="submenu">
+						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+					</ul>
+				</div>
+				<% }else{ %>
+				<div class="col-lg-4 pull-left menubar1">더보기
+				<!-- 더보기 메뉴 -->
+					<ul class="submenu">
+						<li><a href="/HereThere/mall?username=<%= userName %>&userid=<%= userId %>&pg=1">회원관리</a></li>
+						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+					</ul>
+				</div>
+				<% } %>
 				<!-- 도움말 페이지 -->
 				
 			</div>
@@ -104,12 +127,12 @@
 				     <tr align="center">
 				      <td width="120">&nbsp;</td>
 				      <td colspan="2" width="399" height="50" >
-					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/nlist?pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';">
-					  <%-- <% if(member.getManagerYN() == 'Y' ) { %> --%>
-					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?pg=<%= endPg %>&userid=<%= n.getNoticeWriter() %>';">
+					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/nlist?pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
+					  <% if(managerYN.equals("Y")) { %>
+					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?pg=<%= endPg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
 					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';">
-					  <input type=button id="Btn" value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>';" >
-					  <%-- <% }  --%>
+					  <input type=button id="Btn" value="삭제" OnClick="javascript:document.location.href='/HereThere/ndelete?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';" >
+					  <% } %>
 				      <td width="0">&nbsp;</td>
 				     </tr>
 				    </table>

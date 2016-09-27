@@ -40,12 +40,14 @@ public class NoticeListServlet extends HttpServlet {
 		String userId = request.getParameter("userid");
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		String userName = request.getParameter("username");
+		String managerYN = request.getParameter("manageryn");
 		
 		RequestDispatcher view = request.getRequestDispatcher("notice/noticeListView.jsp");
 		request.setAttribute("list", list);
 		request.setAttribute("userId", userId);
 		request.setAttribute("pg", pg);
 		request.setAttribute("username", userName);
+		request.setAttribute("manageryn", managerYN);
 		view.forward(request, response);
 		
 	}

@@ -5,6 +5,7 @@
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 	String userId = (String)request.getAttribute("userId");
 	String userName = (String)request.getAttribute("username");
+	String managerYN = (String)request.getAttribute("manageryn");
 	
 	int listSize = 0;
 	int listSize2 = 0;
@@ -69,17 +70,35 @@
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
+				<% if(!managerYN.equals("Y")){ %>
 				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= userId %>"><%= userName %></a></div>
+				<% }else{ %>
+				<div class="col-lg-4 pull-left"><%= userName %></div>
+				<% } %>
+				
 			
-				<!-- 로그인 정보 입력 -->
-			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
 				
-				<!-- 회원가입 정보 입력 -->
 				
-				<div class="col-lg-4 pull-left">도움말</div>
-				
-				<!-- 도움말 페이지 -->
+				<% if(!managerYN.equals("Y")){ %>
+				<div class="col-lg-4 pull-left menubar1">더보기
+					<ul class="submenu">
+						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+					</ul>
+				</div>
+				<% }else{ %>
+				<div class="col-lg-4 pull-left menubar1">더보기
+				<!-- 더보기 메뉴 -->
+					<ul class="submenu">
+						<li><a href="/HereThere/mall?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">회원관리</a></li>
+						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+					</ul>
+				</div>
+				<% } %>
 				
 			</div>
 		</div> 
@@ -110,7 +129,7 @@
 					<tr height="25" align="center">
 					<td align="center">&nbsp;</td>
 					<td align="center"><%= n.getNoticeNo() %></td>
-					<td align="center"><a href="/HereThere/ndetail?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>&endpg=<%= allPage %>"><%= n.getNoticeTitle() %></a></td>
+					<td align="center"><a href="/HereThere/ndetail?noticeno=<%= n.getNoticeNo() %>&pg=<%= pg %>&endpg=<%= allPage %>&username=<%= userName %>&userid=<%= userId %>&manageryn=<%= managerYN %>"><%= n.getNoticeTitle() %></a></td>
 				    <td align="center"><%= n.getNoticeWriter() %></td>
 				    <td align="center"><%= n.getNoticeDate() %></td>
 				    <td align="center"><%= n.getCountView() %></td>
@@ -155,9 +174,9 @@
 					}
 				%>
 					</td>
-					<%-- <% if(userId.equals("admin")){ %> --%>
-			  		<td align="right" width="50px"><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>';"></td>
-			  		<%--  <% } %> --%>
+					<% if(managerYN.equals("Y")){ %>
+			  		<td align="right" width="50px"><input type=button value="글쓰기" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>&username=<%= userName%>&manageryn=<%= managerYN %>';"></td>
+			  		<% } %>
 					</tr>
 				
 			 </table>

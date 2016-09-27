@@ -4,6 +4,8 @@
 <%
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	String userId = (String)request.getAttribute("userid");
+	String userName = (String)request.getAttribute("username");
+	String managerYN = (String)request.getAttribute("manageryn");
 	
 	int listSize = 0;
 	int listSize2 = 0;
@@ -68,25 +70,28 @@
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html"><%= userId %></a></div>
+				<div class="col-lg-4 pull-left"><%= userName %></a></div>
+				<!-- 마이페이지로 이동 -->
 			
-				<!-- 로그인 정보 입력 -->
-			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<!-- 로그아웃 -->
 				
-				<!-- 회원가입 정보 입력 -->
-				
-				<div class="col-lg-4 pull-left">도움말</div>
-				
-				<!-- 도움말 페이지 -->
-				
+				<div class="col-lg-4 pull-left menubar1">더보기
+				<!-- 더보기 메뉴 -->
+					<ul class="submenu">
+						<li><a href="/HereThere/mall?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">회원관리</a></li>
+						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+					</ul>
+				</div>
 			</div>
 		</div> 
 		<!-- header End -->
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="container">
 				<!-- 게시판 페이지 -->
-				<form action="/HereThere/MembersDelete?userid=<%= userId %>&pg=<%= pg %>" method="post">
+				<form action="/HereThere/MembersDelete?username=<%= userName %>&userid=<%= userId %>&pg=<%= pg %>&manageryn=<%= managerYN %>" method="post">
 				<table width="100%" cellpadding="0" cellspacing="0" border="0">
 				   <tr height="130"><td width="5"></td></tr>
 				   <tr style="background:url('/HereThere/image/table_mid.gif') repeat-x; text-align:center;">
@@ -183,7 +188,7 @@
 			  <tr><td colspan="4" height="5"></td></tr>
 			 <tr>
 					<td align="center">
-					<form action="/HereThere/MemberSearch?userid=<%= userId %>&pg=<%= pg %>" method="post">
+					<form action="/HereThere/MemberSearch?username=<%= userName %>&userid=<%= userId %>&pg=<%= pg %>&manageryn=<%= managerYN %>" method="post">
 						<select name="search">
 						<option value="검색종류">검색종류 선택</option>
 						<option value="id" >아이디로 검색</option>
