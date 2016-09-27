@@ -59,7 +59,6 @@ public class CommentListServlet extends HttpServlet {
 				}
 				
 				json.put("list", jarr);
-				System.out.println(json.toJSONString());
 				response.setContentType("application/json"); 
 				PrintWriter out = response.getWriter();
 				out.print(json.toJSONString());

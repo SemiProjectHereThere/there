@@ -1,42 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="board.model.vo.Board"%>
-<% Board b = (Board)request.getAttribute("board"); %>
+    pageEncoding="UTF-8" import="board.model.vo.Board, member.model.vo.Member"%>
+<% 
+	Board b = (Board)request.getAttribute("board"); 
+	Member member = (Member)session.getAttribute("member");
+%>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>글쓰기 페이지</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<link rel="shortcut icon" href="/HereThere/image/111.png.ico">
+<link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
+<Link rel="stylesheet" type="text/css"
+	href="/HereTherecss/bootstrap.css" />
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 <style type="text/css">
 #map {
-        height: 300px;
-		width: 300px;
-      }
-#floating-panel {
-  width:180px;
-  top: 10px;
+	height: 300px;
+	width: 300px;
+}
 
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
+#floating-panel {
+	width: 180px;
+	top: 10px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	text-align: center;
+	font-family: 'Roboto', 'sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
 }
 </style>
-<script type="text/javascript" src="/HereThere/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
-
 </head>
+
 <body>
+	<!-- header Start -->
+	<div class="header clearfix">
+		<h1 class="pull-left">
+			<a href="index.jsp" title="여기저기">여기저기
+				here there</a>
+		</h1>
+		<%
+			if (member.getManagerYN() != 'Y') {
+		%>
+		<div class="pull-right lnb">
+			<div class="col-lg-4 pull-left">
+				<a href="myInfo?memberId=<%=member.getMemberId()%>"><%=member.getMemberName()%></a>
+			</div>
+			<!-- 마이페이지로 이동 -->
+
+			<div class="col-lg-4 pull-left">
+				<a href="/HereThere/logout">로그아웃</a>
+			</div>
+			<!-- 로그아웃 -->
+
+			<div class="col-lg-4 pull-left menubar1">
+				더보기
+				<ul class="submenu">
+					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
+					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
+					<li><a href="/HereThere/help.html">도움말</a></li>
+				</ul>
+			</div>
+		</div>
+		<%
+			} else {
+		%>
+		<div class="pull-right lnb">
+			<div class="col-lg-4 pull-left"><%=member.getMemberName()%></a>
+			</div>
+			<!-- 마이페이지로 이동 -->
+
+			<div class="col-lg-4 pull-left">
+				<a href="/HereThere/logout">로그아웃</a>
+			</div>
+			<!-- 로그아웃 -->
+
+			<div class="col-lg-4 pull-left menubar1">
+				더보기
+				<!-- 더보기 메뉴 -->
+				<ul class="submenu">
+					<li><a href="/HereThere/mall?userid=<%=member.getMemberId()%>&pg=1">회원관리</a></li>
+					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
+					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
+					<li><a href="/HereThere/help.html">도움말</a></li>
+				</ul>
+			</div>
+		</div>
+		<% } %>
+	</div>
 <form id="frm" action="/HereThere/BoardUpdate" method="post" accept-charset="utf-8">
 <input type="text" id="xy" name="xy" size="300" />
 <input type="hidden" name="id" value="<%=b.getBdWriter()%>">
+<input type="hidden" name="no" value="<%=b.getBdNo()%>">
 <table width="100%">
 
 		<tr>
 			<td>제목</td>
-			<td><input type="text" id="title" name="title" /></td>
+			<td><input type="text" id="title" name="title" value="<%=b.getBdTitle()%>"/></td>
 		</tr>
 		<tr>
 			<td>지역분류</td>
@@ -106,14 +180,19 @@ $(function(){
             bUseVerticalResizer : true,     
             // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
             bUseModeChanger : true, 
-        }
+        },
+        fOnAppLoad : function(){
+        	var sHTML = '<%=b.getBdContent()%>';
+    		editor_object.getById["upsmart"].exec("PASTE_HTML", [sHTML]);
+        },
+        fCreator: "createSEditor2"
     });
      
     //전송버튼 클릭이벤트
     $("#save").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
         editor_object.getById["upsmart"].exec("UPDATE_CONTENTS_FIELD", []);
-         
+        
         // 이부분에 에디터 validation 검증
          
         //폼 submit

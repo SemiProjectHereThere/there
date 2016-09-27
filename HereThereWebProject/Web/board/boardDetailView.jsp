@@ -4,7 +4,6 @@
 <% 
 	Board b = (Board)request.getAttribute("board"); 
 	Member m = (Member)session.getAttribute("member");
-	ArrayList<Comment> list = (ArrayList<Comment>)request.getAttribute("cmlist");
 %>
 <!DOCTYPE html>
 <html>
@@ -39,11 +38,6 @@
 	<br>
 	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
 	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
-	<% if(list != null){ %>
-		<% for(Comment c : list){ %>
-		
-		<% } %>
-	<% } %>
 	<div>
 	<p id="p5"></p>
 	</div>
@@ -57,7 +51,7 @@
 	$(function(){
 		$.ajax({
 			url : "cmList",
-			data : {bno : <%=b.getBdNo()%>},
+			data : {bno :<%=b.getBdNo()%>},
 			type : "post",
 			dataType : "json",
 			success : function(data){
@@ -82,7 +76,7 @@
 // 			console.log(comment);
 			$.ajax({
 				url : "cmInsert",
-				data : {bno : <%=b.getBdNo()%>, comment : comment},
+				data : {bno :"<%=b.getBdNo()%>", writer :"<%=m.getMemberId()%>", comment : comment},
 				type : "get",
 				dataType : "json",
 				success : function(data){

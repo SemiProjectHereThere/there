@@ -42,6 +42,8 @@ public class BoardUpdateServlet extends HttpServlet {
 		String map = request.getParameter("xy");
 		int no = Integer.parseInt(request.getParameter("no"));
 		
+		System.out.println(content);
+		
 		Board board = new Board(title, no, content, category, location, map);
 		int result = new BoardService().updateBoard(board);
 		

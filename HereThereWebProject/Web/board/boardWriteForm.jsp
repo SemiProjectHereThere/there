@@ -1,97 +1,169 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="member.model.vo.Member"%>
-<% 
-	Member member = (Member)session.getAttribute("member"); 
+<%
+	Member member = (Member)session.getAttribute("member");
 %>
+
 <html>
 <head>
-<meta charset="UTF-8">
 <title>글쓰기 페이지</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<link rel="shortcut icon" href="/HereThere/image/111.png.ico">
+<link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
+<Link rel="stylesheet" type="text/css"
+	href="/HereTherecss/bootstrap.css" />
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 <style type="text/css">
 #map {
-        height: 300px;
-		width: 300px;
-      }
-#floating-panel {
-  width:180px;
-  top: 10px;
+	height: 300px;
+	width: 300px;
+}
 
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: 'Roboto','sans-serif';
-  line-height: 30px;
-  padding-left: 10px;
+#floating-panel {
+	width: 180px;
+	top: 10px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+	text-align: center;
+	font-family: 'Roboto', 'sans-serif';
+	line-height: 30px;
+	padding-left: 10px;
 }
 </style>
-<script type="text/javascript" src="/HereThere/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script type="text/javascript" src="../js/jquery-3.1.0.min.js"></script>
 </head>
-<body>
-<form id="frm" action="/HereThere/BoardInsert" method="post" accept-charset="utf-8">
-<input type="text" id="xy" name="xy" size="300" />
-<input type="hidden" name="id" value="<%=member.getMemberId()%>">
-<table width="100%">
 
-		<tr>
-			<td>제목</td>
-			<td><input type="text" id="title" name="title"/></td>
-		</tr>
-		<tr>
-			<td>지역분류</td>
-			<td><select name="location">
-				<option value="1">서울특별시</option>
-				<option value="2">인천광역시</option>
-				<option value="3">부산광역시</option>
-				<option value="4">울산광역시</option>
-				<option value="5">대구광역시</option>
-				<option value="6">대전광역시</option>
-				<option value="7">광주광역시</option>
-				<option value="8">경기도</option>
-				<option value="9">강원도</option>
-				<option value="10">충청북도</option>
-				<option value="11">충청남도</option>
-				<option value="12">전라북도</option>
-				<option value="13">전라남도</option>
-				<option value="14">경상북도</option>
-				<option value="15">경상남도</option>
-				<option value="16">제주도</option>
-			</select> &nbsp; &nbsp;
-			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
-			<input type="radio" name="category" value="2">맛집 &nbsp; &nbsp;
-			<input type="radio" name="category" value="3">명소 
-			</td>
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td><textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="button" id="save" value="저장"/>
-				<input type="button" value="취소"/>
-			</td>
-		</tr>
-</table>
-<div>
-		<input id="address" type="textbox" value="Sydney, NSW">   
-		<input type="button" value="검색" onclick="codeAddress()"> 
+<body>
+	<!-- header Start -->
+	<div class="header clearfix">
+		<h1 class="pull-left">
+			<a href="index.jsp" title="여기저기">여기저기
+				here there</a>
+		</h1>
+		<%
+			if (member.getManagerYN() != 'Y') {
+		%>
+		<div class="pull-right lnb">
+			<div class="col-lg-4 pull-left">
+				<a href="myInfo?memberId=<%=member.getMemberId()%>"><%=member.getMemberName()%></a>
+			</div>
+			<!-- 마이페이지로 이동 -->
+
+			<div class="col-lg-4 pull-left">
+				<a href="/HereThere/logout">로그아웃</a>
+			</div>
+			<!-- 로그아웃 -->
+
+			<div class="col-lg-4 pull-left menubar1">
+				더보기
+				<ul class="submenu">
+					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
+					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
+					<li><a href="/HereThere/help.html">도움말</a></li>
+				</ul>
+			</div>
+		</div>
+		<%
+			} else {
+		%>
+		<div class="pull-right lnb">
+			<div class="col-lg-4 pull-left"><%=member.getMemberName()%></a>
+			</div>
+			<!-- 마이페이지로 이동 -->
+
+			<div class="col-lg-4 pull-left">
+				<a href="/HereThere/logout">로그아웃</a>
+			</div>
+			<!-- 로그아웃 -->
+
+			<div class="col-lg-4 pull-left menubar1">
+				더보기
+				<!-- 더보기 메뉴 -->
+				<ul class="submenu">
+					<li><a href="/HereThere/mall?userid=<%=member.getMemberId()%>&pg=1">회원관리</a></li>
+					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
+					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
+					<li><a href="/HereThere/help.html">도움말</a></li>
+				</ul>
+			</div>
+		</div>
+		<% } %>
 	</div>
-	<div id="r"></div>
-    <div id="floating-panel">
-      <input onclick="clearMarkers();" type=button value="숨김">
-      <input onclick="showMarkers();" type=button value="모두보기">
-      <input onclick="deleteMarkers();" type=button value="삭제">
-    </div>
-    <div id="map"></div>
-    <p></p>
-	<div class="info">
-		<input onclick="info()" type=button value="전송">
-	</div>
-</form>
-<script type="text/javascript">
+	<!-- header End -->
+	<form id="frm" action="/HereThere/BoardInsert" method="post"
+		accept-charset="utf-8">
+		<input type="text" id="xy" name="xy" size="300" /> <input
+			type="hidden" name="id" value="<%=member.getMemberId()%>">
+		<table width="100%">
+
+			<tr>
+				<td>제목</td>
+				<td><input type="text" id="title" name="title" /></td>
+			</tr>
+			<tr>
+				<td>지역분류</td>
+				<td><select name="location">
+						<option value="1">서울특별시</option>
+						<option value="2">인천광역시</option>
+						<option value="3">부산광역시</option>
+						<option value="4">울산광역시</option>
+						<option value="5">대구광역시</option>
+						<option value="6">대전광역시</option>
+						<option value="7">광주광역시</option>
+						<option value="8">경기도</option>
+						<option value="9">강원도</option>
+						<option value="10">충청북도</option>
+						<option value="11">충청남도</option>
+						<option value="12">전라북도</option>
+						<option value="13">전라남도</option>
+						<option value="14">경상북도</option>
+						<option value="15">경상남도</option>
+						<option value="16">제주도</option>
+				</select> &nbsp; &nbsp; <input type="radio" name="category" value="1">코스
+					&nbsp; &nbsp; <input type="radio" name="category" value="2">맛집
+					&nbsp; &nbsp; <input type="radio" name="category" value="3">명소
+				</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td><textarea name="smarteditor" id="smarteditor" rows="10"
+						cols="100" style="width: 766px; height: 412px;"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" id="save" value="저장" /> <input
+					type="button" value="취소" /></td>
+			</tr>
+		</table>
+		<div>
+			<input id="address" type="textbox" value="Sydney, NSW"> <input
+				type="button" value="검색" onclick="codeAddress()">
+		</div>
+		<div id="r"></div>
+		<div id="floating-panel">
+			<input onclick="clearMarkers();" type=button value="숨김"> <input
+				onclick="showMarkers();" type=button value="모두보기"> <input
+				onclick="deleteMarkers();" type=button value="삭제">
+		</div>
+		<div id="map"></div>
+		<p></p>
+		<div class="info">
+			<input onclick="info()" type=button value="전송">
+		</div>
+	</form>
+	<script type="text/javascript">
 $(function(){
     //전역변수선언
     var editor_object = [];
@@ -122,7 +194,7 @@ $(function(){
     })
 })
 </script>
- <script>
+	<script>
 
 // In the following example, markers appear when the user clicks on the map.
 // The markers are stored in an array.
@@ -238,7 +310,7 @@ function codeAddress(){
     });  
 }  
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4UBimRxsMtoVBMV5a4PsiQCuN4asQ7IU&signed_in=true&callback=initMap"></script>
+	<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4UBimRxsMtoVBMV5a4PsiQCuN4asQ7IU&signed_in=true&callback=initMap"></script>
 </body>
 </html>
