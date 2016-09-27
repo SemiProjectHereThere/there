@@ -1087,7 +1087,7 @@ ArrayList<Board> list = null;
 		try {
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1,'%' + boardt + '%');
+			pstmt.setString(1,'%' + boardt + '%');;
 
 			
 			rset = pstmt.executeQuery();
@@ -1120,7 +1120,7 @@ ArrayList<Board> list = null;
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+		
 		return list;
 	}
 }

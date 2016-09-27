@@ -217,7 +217,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: haightAshbury,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
   // This event listener will call addMarker() when the map is clicked.
@@ -238,7 +238,7 @@ function addMarker(location) {
   });
   markers.push(marker);
  
-  info();
+  
   
 }
 
@@ -270,21 +270,19 @@ function deleteMarkers() {
 
 }
 
-function info(){
-	var aa = "";
-	
-	for(var i = 0; i < markers.length; i++) {
-		//alert(markers[i].getPosition());
 
-		positions += markers[i].getPosition() + "/";
-		
-			
-		$("#xy").val(positions);;
-	}
-	positions = "";
+//add marker
 	
-}
+/* 	var contents = "이곳은 서대전네거리역이다! <br/> 지하철 타러 가자~";
+	
+	var infowindow = new google.maps.InfoWindow({ content: contents});
 
+	google.maps.event.addListener(marker, "click", function() {
+        alert("h2");    
+        
+		infowindow.open(map, marker);
+        }); */
+//-----------
 function codeAddress(){  
     var address = document.getElementById("address").value;  
     var r = document.getElementById("r");  

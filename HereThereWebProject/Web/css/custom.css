@@ -184,6 +184,38 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	margin:-80px auto 0 auto;
 	border-radius: 0 0 5px 5px;
 }
+
+.textbar1 .textbar1-a {
+	position: relative;
+    left: 10%;
+    /* transform-style: flat; */
+    width: 90px;
+    color: #a5a5a5;
+    border: 2px solid rgb(252, 215, 189);
+    border-radius: 50px;
+    margin-left: 20px;
+    padding: 5px;
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: initial;
+    background: rgba(245, 113, 21, 0.28);
+}
+.textbar1 a:hover {
+	text-decoration:none;
+}
+.textbar1 .textbar2 {
+	position: relative;
+    bottom: 35px;
+    left: 75%;
+}
+.textbar2 .textbar2-1 {}
+.textbar2 .textbtn1 {
+	position: relative;
+    left: -3%;
+}
+
+
 .container .photo-link .col-lg-6 p.naming{
 	position:absolute;
 	bottom:25px;
