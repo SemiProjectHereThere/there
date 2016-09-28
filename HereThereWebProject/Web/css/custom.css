@@ -494,8 +494,16 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 .container .pic-change-btns{
 	width: 500px;
 	float: right;
+	
 	/* margin-top: 20px; */
 }
+.container .pic-change-btns1{
+	width: 500px;
+	float: right;
+	
+	/* margin-top: 20px; */
+}
+
 .container .pic-change-btns .button{
 	background-color: #f57115;
 	border: none;
@@ -509,7 +517,10 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	cursor: pointer;
 	border-radius:10px;
 	padding: 12px 28px;
+	
+	
 }
+
 .container .pic-change-btns .button a:link{
 	text-decoration:none;
 	color: #fff;
@@ -539,6 +550,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	border : 2px solid #f57115;
 	border-radius:10px;	
 }
+
 .container .first-line-400 .name-div{
 	font-size: 20pt;
 }
@@ -557,7 +569,9 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	border-radius:30px;	 */
 	margin-top:30px;
 	margin-bottom:10px;
+	
 }
+
 /* 부트스트랩 보조 클래스 */
 .no-padder{
 	padding:0 !important; 
