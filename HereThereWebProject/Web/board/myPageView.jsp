@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YOGI JOGI</title>
+<title> YOGI JOGI </title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -39,9 +39,13 @@
 				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
-						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1&username=<%= member.getMemberName() %>">공지사항</a></li>
+						<% if(member.getManagerYN() == 'Y'){ %>
+							<li><a href="/HereThere/admin/adminMainModifyView.jsp?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&manageryn=<%= member.getManagerYN() %>">메인관리</a></li>
+							<li><a href="/HereThere/mall?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">회원관리</a></li>
+						<%	} %>
+						<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
-						<li><a href="/HereThere/help.html">도움말</a></li>
+						<li><a href="/HereThere/member/helpPage.jsp">도움말</a></li>
 					</ul>
 				</div>
 			</div>

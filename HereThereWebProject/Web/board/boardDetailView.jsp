@@ -9,6 +9,7 @@
 <head>
   <title> YOGI JOGI </title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  	<link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="/HereThere/css/bootstrap.css" />
@@ -49,15 +50,15 @@
 		if(member == null){
 	%>
 	<div class="pull-right lnb">
-		<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/login.html'">로그인</div>
 	
 		<!-- 로그인 정보 입력 -->
 	
-		<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/join.html'">회원가입</div>
 		
 		<!-- 회원가입 정보 입력 -->
 		
-		<div class="col-lg-4 pull-left">도움말</div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/member/helpPage.jsp'">도움말</div>
 		
 		<!-- 도움말 페이지 -->
 		
@@ -66,10 +67,10 @@
 		}else if(member.getManagerYN() != 'Y'){
 	%>
 	<div class="pull-right lnb">
-		<div class="col-lg-4 pull-left"><a href="MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0"><%= member.getMemberName() %></a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
 		<!-- 마이페이지로 이동 -->
 	
-		<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 		<!-- 로그아웃 -->
 		
 		<div class="col-lg-4 pull-left menubar1">더보기
@@ -84,15 +85,16 @@
 		}else{
 	%>
 	<div class="pull-right lnb">
-		<div class="col-lg-4 pull-left"><%= member.getMemberName() %></a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
 		<!-- 마이페이지로 이동 -->
 	
-		<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 		<!-- 로그아웃 -->
 		
 		<div class="col-lg-4 pull-left menubar1">더보기
 		<!-- 더보기 메뉴 -->
 			<ul class="submenu">
+				<li><a href="/HereThere/admin/adminMainModifyView.jsp?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&manageryn=<%= member.getManagerYN() %>">메인관리</a></li>
 				<li><a href="/HereThere/mall?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">회원관리</a></li>
 				<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
 				<li><a href="/HereThere/mupView?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
@@ -125,6 +127,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
+		var arr = new Array();
 		cmlist();
 		
 		$('#cmInsert').click(function(){
@@ -144,7 +147,7 @@
 		});
 		
 		$('#cmDelete').click(function(){
-			var cmNo = $('#cmtDel').val(); 
+			var cmNo = $('#cmtDel' + arr[i]).val(); 
 // 			console.log(comment);
 			$.ajax({
 				url : "cmDelete",
@@ -172,11 +175,11 @@
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
 				
 				var values = $("#cmtbox").html();
-				
 				for(var i in json.list){
+					arr[i] = json.list[i].no;
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "<div><input type='hidden' id='cmtDel' value='" + json.list[i].no + "'>"
+					values += "<div><input type='hidden' id='cmtDel" + arr[i] + "' value='" + arr[i] + "'>"
 					"글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + " &nbsp; <input type='button' id='cmDelete' value='삭제'><hr></div>";
 				}	
 				$("#cmtbox").html(values);
@@ -218,7 +221,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
   
-  <%for(int i=1; i<maplist.length; i++){%>
+  <%for(int i=0; i<maplist.length; i++){%>
   addMarker({lat: <%=x.get(i)%> , lng: <%=y.get(i)%>});
   <% } %>
   // Adds a marker at the center of the map.

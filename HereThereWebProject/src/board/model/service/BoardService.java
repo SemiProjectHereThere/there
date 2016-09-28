@@ -233,6 +233,18 @@ public class BoardService {
 		close(con);
 		return list;
 	}
+
+	public int deleteComment(int cmNo) {
+		Connection con = getConnection();
+		int result = new BoardDao().deleteComment(con, cmNo);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 				
 	
 

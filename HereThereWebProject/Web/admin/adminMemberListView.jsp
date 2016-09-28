@@ -70,19 +70,20 @@
 				<a href="index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><%= userName %></a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= userId %>&mySelect=0'"><%= userName %></div>
 				<!-- 마이페이지로 이동 -->
 			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<!-- 로그아웃 -->
 				
 				<div class="col-lg-4 pull-left menubar1">더보기
 				<!-- 더보기 메뉴 -->
 					<ul class="submenu">
+						<li><a href="/HereThere/admin/adminMainModifyView.jsp?username=<%= userName %>&userid=<%= userId %>&manageryn=<%= managerYN %>">메인관리</a></li>
 						<li><a href="/HereThere/mall?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">회원관리</a></li>
 						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
-						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+						<li><a href="/HereThere/member/helpPage.jsp?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
 					</ul>
 				</div>
 			</div>
