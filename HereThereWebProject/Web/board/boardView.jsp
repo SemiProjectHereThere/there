@@ -300,10 +300,33 @@
 			</div>
 		</div>
 		<!-- container2 컨텐츠 내용END -->
-		<!-- footer Start -->
-		<div>
 
+				<!-- footer Start -->
+		<div class="footer">
+			<div class="cs">
+			<ul>
+				<li><h4>C/S Center 및 광고문의</h4></li>
+				<li>전화: 02-1234-5678</li>
+				<li>팩스: 02-1234-5555</li>
+				<li>이메일 : Yogijogi@naver.com</li>
+				<li>카카오톡ID : Yogijogi</li>
+			</ul>
+			</div>
+			<div class="cs">
+			<ul>
+				<li><h4>회사정보</h4></li>
+				<li>회사명 : KHCompany</li>
+				<li>대표 : 홍길동</li>
+				<li>주소 : 서울특별시 강남구 역삼동 KH빌딩 2층</li>
+				<li>개인정보관리 책임자 : 홍길동 (Yogijogi@naver.com)</li>
+			</ul>
+			</div><br>
+			<div class="cs2">
+			Copyrightⓒ KHCompany. All Rights Reserved.
+			</div>
+			
 		</div>
+
 		<!-- footer End -->
 		 <script>
 	 	 	$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';
