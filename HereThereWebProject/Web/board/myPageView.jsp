@@ -39,7 +39,7 @@
 				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
-						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1&username=<%= member.getMemberName() %>">공지사항</a></li>
+						<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
 						<li><a href="/HereThere/member/helpPage.jsp">도움말</a></li>
 					</ul>

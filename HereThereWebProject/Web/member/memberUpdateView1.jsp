@@ -8,8 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인정보수정</title>
+<title> YOGI JOGI </title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" href="css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -36,13 +37,13 @@
 				<a href="#" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><%= member.getMemberName() %></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
-						<li><a href="/HereThere/logout">로그아웃</a></li>
-						<li><a href="/HereThere/myInfo?userid=<%= member.getMemberId() %>">마이페이지</a></li>
-						<li><a href="/HereThere/nlist">공지사항</a></li>
-						<li><a href="/HereThere/help.html">도움말</a></li>
+						<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
+						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
+						<li><a href="/HereThere/member/helpPage.jsp">도움말</a></li>
 					</ul>
 				</div>
 			</div>
