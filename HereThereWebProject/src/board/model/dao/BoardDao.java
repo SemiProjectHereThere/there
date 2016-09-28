@@ -1124,7 +1124,7 @@ ArrayList<Board> list = null;
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "delete from bd_comment where = ?";
+		String query = "delete from bd_comment where cm_no = ?";
 		
 		try {
 			pstmt = con.prepareStatement(query);

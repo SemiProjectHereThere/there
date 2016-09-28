@@ -39,6 +39,7 @@ public class CommentListServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int boardNo = Integer.parseInt(request.getParameter("bno"));
+		System.out.println(boardNo);
 		
 		ArrayList<Comment> list = new BoardService().selectAllCm(boardNo);
 		

@@ -126,8 +126,8 @@
 	<div id="map"></div>
 </div>
 <script type="text/javascript">
+	var arr = new Array();
 	$(function(){
-		var arr = new Array();
 		cmlist();
 		
 		$('#cmInsert').click(function(){
@@ -138,6 +138,7 @@
 				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
 				type : "get",
 				success : function(data){
+					console.log("data ::::::::::: "+data);
 					if(data != null){
 						$('#cmtbox').empty();
 						cmlist();
@@ -146,7 +147,7 @@
 			});
 		});
 		
-		$('#cmDelete').click(function(){
+/* 		$('#cmDelete').click(function(){
 			var cmNo = $('#cmtDel' + arr[i]).val(); 
 // 			console.log(comment);
 			$.ajax({
@@ -160,12 +161,29 @@
 					}
 				}
 		});
-	});
+	}); */
 });
-	function cmlist(){
-		$.ajax({
-			url : "cmList",
-			data : {bno :<%=b.getBdNo()%>},
+	
+function cmDelete(num){
+	$.ajax({
+		url : "cmDelete",
+		data : {cmNo : num},
+		type : "get",
+		success : function(data){
+			if(data != null){
+			$('#cmtbox').empty();
+			cmlist();
+			}
+		}
+	});
+	
+}
+	
+function cmlist(){
+	console.log("sdsdf"+ <%=b.getBdNo()%>);
+	$.ajax({
+		url : "cmList",
+		data : {bno :<%=b.getBdNo()%>},
 			type : "post",
 			dataType : "json",
 			success : function(data){
@@ -179,14 +197,13 @@
 					arr[i] = json.list[i].no;
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "<div><input type='hidden' id='cmtDel" + arr[i] + "' value='" + arr[i] + "'>"
-					"글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + " &nbsp; <input type='button' id='cmDelete' value='삭제'><hr></div>";
-				}	
-				$("#cmtbox").html(values);
-			}
+					values += "<div>글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + "&nbsp; <input type='button' id='cmDelete' onclick='cmDelete("+arr[i]+")' value='삭제'><hr></div>";
+			}	
+			$("#cmtbox").html(values);
+		}
 			
-		});
-	}
+	});
+}
 </script>
 <script>
 

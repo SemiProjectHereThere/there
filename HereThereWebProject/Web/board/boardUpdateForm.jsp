@@ -151,15 +151,15 @@
 				<option value="15" <%=select[14] %>>경상남도</option>
 				<option value="16" <%=select[15] %>>제주도</option>
 			</select> &nbsp; &nbsp;
-			<% if(b.getBdCategory() == "1"){ %>
+			<% if(b.getBdCategory().equals("1")){ %>
 			<input type="radio" name="category" value="1" checked>코스 &nbsp; &nbsp;
 			<input type="radio" name="category" value="2">맛집 &nbsp; &nbsp;
 			<input type="radio" name="category" value="3">명소 
-			<%}else if(b.getBdCategory() == "2"){ %>
+			<%}else if(b.getBdCategory().equals("2")){ %>
 			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
 			<input type="radio" name="category" value="2" checked>맛집 &nbsp; &nbsp;
 			<input type="radio" name="category" value="3">명소 
-			<%}else if(b.getBdCategory() == "3"){ %>
+			<%}else if(b.getBdCategory().equals("3")){ %>
 			<input type="radio" name="category" value="1">코스 &nbsp; &nbsp;
 			<input type="radio" name="category" value="2">맛집 &nbsp; &nbsp;
 			<input type="radio" name="category" value="3" checked>명소 
