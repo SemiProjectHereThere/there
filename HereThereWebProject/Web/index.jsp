@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member, admin.model.vo.Admin"%>
 <%
 	Member member = (Member)session.getAttribute("member");
+	Admin admin = (Admin)request.getAttribute("admin");
 %>
 
 <html>
@@ -91,7 +92,7 @@
 				<div class="col-lg-4 pull-left menubar1">더보기
 				<!-- 더보기 메뉴 -->
 					<ul class="submenu">
-						<li><a href="/HereThere/adminMainModifyView.jsp?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&manageryn=<%= member.getManagerYN() %>">메인관리</a></li>
+						<li><a href="/HereThere/AdminMainModify?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&manageryn=<%= member.getManagerYN() %>">메인관리</a></li>
 						<li><a href="/HereThere/mall?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">회원관리</a></li>
 						<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
@@ -113,8 +114,17 @@
 				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a> -->
 				<div id="s_banner_wrap">
 					<ul class="bxslider">
-      					<img style="height:400px;" src="image/img7.png">
-      					<img style="height:400px;" src="image/img8.png">
+      					<% if(admin.getRenameSeoulName() == null){ %>
+      					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
+      					<% }else{ %>
+      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png">
+      					<% } %>
+      					
+      					<% if(admin.getRenameSeoulName() == null){ %>
+      					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
+      					<% }else{ %>
+      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main2.png">
+      					<% } %>
     				</ul>
 				</div>
 				<script>
@@ -141,35 +151,67 @@
 				<div class="col-lg-12 photo-link">  
   					<div class="col-lg-6-2">  
   						<p class="naming">Seoul</p>    
-							<a href="boardselect?boardVLocation=1"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% if(admin.getRenameSeoulName() == null){ %>    
+							<a href="boardselect?boardVLocation=1"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=1"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>seoul.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% } %>
 					</div>  
 					<div class="col-lg-6-2">  
 						<p class="naming">Daejeon</p>    
-							<a href="boardselect?boardVLocation=6"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+							<% if(admin.getRenameDaejeonName() == null){ %>  
+							<a href="boardselect?boardVLocation=6"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=6"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>daejeon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
 					</div>  
   					<div class="col-lg-6-2">  
  						<p class="naming">Gwangju</p>    
-							<a href="boardselect?boardVLocation=7"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+							<% if(admin.getRenameGwangjuName() == null){ %>     
+							<a href="boardselect?boardVLocation=7"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=7"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>gwangju.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
     				</div>  
     				<div class="col-lg-6-3">  
    						<p class="naming">Busan</p>    
-							<a href="boardselect?boardVLocation=3"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>  
+							<% if(admin.getRenameBusanName() == null){ %>   
+							<a href="boardselect?boardVLocation=3"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=3"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>busan.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% } %>  
     				</div>  
  					<div class="col-lg-6-4">  
     					<p class="naming">Ulsan</p>    
-							<a href="boardselect?boardVLocation=4"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+							<% if(admin.getRenameUlsanName() == null){ %>   
+							<a href="boardselect?boardVLocation=4"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=4"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>ulsan.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
    					</div>  
     				<div class="col-lg-6-5">  
     					<p class="naming">Daegu</p>   
-							<a href="boardselect?boardVLocation=5"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>  
+							<% if(admin.getRenameDaeguName() == null){ %>  
+							<a href="boardselect?boardVLocation=5"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% }else{ %>  
+							<a href="boardselect?boardVLocation=5"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>daegu.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% } %>  
    					</div>  
     				<div class="col-lg-6-5">  
  						<p class="naming">Jeju</p>   
-							<a href="boardselect?boardVLocation=16"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+							<% if(admin.getRenameJejuName() == null){ %>   
+							<a href="boardselect?boardVLocation=16"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>  
+							<a href="boardselect?boardVLocation=16"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>jeju.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
     				</div>  
    					<div class="col-lg-6-5">  
     					<p class="naming">Incheon</p>    
-							<a href="boardselect?boardVLocation=2"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+							<% if(admin.getRenameIncheonName() == null){ %> 
+							<a href="boardselect?boardVLocation=2"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>   
+							<a href="boardselect?boardVLocation=2"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>Incheon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
   					</div>  
       
   				</div>  

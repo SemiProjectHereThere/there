@@ -7,10 +7,12 @@
 #wrap .flatbtn{color:#8c6239;text-decoration:underline;}
 
 
-#covermodal{border:3px solid #f57115;background:#fff;}
-#covermodal h2{color:#636363;font-size:24px;line-height:40px;}
-#covermodal input{height:36px;display:block;margin:3px 0 0; float:left}
-#covermodal input[type="file"] { overflow:hidden; max-width:100%; height: 40px; font-size: 14pt;}
+#covermodal,#mainmodal1,#mainmodal2,#seoulmodal,#daejeonmodal,#gwangjumodal,#busanmodal,#ulsanmodal,#daegumodal,#jejumodal,#incheonmodal {border:3px solid #f57115;background:#fff;}
+#covermodal,#mainmodal1,#mainmodal2,#seoulmodal,#daejeonmodal,#gwangjumodal,#busanmodal,#ulsanmodal,#daegumodal,#jejumodal,#incheonmodal h2{color:#636363;font-size:24px;line-height:40px;}
+#covermodal,#mainmodal1,#mainmodal2,#seoulmodal,#daejeonmodal,#gwangjumodal,#busanmodal,#ulsanmodal,#daegumodal,#jejumodal,#incheonmodal input{height:36px;display:block;margin:3px 0 0; float:left}
+#covermodal,#mainmodal1,#mainmodal2,#seoulmodal,#daejeonmodal,#gwangjumodal,#busanmodal,#ulsanmodal,#daegumodal,#jejumodal,#incheonmodal input[type="file"] { overflow:hidden; max-width:100%; height: 40px; font-size: 14pt;}
+
+
 
 /** modal window styles **/
 #lean_overlay {
@@ -25,7 +27,7 @@
 }
 
 
-#covermodal {
+#covermodal,#mainmodal1,#mainmodal2,#seoulmodal,#daejeonmodal,#gwangjumodal,#busanmodal,#ulsanmodal,#daegumodal,#jejumodal,#incheonmodal {
   width: 400px;height:200px;  /*팝업창의 크기조절*/
   margin-top:100px;           /*팝업창 위아래 간격조절*/
   padding: 18px;
@@ -37,6 +39,8 @@
   -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
+
+
 #profilemodal{border:3px solid #f57115;background:#fff;}
 #profilemodal h2{color:#636363;font-size:24px;line-height:40px;}
 #profilemodal input{height:36px;display:block;margin:3px 0 0; float:left}

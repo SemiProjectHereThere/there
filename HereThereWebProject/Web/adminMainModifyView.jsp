@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="member.model.vo.Member, admin.model.vo.Admin"%>
 <%
+	Admin admin = (Admin)request.getAttribute("admin");
 	String userId = (String)request.getParameter("userid");
 	String userName = (String)request.getParameter("username");
 	String managerYN = (String)request.getParameter("manageryn");
@@ -45,7 +46,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="indexAction" title="여기저기">여기저기 here there</a>
 			</h1>
 		
 			<div class="pull-right lnb">
@@ -77,16 +78,25 @@
 				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a> -->
 				<div id="s_banner_wrap">
 					<ul class="bxslider">
-      					<img style="height:400px;" src="image/img7.png">
-      					<img style="height:400px;" src="image/img8.png">
+						<% if(admin.getRenameSeoulName() == null){ %>
+      					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
+      					<% }else{ %>
+      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png">
+      					<% } %>
+      					
+      					<% if(admin.getRenameSeoulName() == null){ %>
+      					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
+      					<% }else{ %>
+      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main2.png">
+      					<% } %>
     				</ul>
 				</div>
 			<div class="col-lg-12 first-line-btns">
 			<div class="pic-change-btns">
-					<div class="button" style="margin-left:280px"><a href="#covermodal" id="modaltrigger">메인사진 변경</a></div> &nbsp; &nbsp;
-					<div id="covermodal" style="display:none;">
-					<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-					<h3>COVER 사진 변경</h3> <br>
+					<div class="button" style="margin:0 0 0 40px"><a href="#mainmodal1" id="modaltrigger">메인1 사진변경</a></div> &nbsp; &nbsp;
+					<div id="mainmodal1" style="display:none;">
+					<form method="post" action="/HereThere/adminMainPicUp" name="mainform" enctype="multipart/form-data">
+					<h3>MAIN1 사진 변경</h3> <br>
 					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 					<input type="hidden" name="memberid" value=<%= userId %>>
 					<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -102,6 +112,28 @@
 						}); */
 	  
 						$('#modaltrigger').leanModal({ top: 110, overlay: 0.8, closeButton: ".hidemodal" });
+					});
+				</script>
+				
+				<div class="button" style="margin:-50px 0 0 0px"><a href="#mainmodal2" id="modaltrigger0">메인2 사진변경</a></div> &nbsp; &nbsp;
+					<div id="mainmodal2" style="display:none;">
+					<form method="post" action="/HereThere/AdminMain2PicUp" name="mainform" enctype="multipart/form-data">
+					<h3>MAIN2 사진 변경</h3> <br>
+					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
+					<input type="hidden" name="memberid" value=<%= userId %>>
+					<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
+					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
+					</form>
+					</div>
+
+			<!--모달윈도우부분-->
+				<script type="text/javascript">
+					 $(function(){
+						/* $('#coverform').submit(function(e){
+							return true;
+						}); */
+	  
+						$('#modaltrigger0').leanModal({ top: 110, overlay: 0.8, closeButton: ".hidemodal" });
 					});
 				</script>
 				</div>
@@ -129,23 +161,35 @@
 			<!-- contant Start -->
 				<div class="col-lg-12 photo-link">  
   					<div class="col-lg-6-2">  
-  						<p class="naming">Seoul</p>    
-							<a href="boardselect?boardVLocation=1"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+  						<p class="naming">Seoul</p>
+  							<% if(admin.getRenameSeoulName() == null){ %>    
+							<a href="boardselect?boardVLocation=1"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=1"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>seoul.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% } %>
 					</div>  
 					<div class="col-lg-6-2">  
-						<p class="naming">Daejeon</p>    
-							<a href="boardselect?boardVLocation=6"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+						<p class="naming">Daejeon</p>  
+							<% if(admin.getRenameDaejeonName() == null){ %>  
+							<a href="boardselect?boardVLocation=6"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=6"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>daejeon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
 					</div>  
   					<div class="col-lg-6-2">  
- 						<p class="naming">Gwangju</p>    
-							<a href="boardselect?boardVLocation=7"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+ 						<p class="naming">Gwangju</p>
+ 							<% if(admin.getRenameGwangjuName() == null){ %>     
+							<a href="boardselect?boardVLocation=7"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=7"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>gwangju.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>  
     				</div>
     				 <div class="col-lg-12 first-line-btns">
 						<div class="pic-change-btns">
-							<div class="button" style="margin:80px 0 0 -455px;"><a href="#covermodal" id="modaltrigger1">서울 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:80px 0 0 -455px;"><a href="#seoulmodal" id="modaltrigger1">서울 사진변경</a></div> &nbsp; &nbsp;
+							<div id="seoulmodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminSeoulPicUp" name="seoulform" enctype="multipart/form-data">
+							<h3>SEOUL 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -164,10 +208,10 @@
 								});
 							</script>
 							
-							<div class="button" style="margin:80px 0 0 130px;"><a href="#covermodal" id="modaltrigger2">대전 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:80px 0 0 130px;"><a href="#daejeonmodal" id="modaltrigger2">대전 사진변경</a></div> &nbsp; &nbsp;
+							<div id="daejeonmodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminDaejeonPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>DAEJEON 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -186,10 +230,10 @@
 								});
 							</script>
 							
-							<div class="button" style="margin:-52px 0 0 280px;"><a href="#covermodal" id="modaltrigger3">광주 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:-52px 0 0 280px;"><a href="#gwangjumodal" id="modaltrigger3">광주 사진변경</a></div> &nbsp; &nbsp;
+							<div id="gwangjumodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminGwangjuPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>GWANGJU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -214,20 +258,28 @@
 					</div>
 				
     				<div class="col-lg-6-3">  
-   						<p class="naming">Busan</p>    
-							<a href="boardselect?boardVLocation=3"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>  
+   						<p class="naming">Busan</p> 
+   							<% if(admin.getRenameBusanName() == null){ %>   
+							<a href="boardselect?boardVLocation=3"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=3"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>busan.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% } %>	  
     				</div>  
  					<div class="col-lg-6-4">  
-    					<p class="naming">Ulsan</p>    
-							<a href="boardselect?boardVLocation=4"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+    					<p class="naming">Ulsan</p> 
+    						<% if(admin.getRenameUlsanName() == null){ %>   
+							<a href="boardselect?boardVLocation=4"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>
+							<a href="boardselect?boardVLocation=4"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>ulsan.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>
    					</div>
    					
    					<div class="col-lg-12 first-line-btns">
 						<div class="pic-change-btns">
-							<div class="button" style="margin:80px 0 0 -90px;"><a href="#covermodal" id="modaltrigger4">부산 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:80px 0 0 -90px;"><a href="#busanmodal" id="modaltrigger4">부산 사진변경</a></div> &nbsp; &nbsp;
+							<div id="busanmodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminBusanPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>BUSAN 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -246,10 +298,10 @@
 								});
 							</script>
 							
-							<div class="button" style="margin:80px 0 0 130px;"><a href="#covermodal" id="modaltrigger5">울산 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:80px 0 0 130px;"><a href="#ulsanmodal" id="modaltrigger5">울산 사진변경</a></div> &nbsp; &nbsp;
+							<div id="ulsanmodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminUlsanPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>ULSAN 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -271,24 +323,36 @@
 					</div>
    					  
     				<div class="col-lg-6-5">  
-    					<p class="naming">Daegu</p>   
-							<a href="boardselect?boardVLocation=5"><img src="image/img1.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>  
+    					<p class="naming">Daegu</p> 
+    						<% if(admin.getRenameDaeguName() == null){ %>  
+							<a href="boardselect?boardVLocation=5"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% }else{ %>  
+							<a href="boardselect?boardVLocation=5"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>daegu.png" class="img-rounded center-block" alt="금촌역_모산목장사진" /></a>
+							<% } %>
    					</div>  
     				<div class="col-lg-6-5">  
- 						<p class="naming">Jeju</p>   
-							<a href="boardselect?boardVLocation=16"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+ 						<p class="naming">Jeju</p>
+ 							<% if(admin.getRenameJejuName() == null){ %>   
+							<a href="boardselect?boardVLocation=16"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>  
+							<a href="boardselect?boardVLocation=16"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>jeju.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>
     				</div>  
    					<div class="col-lg-6-5">  
-    					<p class="naming">Incheon</p>    
-							<a href="boardselect?boardVLocation=2"><img src="image/img2.png" class="img-rounded center-block" alt="남한산성사진" /></a>  
+    					<p class="naming">Incheon</p>   
+    						<% if(admin.getRenameIncheonName() == null){ %> 
+							<a href="boardselect?boardVLocation=2"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% }else{ %>   
+							<a href="boardselect?boardVLocation=2"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>Incheon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<% } %>
   					</div>  
   					
   					<div class="col-lg-12 first-line-btns">
 						<div class="pic-change-btns">
-							<div class="button" style="margin:80px 0 0 -455px;"><a href="#covermodal" id="modaltrigger6">대구 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:80px 0 0 -455px;"><a href="#daegumodal" id="modaltrigger6">대구 사진변경</a></div> &nbsp; &nbsp;
+							<div id="daegumodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminDaeguPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>DAEGU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -307,10 +371,10 @@
 								});
 							</script>
 							
-							<div class="button" style="margin:80px 0 0 130px;"><a href="#covermodal" id="modaltrigger7">제주 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:80px 0 0 130px;"><a href="#jejumodal" id="modaltrigger7">제주 사진변경</a></div> &nbsp; &nbsp;
+							<div id="jejumodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminJejuPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>JEJU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
@@ -329,10 +393,10 @@
 								});
 							</script>
 							
-							<div class="button" style="margin:-52px 0 0 280px;"><a href="#covermodal" id="modaltrigger8">인천 사진변경</a></div> &nbsp; &nbsp;
-							<div id="covermodal" style="display:none;">
-							<form method="post" action="/HereThere/coverUp" name="coverform" enctype="multipart/form-data">
-							<h3>COVER 사진 변경</h3> <br>
+							<div class="button" style="margin:-52px 0 0 280px;"><a href="#incheonmodal" id="modaltrigger8">인천 사진변경</a></div> &nbsp; &nbsp;
+							<div id="incheonmodal" style="display:none;">
+							<form method="post" action="/HereThere/AdminIncheonPicUp" name="coverform" enctype="multipart/form-data">
+							<h3>INCHEON 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
 							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
