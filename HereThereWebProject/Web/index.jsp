@@ -8,6 +8,7 @@
 <head>
   <title> YOGI JOGI </title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  	<link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" href="css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -46,15 +47,15 @@
 				if(member == null){
 			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/login.html'">로그인</div>
 			
 				<!-- 로그인 정보 입력 -->
 			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/join.html'">회원가입</div>
 				
 				<!-- 회원가입 정보 입력 -->
 				
-				<div class="col-lg-4 pull-left"><a href="/HereThere/member/helpPage.jsp" >도움말</div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/member/helpPage.jsp'" >도움말</div>
 				
 				<!-- 도움말 페이지 -->
 				
@@ -63,10 +64,10 @@
 				}else if(member.getManagerYN() != 'Y'){
 			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left"><a href="MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0"><%= member.getMemberName() %></a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></a></div>
 				<!-- 마이페이지로 이동 -->
 			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<!-- 로그아웃 -->
 				
 				<div class="col-lg-4 pull-left menubar1">더보기
@@ -84,7 +85,7 @@
 				<div class="col-lg-4 pull-left"><%= member.getMemberName() %></a></div>
 				<!-- 마이페이지로 이동 -->
 			
-				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 				<!-- 로그아웃 -->
 				
 				<div class="col-lg-4 pull-left menubar1">더보기

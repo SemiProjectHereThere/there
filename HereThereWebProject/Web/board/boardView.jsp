@@ -249,7 +249,7 @@
       					
   					 %>
 					
-					<div class="col-lg-6">
+					<div class="col-lg-6" onclick="location.href='BoardDetailView?boardNo=<%= b.getBdNo()%>'">
 					<p class="naming"><%=b.getBdTitle() %></p>
 						<%if(c.equals("1")){ %>
 							<img class="aared" src="/HereThere/image/eat.png" />
