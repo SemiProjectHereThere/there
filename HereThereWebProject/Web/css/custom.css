@@ -74,24 +74,24 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	display: block;
 }
 .header .menubar1 .submenu a:hover{
-	background-color: #f57115;
-	color: #fff;
-	text-decoration: none;
-}
-.header .menubar1 .submenu{
-	display: none;
+	/* background-color: #f57115; */
+	color: #000;
+	text-decoration: none;	
 }
 .header .menubar1:hover .submenu{
 	display: block;
-	background-color: #fff;
+	background-color: transparent;
+	height: 150px;
 }
 .header .menubar1 ul li{
-	height: 30px;
+	height: 40px;
+	font-size: 14pt;
 }
 .submenu{
+	display: none;
 	position: absolute;
 	height: 0px;
-	transition: height .2s;
+	transition: height .2s ease;
 }
 /* container1 Set */
 .container .first-line{
