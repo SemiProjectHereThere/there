@@ -127,6 +127,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
+		var arr = new Array();
 		cmlist();
 		
 		$('#cmInsert').click(function(){
@@ -146,7 +147,7 @@
 		});
 		
 		$('#cmDelete').click(function(){
-			var cmNo = $('#cmtDel').val(); 
+			var cmNo = $('#cmtDel' + arr[i]).val(); 
 // 			console.log(comment);
 			$.ajax({
 				url : "cmDelete",
@@ -174,11 +175,11 @@
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
 				
 				var values = $("#cmtbox").html();
-				
 				for(var i in json.list){
+					arr[i] = json.list[i].no;
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "<div><input type='hidden' id='cmtDel' value='" + json.list[i].no + "'>"
+					values += "<div><input type='hidden' id='cmtDel" + arr[i] + "' value='" + arr[i] + "'>"
 					"글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + " &nbsp; <input type='button' id='cmDelete' value='삭제'><hr></div>";
 				}	
 				$("#cmtbox").html(values);
@@ -220,7 +221,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.TERRAIN
   });
   
-  <%for(int i=1; i<maplist.length; i++){%>
+  <%for(int i=0; i<maplist.length; i++){%>
   addMarker({lat: <%=x.get(i)%> , lng: <%=y.get(i)%>});
   <% } %>
   // Adds a marker at the center of the map.

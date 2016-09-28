@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.service.BoardService;
+import board.model.vo.Comment;
+
 /**
  * Servlet implementation class CommentDeleteServlet
  */
@@ -26,7 +29,16 @@ public class CommentDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("그아아앗!!");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		int cmNo = Integer.parseInt(request.getParameter("cmNo"));		
+		
+		int result = new BoardService().deleteComment(cmNo);
+		
+		if(result > 0){
+			response.getWriter().append("성공");	
+		}	
 	}
 
 	/**

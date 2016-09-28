@@ -1119,4 +1119,23 @@ ArrayList<Board> list = null;
 		
 		return list;
 	}
+
+	public int deleteComment(Connection con, int cmNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "delete from bd_comment where = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cmNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
 }
