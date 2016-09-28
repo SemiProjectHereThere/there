@@ -26,7 +26,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="../index.jsp" title="여기저기">여기저기 here there</a>
 			</h1>
 			<%
 				if(member == null){
@@ -40,7 +40,7 @@
 				
 				<!-- 회원가입 정보 입력 -->
 				
-				<div class="col-lg-4 pull-left">도움말</div>
+				<div class="col-lg-4 pull-left"><a href="HereThere/member/helpPage.jsp">도움말</a></div>
 				
 				<!-- 도움말 페이지 -->
 				
@@ -57,9 +57,9 @@
 				
 				<div class="col-lg-4 pull-left menubar1">더보기
 					<ul class="submenu">
-						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
+						<li><a href="../nlist?userid=<%= member.getMemberId() %>&pg=1">공지사항</a></li>
 						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
-						<li><a href="/HereThere/help.html">도움말</a></li>
+						<li><a href="/HereThere/member/helpPage.jsp?userId=<%= member.getMemberId() %>">도움말</a></li>
 					</ul>
 				</div>
 			</div>
@@ -75,6 +75,7 @@
 				
 				<div class="col-lg-4 pull-left">더보기</div>
 				<!-- 더보기 메뉴 -->
+				
 			</div>
 			<%
 				}
