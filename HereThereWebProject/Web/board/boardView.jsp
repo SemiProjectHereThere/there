@@ -116,7 +116,7 @@
 			<!-- 첫번째 라인 -->
 			<form action="boardselect" method="post">
 			<div class="col-lg-12 first-line"> 
-				<div class="select-local col-lg-3">
+				<div class="select-local col-lg-2-5">
 					<select class="boardVLocation" name="boardVLocation">
 						<option value="0">지역전체</option>
 						<option value="1">서울</option>
@@ -137,7 +137,7 @@
 						<option value="16">제주도</option>
 					 </select>
 				</div>
-				<div class="select-local col-lg-3">
+				<div class="select-local col-lg-2-5">
 					<select class="boardVCategory" name="boardVCategory">
 						<option value="0">카테고리</option>
 						<option value="1">맛집</option>
@@ -145,7 +145,7 @@
 						<option value="3">명소</option>
 					</select>
 				</div>
-				<div class="select-local col-lg-3">
+				<div class="select-local col-lg-2-5">
 					<select class="boardVOption" name="boardVOption">
 						<option value="0">옵션</option>
 						<option value="1">인기순</option>
@@ -154,10 +154,13 @@
 						<option value="4">댓글순</option>
 					</select>
 				</div>
-				<div class="select-local col-lg-3">
+				<div class="select-local col-lg-2-5">
 					<button type="submit" class="btn2" value="검색"> 
 						검색
 					</button>
+				</div>
+				<div class="select-local col-lg-2-5 col-me">
+					<a class="textbar1-a" href="boardselect?boardVLocation=0">전체보기</a>
 				</div>
 			</div>
 			<!-- 첫번째 -->
@@ -212,10 +215,13 @@
 		</div>
 			<!-- 검색바 검색텍스트 Start -->
 		<div class="textbar1">
-			<a class="textbar1-a" href="boardselect?boardVLocation=0">전체보기</a>
+			<!-- <a class="textbar1-a" href="boardselect?boardVLocation=0">전체보기</a> -->
 			<form class="textbar2" action="boardtextbar">
+				<div>
+				<img alt="검색아이콘" src="/HereThere/image/serch1.png">
 				<input class="textbar2-1" type=text name="boardt" placeholder="제목을 입력하세요"/>  
-				<input class="textbtn1" type=submit value="찾기">
+				<input class="textbtn1" type=submit value="검색">
+				</div>
 				
 			</form>
 		</div>
