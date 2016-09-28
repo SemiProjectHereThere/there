@@ -50,7 +50,7 @@
 				}else if(member.getManagerYN() != 'Y'){
 			%>
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
+								<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></a></div>
 				<!-- 마이페이지로 이동 -->
 			
 				<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
