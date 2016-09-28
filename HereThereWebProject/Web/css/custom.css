@@ -579,6 +579,27 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	margin-top:30px;
 	margin-bottom:10px;
 }
+.container .pt-80 .noticeTable td{
+	padding: 30px;
+}
+.container .pt-80 .noticeLabel{
+	color: #f57115;
+	font-size : 30pt;
+}
+.container .pt-80 .noticeLabel td{
+	height: 100px;
+	font-size: "3";
+}
+.container .pt-80 .noticeLabel #title{
+	height: 100px;
+}
+/* 부트스트랩 보조 클래스 */
+.no-padder{
+	padding:0 !important; 
+}
+.pt-80{
+	padding-top:80px;
+}
 /* 부트스트랩 보조 클래스 */
 .no-padder{
 	padding:0 !important; 
