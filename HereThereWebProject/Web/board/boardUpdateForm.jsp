@@ -284,8 +284,7 @@ function addMarker(location) {
   });
   markers.push(marker);
  
-  
-  
+  info();
 }
 
 // Sets the map on all markers in the array.
@@ -316,19 +315,20 @@ function deleteMarkers() {
 
 }
 
-
-//add marker
+function info(){
+	var aa = "";
 	
-/* 	var contents = "이곳은 서대전네거리역이다! <br/> 지하철 타러 가자~";
-	
-	var infowindow = new google.maps.InfoWindow({ content: contents});
-
-	google.maps.event.addListener(marker, "click", function() {
-        alert("h2");    
-        
-		infowindow.open(map, marker);
-        }); */
-//-----------
+	for(var i = 0; i < markers.length; i++) {
+		//alert(markers[i].getPosition());
+		
+		positions += markers[i].getPosition() + "/";
+		
+			
+		$("#xy").val(positions);
+		$(".xyz").val(markers.length);
+	}
+	positions = "";	
+}
 function codeAddress(){  
     var address = document.getElementById("address").value;  
     var r = document.getElementById("r");  
