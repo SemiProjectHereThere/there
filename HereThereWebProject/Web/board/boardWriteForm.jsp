@@ -68,7 +68,7 @@
 				<ul class="submenu">
 					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
 					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
-					<li><a href="/HereThere/help.html">도움말</a></li>
+					<li><a href="/HereThere/member/helpPage.jsp">도움말</a></li>
 				</ul>
 			</div>
 		</div>
