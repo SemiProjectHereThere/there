@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YOGI JOGI</title>
+<title> YOGI JOGI </title>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
@@ -41,7 +41,7 @@
 					<ul class="submenu">
 						<li><a href="/HereThere/nlist?userid=<%= member.getMemberId() %>&pg=1&username=<%= member.getMemberName() %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
-						<li><a href="/HereThere/help.html">도움말</a></li>
+						<li><a href="/HereThere/member/helpPage.jsp">도움말</a></li>
 					</ul>
 				</div>
 			</div>
