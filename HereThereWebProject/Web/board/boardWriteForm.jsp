@@ -247,7 +247,7 @@ function initMap() {
   });
 
   // Adds a marker at the center of the map.
-  addMarker(aa);
+  addMarker(haightAshbury);
   info();
 }
 
@@ -300,7 +300,7 @@ function info(){
 		positions += markers[i].getPosition() + "/";
 		
 			
-		//$("#xy").val(positions);
+		$("#xy").val(positions);
 		$(".xyz").val(markers.length);
 	}
 	positions = "";
