@@ -106,11 +106,13 @@
 .bx-wrapper .bx-prev {
 	left: 10px;
 	background: url(../image/controls.png) no-repeat 0 -32px;
+	z-index: 2;
 }
 
 .bx-wrapper .bx-next {
 	right: 10px;
 	background: url(../image/controls.png) no-repeat -43px -32px;
+	z-index: 2;
 }
 
 .bx-wrapper .bx-prev:hover {
@@ -129,7 +131,7 @@
 	width: 32px;
 	height: 32px;
 	text-indent: -9999px;
-	z-index: 9999;
+	z-index: 2;
 }
 
 .bx-wrapper .bx-controls-direction a.disabled {

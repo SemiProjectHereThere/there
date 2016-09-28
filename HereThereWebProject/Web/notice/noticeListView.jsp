@@ -71,7 +71,7 @@
 			</h1>
 			<div class="pull-right lnb">
 				<%-- <% if(!managerYN.equals("Y")){ %> --%>
-				<div class="col-lg-4 pull-left" onclick="location.href='myInfo?memberId=<%= userId %>'"><%= userName %></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= userName %></div>
 				<%-- <% }else{ %>
 				<div class="col-lg-4 pull-left"><%= userName %></div>
 				<% } %> --%>

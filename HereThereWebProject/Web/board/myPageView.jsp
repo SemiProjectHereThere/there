@@ -209,7 +209,10 @@
 				<div>검색결과없음</div>
 				
 				<%} %>
-
+				
+				<% if(mySelect.equals("1")){%>
+					<div style="width:100px; height:100px; border: 1px solid red"></div>
+				<% } %>
 			<!-- contant End -->
 			</div>
 		</div>
