@@ -105,26 +105,102 @@
 	<% } %>
 </div> 
 <!-- header End -->
-<div class="container pt-80">
-	<table>
+<div class="container12 detailbd pt-80">
+	<div class="header11"><%=b.getBdTitle() %>(<%=b.getBdReadCnt() %>)
+		<span> <%=b.getBdEnrollDate() %> </span>
+	</div>
+	<div class="detailVW">
+		<span>작성자 : <%=b.getBdWriter() %></span>
+	</div>
+	<div class="container11">
+		<%=b.getBdContent() %>
+	</div>
+	<div class="clearfix11">
+				<div class="leftbox">
+					<div class="star">
+					<%=b.getBdStarPt() %> 
+					</div>
+					<div class="add">
+						
+					</div>
+				</div>
+				<div id="map" class="map11">
+					<div></div>
+				</div>
+			</div>
+	
+	<%-- <table>
 		<tr><td>제목</td><td><%=b.getBdTitle() %></td></tr>
 		<tr><td>글쓴이</td><td><%=b.getBdWriter() %></td></tr>
 		<tr><td>조회수</td><td><%=b.getBdReadCnt() %></td></tr>
 		<tr><td>내용</td><td><%=b.getBdContent() %></td></tr>
-	</table>
-	<br><br>
-	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
-	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
+	</table> --%>
+	
+	
 	<div>
 	<p id="cmtbox"></p>
 	</div>
 	<div>
-			<input type="hidden" name="writer" value="">
-			<textarea id="comment" name="comment" cols="20" rows="4"></textarea>
-			<input type="button" id="cmInsert" value="댓글달기">
+		<input type="hidden" name="writer" value="">
+						<textarea id="comment" name="comment" cols="20" rows="4"></textarea>
+						<input type="button" id="cmInsert" value="댓글달기">	
 	</div>
-	<div id="map"></div>
+	<div id="map1"></div>
+	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
+	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
 </div>
+		<!-- footer Start -->
+		<div class="footerDetailV">
+			<div class="cs">
+			<ul>
+				<li><h4>C/S Center 및 광고문의</h4></li>
+				<li>전화: 02-1234-5678</li>
+				<li>팩스: 02-1234-5555</li>
+				<li>이메일 : Yogijogi@naver.com</li>
+				<li>카카오톡ID : Yogijogi</li>
+			</ul>
+			</div>
+			<div class="cs">
+			<ul>
+				<li><h4>회사정보</h4></li>
+				<li>회사명 : KHCompany</li>
+				<li>대표 : 홍길동</li>
+				<li>주소 : 서울특별시 강남구 역삼동 KH빌딩 2층</li>
+				<li>개인정보관리 책임자 : 홍길동 (Yogijogi@naver.com)</li>
+			</ul>
+			</div><br>
+			<div class="cs2">
+			Copyrightⓒ KHCompany. All Rights Reserved.
+			</div>
+			
+		</div>
+		<!-- footer End -->
+<!-- <div style="width:540px;border:1px solid #000;">
+			<div class="header" style="border-bottom:1px solid #000; height:50px;width:500px;margin:0px 20px;line-height:50px;">제목
+			<span style="float:right;"> hit </span>
+			</div>
+			<div class="container" style="width:500px;padding:20px">
+				Phasellus nisl nisl, posuere sed, rhoncus ut, tempus sed, orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam vitae pede. Mauris euismod erat eget sapien. Pellentesque adipiscing dui ut mi. Nunc porta blandit lectus. Quisque mauris sapien, adipiscing vel, hendrerit eget, commodo a, orci. Vestibulum vel nunc vel nisl rutrum tristique. Nulla facilisi. Nam ultricies. Vivamus mauris orci, consequat sed, venenatis at, congue accumsan, lectus. In hac habitasse platea dictumst. Quisque varius lorem quis libero. Quisque dui nisl, viverra vel, euismod ut, vehicula et, lacus. Phasellus vulputate cursus dolor.
+			</div>
+			
+			3<div class="clearfix" style="overflow:hidden;padding:20px;width:500px;">
+				1<div class="leftbox" style="width:230px; float:left;">
+					<div class="star" style="height:50px">
+					별점★Phasellus nisl nisl, posuere sed, rhoncus ut, 
+					</div>
+					<div class="add">
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+					</div>
+				</div>1
+				2<div class="map" style="float:right;">
+					<div></div>
+				</div>
+			</div>
+		<div> -->
+
 <script type="text/javascript">
 	var arr = new Array();
 	$(function(){
@@ -235,7 +311,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 16,
     center: haightAshbury,
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   });
   
   <%for(int i=0; i<maplist.length; i++){%>
