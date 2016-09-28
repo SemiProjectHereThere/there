@@ -593,6 +593,14 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 .container .pt-80 .noticeLabel #title{
 	height: 100px;
 }
+.container .col-lg-12 .photo-link .col-lg-6-my {
+	color:#fff;
+	position:relative;
+	margin-bottom:20px;
+	float: right;
+	width: 50%;
+}
+
 /* 부트스트랩 보조 클래스 */
 .no-padder{
 	padding:0 !important; 
