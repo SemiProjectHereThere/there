@@ -9,6 +9,7 @@
 <head>
   <title> YOGI JOGI </title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  	<link rel="shortcut icon" href="image/111.png.ico">
 	<link rel="stylesheet" type="text/css" href="/HereThere/css/common.css" />
 	<link rel="stylesheet" type="text/css" href="/HereThere/css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="/HereThere/css/bootstrap.css" />
@@ -49,15 +50,15 @@
 		if(member == null){
 	%>
 	<div class="pull-right lnb">
-		<div class="col-lg-4 pull-left"><a href="/HereThere/login.html">로그인</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/login.html'">로그인</div>
 	
 		<!-- 로그인 정보 입력 -->
 	
-		<div class="col-lg-4 pull-left"><a href="/HereThere/join.html">회원가입</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/join.html'">회원가입</div>
 		
 		<!-- 회원가입 정보 입력 -->
 		
-		<div class="col-lg-4 pull-left">도움말</div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/member/helpPage.jsp'">도움말</div>
 		
 		<!-- 도움말 페이지 -->
 		
@@ -66,10 +67,10 @@
 		}else if(member.getManagerYN() != 'Y'){
 	%>
 	<div class="pull-right lnb">
-		<div class="col-lg-4 pull-left"><a href="MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0"><%= member.getMemberName() %></a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
 		<!-- 마이페이지로 이동 -->
 	
-		<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 		<!-- 로그아웃 -->
 		
 		<div class="col-lg-4 pull-left menubar1">더보기
@@ -84,15 +85,16 @@
 		}else{
 	%>
 	<div class="pull-right lnb">
-		<div class="col-lg-4 pull-left"><%= member.getMemberName() %></a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
 		<!-- 마이페이지로 이동 -->
 	
-		<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
+		<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/logout'">로그아웃</div>
 		<!-- 로그아웃 -->
 		
 		<div class="col-lg-4 pull-left menubar1">더보기
 		<!-- 더보기 메뉴 -->
 			<ul class="submenu">
+				<li><a href="/HereThere/admin/adminMainModifyView.jsp?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&manageryn=<%= member.getManagerYN() %>">메인관리</a></li>
 				<li><a href="/HereThere/mall?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">회원관리</a></li>
 				<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&pg=1&manageryn=<%= member.getManagerYN() %>">공지사항</a></li>
 				<li><a href="/HereThere/mupView?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">내 정보 수정</a></li>
