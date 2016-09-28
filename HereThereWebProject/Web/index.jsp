@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="css/common.css" />
 	<link rel="stylesheet" type="text/css" href="css/custom.css" />
 	<Link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link href="css/jquery.bxslider.css" rel="stylesheet" type="text/css"/>
 	<!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -20,6 +21,19 @@
 	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
+	
+	<style>
+#s_banner_wrap {width:100%; height:400px; position: relative; margin:10px 0}
+
+/* 사용자 페이징 위치와 모양을 자유롭게 변형 */
+#bx-pager1 {position: absolute; bottom:10px;}
+#bx-pager1 a{float:left; margin:0 5px;display: block; width:20px; height:20px; font-size:12px; line-height:18px; text-align:center; background:#999; color:#333}
+#bx-pager1 a:hover, .bx-pager1 a:active{ background: #000; color: #CCC;}
+
+/* 엑티브상태에 대한 속성값 지정 */
+#bx-pager1 a.active{ background: #000; color: #CCC;}
+</style>
  </head>
 
  <body>
@@ -93,10 +107,28 @@
 		<!-- Container Start -->
 		<div class="container pt-80">
 			<!-- 전체보기 사진 라인 Start -->
-			<div class="col-lg-6-1">
+			<!-- <div class="col-lg-6-1">
 				<p class="naming">클릭해서 멋진 장소들을 확인해 보세요!</p>
-				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a>
-			</div>
+				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a> -->
+				<div id="s_banner_wrap">
+					<ul class="bxslider">
+      					<img style="height:400px;" src="image/img7.png">
+      					<img style="height:400px;" src="image/img8.png">
+    				</ul>
+				</div>
+				<script>
+					$(document).ready(function(){
+						var slider = $('.bxslider').bxSlider({
+							auto: true, mode:'fade', captions:true,
+						});
+					// 클릭시 멈춤 현상 해결 //
+						$(document).on('click','.bx-next, .bx-prev, bx-pager, #bx-pager1',function() {
+							slider.stopAuto();
+							slider.startAuto();;
+					});	
+					});
+				</script>
+			<!-- </div> -->
 			<!-- 전체보기 사진 라인 End -->
 		</div>
 		<!-- container End -->
