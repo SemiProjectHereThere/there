@@ -678,6 +678,98 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	
 }
 
+/* boardDetailView */
+.detailbd {
+	clear:both;
+	width:800px;
+	/* border:4px solid #000; */
+}
+@media (max-width: 1200px){
+.container12 {
+    width: 815px;
+	}
+}
+@media (max-width: 992px){
+.container12 {
+    width: 720px;
+}
+}
+@media (max-width: 768px){
+.container12 {
+    width: 600px;
+}
+}
+.container12 {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.detailbd .header11 {
+    border-bottom: 1px solid #000;
+    height: 50px;
+    width: 96%;
+    margin: 0px 20px;
+    line-height: 50px;
+}
+.detailbd .header11 span {
+	float:right;
+}
+.container12 .container11 {
+	width: 100%;
+    padding: 20px 40px;
+}
+.container12 .clearfix11 {
+    content: "";
+    clear: both;
+    display: block;
+    padding: 20px;
+    width: 100%;
+    height: 80px;
+}
+.container12 .clearfix11 .leftbox {
+	width:46%;
+	float:left;
+}
+.container12 .clearfix11 .leftbox .star {
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.container12 .clearfix11 .leftbox .star img {
+	width: 25px;
+    height: 30px;
+}
+.container12 .clearfix11 .leftbox .star input{
+	height: 48px;
+    float: right;
+    background: #0baf7b;
+    display: block;
+    border: 2px solid #2fb500;
+    border-radius: 12px;
+}
+.container12 .clearfix11 .leftbox .add {
+	
+}
+.container12 .clearfix11 .map11 {
+	float:right;
+}
+.detailVW {
+	
+	float:right;
+}
+.footerDetailV{
+	width:100%;
+	height:170px;
+	background-color:#7c7c7c;
+	position:relative;
+	bottom:-150px;
+	z-index:1;
+	
+}
+
+
 /* 부트스트랩 보조 클래스 */
 .no-padder{
 	padding:0 !important; 
@@ -689,12 +781,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	cursor: pointer;
 }
 /* 부트스트랩 보조 클래스 */
-.no-padder{
-	padding:0 !important; 
-}
-.pt-80{
-	padding-top:80px;
-}
+
 .wrapper {
 	padding:30px;
 }
