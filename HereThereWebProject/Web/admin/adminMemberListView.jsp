@@ -67,7 +67,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/indexAction" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= userId %>&mySelect=0'"><%= userName %></div>
