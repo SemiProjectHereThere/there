@@ -47,8 +47,8 @@ table.writeForm th{
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: #ff9966;
+    border-bottom: 1px solid white;
+    background:  linear-gradient( to right, #ff6600, #ffcc99 );
 }
 
 table.writeForm td{
