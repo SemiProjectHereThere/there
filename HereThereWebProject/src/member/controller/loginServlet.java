@@ -51,7 +51,7 @@ public class loginServlet extends HttpServlet {
 			session.setAttribute("member", member);
 					
 			//response.sendRedirect("member/loginSucess.jsp");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("indexAction");
 		}else{
 			//response.sendRedirect("member/memberError.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("member/memberError.jsp");
