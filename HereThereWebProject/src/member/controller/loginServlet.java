@@ -52,7 +52,7 @@ public class loginServlet extends HttpServlet {
 					
 			//response.sendRedirect("member/loginSucess.jsp");
 			response.sendRedirect("/HereThere/indexAction");
-			response.sendRedirect("indexAction");
+		
 		}else{
 			//response.sendRedirect("member/memberError.jsp");
 			RequestDispatcher rd = request.getRequestDispatcher("member/memberError.jsp");
