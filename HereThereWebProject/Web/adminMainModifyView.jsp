@@ -5,7 +5,7 @@
 	String userId = (String)request.getParameter("userid");
 	String userName = (String)request.getParameter("username");
 	String managerYN = (String)request.getParameter("manageryn");
-	 
+	  
 %>
 
 <html>
@@ -79,13 +79,14 @@
 				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a> -->
 				<div id="s_banner_wrap">
 					<ul class="bxslider">
-						<% if(admin.getRenameSeoulName() == null){ %>
+						<% if(admin.getRenameMainName() == null){ %>
       					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
       					<% }else{ %>
-      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png">
+      					<img style="height:400px;" 
+      					src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png">
       					<% } %>
       					
-      					<% if(admin.getRenameSeoulName() == null){ %>
+      					<% if(admin.getRenameMain2Name() == null){ %>
       					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
       					<% }else{ %>
       					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main2.png">
