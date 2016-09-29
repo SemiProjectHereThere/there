@@ -5,7 +5,7 @@
 	String userId = (String)request.getParameter("userid");
 	String userName = (String)request.getParameter("username");
 	String managerYN = (String)request.getParameter("manageryn");
-	
+	 
 %>
 
 <html>
