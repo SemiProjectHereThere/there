@@ -81,7 +81,7 @@
 				<td colspan="2" >
 					<input type="button" id="save" value="수정하기" style="margin:25px 0 0 400px;"/>
 					<input type="button" value="취소" style="margin:0 0 0 0px;" OnClick="javascript:history.go(-1);"/>
-				</td>
+				</td> 
 			</tr>
 			
 	</table>
