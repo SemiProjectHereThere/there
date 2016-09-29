@@ -58,7 +58,7 @@ public class memberUpdateServlet extends HttpServlet {
 		int result = new MemberService().memberUpdate(member);
 		
 		if(result > 0){
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/HereThere/indexAction");
 		}else{
 			RequestDispatcher error = request.getRequestDispatcher("member/memberError.jsp");
 			request.setAttribute("code", "mupdate");
