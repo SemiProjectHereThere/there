@@ -45,7 +45,8 @@ public class AdminMainPicUpServlet extends HttpServlet {
 		//파일용량
 		int sizeLimit = 1024 * 1024 * 5;
 		//저장할 폴더 지정
-		String savePath = "C:\\Users\\Administrator\\git\\there\\HereThereWebProject\\Web\\MainPguploadfiles"; 
+		String savePath = "C:\\Users\\Administrator\\"
+				+ "git\\there\\HereThereWebProject\\Web\\MainPguploadfiles"; 
 		
 		String originalFileName = null;
 		String renameFileName = null;
@@ -56,11 +57,11 @@ public class AdminMainPicUpServlet extends HttpServlet {
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 		
 		String memberId = multi.getParameter("memberid");
-		originalFileName = multi.getFilesystemName("coverfile");
 		
-		//바꿀 이름 만들기
-		renameFileName = /*formatFileName.format(new java.sql.Date(currentTime))*/memberId + "main" + "."
-						+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+		originalFileName = multi.getFilesystemName("coverfile");
+		renameFileName = memberId + "main" + "." 
+				+ originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+		
 		//기록 저장된 파일명 바꾸기 : 저장된 파일을 file 객체로 만듦
 		File saveFile = new File(savePath + "\\" + originalFileName);
 		//실패한 경우, 강제로 바꿈... 바꿀 이름에 대한 파일 만들고 원본 파일 복사 후, 원본 삭제
