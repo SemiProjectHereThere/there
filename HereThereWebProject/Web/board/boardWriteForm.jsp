@@ -25,21 +25,8 @@
 <style type="text/css">
 #map {
 	margin: auto;
-	height: 300px;
-	width: 780px;
-}
-
-#floating-panel {
-	width: 180px;
-	top: 10px;
-	z-index: 5;
-	background-color: #fff;
-	padding: 5px;
-	border: 1px solid #999;
-	text-align: center;
-	font-family: 'Roboto', 'sans-serif';
-	line-height: 30px;
-	padding-left: 10px;
+	height: 400px;
+	width: 980px;
 }
 
 table.writeForm th{
@@ -54,6 +41,11 @@ table.writeForm th{
 
 table.writeForm td{
 	padding-left: 10px;
+	padding-right: 10px;
+}
+#gosub {
+	float: right;
+	height: 50px;
 }
 </style>
 </head>
@@ -138,6 +130,7 @@ table.writeForm td{
 	}
 	
 	</script>
+	<center>
 <div class="container pt-80">
 	<div class="pt-80">
 	<form id="frm" name="frm" action="/HereThere/BoardInsert" method="post" onsubmit="return checking1()"
@@ -145,14 +138,14 @@ table.writeForm td{
 		<input type="hidden" id="xy" name="xy" size="300" /> 
 		<input type="hidden" name="id" value="<%=member.getMemberId()%>">
 		<input type="hidden" class="xyz" name="xyz"/>
-		<table class="writeForm" width="100%">
+		<table class="writeForm" width="980px">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" id="title" name="title" /></td>
+				<td><input type="text" id="title" name="title"  class="form-control" width="auto" /></td>
 			</tr>
 			<tr>
 				<th>지역분류</th>
-				<td><select name="location">
+				<td><select name="location" class="form-control" width="auto">
 						<option value="1" selected>서울특별시</option>
 						<option value="2">인천광역시</option>
 						<option value="3">부산광역시</option>
@@ -177,27 +170,21 @@ table.writeForm td{
 			<tr>
 				<th>내용</th>
 				<td><textarea name="smarteditor" id="smarteditor" rows="10"
-						cols="100" style="width: 766px; height: 412px;"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="button" id="save" value="저장" /> <input
-					type="button" value="취소" /></td>
+						cols="100" style="width: 820px; height: 480px;"></textarea></td>
 			</tr>
 		</table>
 		<div>
-			<input id="address" type="textbox" placeholder="지역을 검색하세요"> <input
-				type="button" value="검색" onclick="codeAddress()">
+			<input id="address" type="textbox" size="80px" placeholder="지역을 검색하세요, 최대 3개 지역까지 저장가능합니다."> <input
+				class="btn btn-success" type="button" value="검색" onclick="codeAddress()">&nbsp;<input class="btn btn-success" onclick="deleteMarkers();" type=button value="삭제">
 		</div>
 		<div id="r"></div>
-		<div id="floating-panel">
-			<input onclick="clearMarkers();" type=button value="숨김"> 
-			<input onclick="showMarkers();" type=button value="모두보기"> 
-			<input onclick="deleteMarkers();" type=button value="삭제">
-		</div>
 		<div id="map"></div>
+		<div id=gosub><input class="btn btn-warning" type="button" id="save" value="저장" /> <input class="btn btn-warning"
+					type="button" value="취소" /></div>
 	</form>
 	</div>
 </div>
+	</center>
 	<script type="text/javascript">
 $(function(){
     //전역변수선언
@@ -278,18 +265,6 @@ function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map); 
   }
-}
-
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-  setMapOnAll(null);
-  
-  
-}
-
-// Shows any markers currently in the array.
-function showMarkers() {
-  setMapOnAll(map);
 }
 
 // Deletes all markers in the array by removing references to them.
