@@ -259,6 +259,9 @@ function addMarker(location) {
   info();
   
 }
+function clearMarkers() {
+	  setMapOnAll(null); 
+	}
 
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {

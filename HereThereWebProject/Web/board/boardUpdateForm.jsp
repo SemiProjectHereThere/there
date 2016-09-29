@@ -24,21 +24,28 @@
 <script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 <style type="text/css">
 #map {
-	height: 300px;
-	width: 300px;
+	margin: auto;
+	height: 400px;
+	width: 980px;
 }
 
-#floating-panel {
-	width: 180px;
-	top: 10px;
-	z-index: 5;
-	background-color: #fff;
-	padding: 5px;
-	border: 1px solid #999;
-	text-align: center;
-	font-family: 'Roboto', 'sans-serif';
-	line-height: 30px;
+table.writeForm th{
+	width: 120px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid white;
+    background:  linear-gradient( to right, #ff6600, #ffcc99 );
+    text-shadow: 0 0 1px white;
+}
+
+table.writeForm td{
 	padding-left: 10px;
+	padding-right: 10px;
+}
+#gosub {
+	float: right;
+	height: 50px;
 }
 </style>
 </head>
@@ -98,19 +105,20 @@
 		</div>
 		<% } %>
 	</div>
+<center>
 <div class="container pt-80">
+<div class="pt-80">
 <form id="frm" action="/HereThere/BoardUpdate" method="post" accept-charset="utf-8">
-<input type="text" id="xy" name="xy" size="300" />
+<input type="hidden" id="xy" name="xy" size="300" />
 <input type="hidden" name="id" value="<%=b.getBdWriter()%>">
 <input type="hidden" name="no" value="<%=b.getBdNo()%>">
-<table width="100%">
-
+<table class="writeForm" width="980px">
 		<tr>
-			<td>제목</td>
-			<td><input type="text" id="title" name="title" value="<%=b.getBdTitle()%>"/></td>
+			<th>제목</th>
+			<td><input type="text" id="title" name="title" class="form-control" width="auto" value="<%=b.getBdTitle()%>"/></td>
 		</tr>
 		<tr>
-			<td>지역분류</td>
+			<th>지역분류</th>
 			<td>
 			<%
 				String loc = b.getBdLocation();
@@ -133,7 +141,7 @@
 				if(loc.equals("16")) select[15] = "selected";
 				
 			%>
-			<select name="location">
+			<select name="location" class="form-control" width="auto">
 				<option value="1" <%=select[0] %>>서울특별시</option>
 				<option value="2" <%=select[1] %>>인천광역시</option>
 				<option value="3" <%=select[2] %>>부산광역시</option>
@@ -167,33 +175,22 @@
 			</td>
 		</tr>
 		<tr>
-			<td>내용</td>
-			<td><textarea name="upsmart" id="upsmart" rows="10" cols="100" style="width:766px; height:412px;"></textarea></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="button" id="save" value="저장"/>
-				<input type="button" value="취소"/>
-			</td>
+			<th>내용</th>
+			<td><textarea name="upsmart" id="upsmart" rows="10" cols="100" style="width: 820px; height: 480px;"></textarea></td>
 		</tr>
 </table>
-<div>
-		<input id="address" type="textbox" value="Sydney, NSW">   
-		<input type="button" value="검색" onclick="codeAddress()"> 
+	<div>
+		<input id="address" type="textbox" size="80px" placeholder="지역을 검색하세요, 최대 3개 지역까지 저장가능합니다."> <input
+			class="btn btn-success" type="button" value="검색" onclick="codeAddress()">&nbsp;<input class="btn btn-success" onclick="deleteMarkers();" type=button value="삭제">
 	</div>
 	<div id="r"></div>
-    <div id="floating-panel">
-      <input onclick="clearMarkers();" type=button value="숨김">
-      <input onclick="showMarkers();" type=button value="모두보기">
-      <input onclick="deleteMarkers();" type=button value="삭제">
-    </div>
-    <div id="map"></div>
-    <p></p>
-	<div class="info">
-		<input onclick="info()" type=button value="전송">
-	</div>
+	<div id="map"></div>
+	<div id=gosub><input class="btn btn-warning" type="button" id="save" value="저장" /> <input class="btn btn-warning"
+				type="button" value="취소" /></div>
 </form>
 </div>
+</div>
+</center>
 <script type="text/javascript">
 $(function(){
     //전역변수선언
@@ -287,23 +284,15 @@ function addMarker(location) {
   info();
 }
 
+function clearMarkers() {
+	  setMapOnAll(null); 
+	}
+
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map); 
   }
-}
-
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-  setMapOnAll(null);
-  
-  
-}
-
-// Shows any markers currently in the array.
-function showMarkers() {
-  setMapOnAll(map);
 }
 
 // Deletes all markers in the array by removing references to them.
