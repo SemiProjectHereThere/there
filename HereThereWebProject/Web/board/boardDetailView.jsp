@@ -173,34 +173,7 @@
 			<div class="cs2">
 			Copyrightⓒ KHCompany. All Rights Reserved.
 			</div>
-			
-		</div>
-		<!-- footer End -->
-<!-- <div style="width:540px;border:1px solid #000;">
-			<div class="header" style="border-bottom:1px solid #000; height:50px;width:500px;margin:0px 20px;line-height:50px;">제목
-			<span style="float:right;"> hit </span>
-			</div>
-			<div class="container" style="width:500px;padding:20px">
-				Phasellus nisl nisl, posuere sed, rhoncus ut, tempus sed, orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam vitae pede. Mauris euismod erat eget sapien. Pellentesque adipiscing dui ut mi. Nunc porta blandit lectus. Quisque mauris sapien, adipiscing vel, hendrerit eget, commodo a, orci. Vestibulum vel nunc vel nisl rutrum tristique. Nulla facilisi. Nam ultricies. Vivamus mauris orci, consequat sed, venenatis at, congue accumsan, lectus. In hac habitasse platea dictumst. Quisque varius lorem quis libero. Quisque dui nisl, viverra vel, euismod ut, vehicula et, lacus. Phasellus vulputate cursus dolor.
-			</div>
-			
-			3<div class="clearfix" style="overflow:hidden;padding:20px;width:500px;">
-				1<div class="leftbox" style="width:230px; float:left;">
-					<div class="star" style="height:50px">
-					별점★Phasellus nisl nisl, posuere sed, rhoncus ut, 
-					</div>
-					<div class="add">
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-					</div>
-				</div>1
-				2<div class="map" style="float:right;">
-					<div></div>
-				</div>
-			</div>
-		<div> -->
+
 
 <script type="text/javascript">
 	var arr = new Array();
