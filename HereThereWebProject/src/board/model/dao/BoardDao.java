@@ -1208,4 +1208,28 @@ ArrayList<Board> list = null;
 		}
 		return result;
 	}
+
+	public int insertStarPt(Connection con, Board board) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = "insert into starpoint values(?, ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, board.getBdNo());
+			pstmt.setInt(2, board.getBdStarPt());
+			pstmt.setString(3, board.getBdWriter());
+
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

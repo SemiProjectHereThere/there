@@ -68,6 +68,13 @@ public class Board implements java.io.Serializable{
 		this.bdLocation = bdLocation;
 	}
 
+	public Board(int bdNo, int bdStarPt, String bdWriter) {
+		super();
+		this.bdNo = bdNo;
+		this.bdStarPt = bdStarPt;
+		this.bdWriter = bdWriter;
+	}
+
 	public String getBdTitle() {
 		return bdTitle;
 	}
