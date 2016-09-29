@@ -141,7 +141,7 @@
 							</div>
 							<div>
 								<input type="submit" value="수정" /><input type="button" value="탈퇴하기" class="joinout" onclick="joinout()">
-								<a href="/HereThere/index.jsp">Cancel</a>
+								<a href="/HereThere/indexAction">Cancel</a>
 							</div>
 						</form>
 					</section>
