@@ -148,6 +148,7 @@ public class NoticeDao {
 			pstmt.setString(2, notice.getNoticeContent());
 			pstmt.setInt(3, notice.getNoticeNo());
 			
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{

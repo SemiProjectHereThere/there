@@ -7,6 +7,7 @@
 	String userName = (String)request.getAttribute("username");
 	String managerYN = (String)request.getAttribute("manageryn");
 	
+	
 	int listSize = 0;
 	int listSize2 = 0;
 	int total = 0;
@@ -19,20 +20,22 @@
 	
 	final int ROWSIZE = 15; 		//한페이지에 보일 공지글 수 
 	final int BLOCK = 5;			//아래에 보일 페이지 수 
-	int pg = 1;					//페이지 초기값
+	int pg = 0;					//페이지 초기값
 	
-	if(request.getParameter("pg")!=null) {
+	if(request.getParameter("pg") != null || request.getAttribute("pg") != null) {
 		pg = Integer.parseInt(request.getParameter("pg"));
 	}
 	
 	int end = (pg*ROWSIZE);
 	
-	int allPage = 0;
+	/* int allPage = 0; */
 
 	int startPage = ((pg-1)/BLOCK*BLOCK)+1;
 	int endPage = ((pg-1)/BLOCK*BLOCK)+BLOCK;
 	
-	allPage = (int)Math.ceil(total/(double)ROWSIZE);
+	System.out.println(startPage);
+	
+	int allPage = (int)Math.ceil(total/(double)ROWSIZE);
 	
 	if(endPage > allPage) {
 		endPage = allPage;
@@ -127,7 +130,8 @@
 					 	<td colspan="6">등록된 글이 없습니다.</td>
 					 	</tr>
 				   <% }else{
-				   
+				   		if(pg == 0)
+				   			pg++;
 				   		for(int i=ROWSIZE*(pg-1); i<end; i++){
 				   			Notice n = list.get(i);
 				   %>
@@ -189,8 +193,8 @@
 					}
 				%>
 					</td>
-					<% if(managerYN.equals("Y")){ %>
-			  		<td align="right" width="50px"><input type=button value="글쓰기" style="margin-right:40px;" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= allPage %>&username=<%= userName%>&manageryn=<%= managerYN %>';"></td>
+					<% if(managerYN.equals("Y") ){ %>
+			  		<td align="right" width="50px"><input type=button value="글쓰기" style="margin-right:40px;" OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?userid=<%= userId %>&pg=<%= pg %>&username=<%= userName%>&manageryn=<%= managerYN %>';"></td>
 			  		<td align="right" width="50px"><input type="submit" value="삭제" style="margin-right:30px;"></td>
 			  		<% } %>
 			  		

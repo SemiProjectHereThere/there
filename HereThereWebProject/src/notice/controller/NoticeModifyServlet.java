@@ -38,6 +38,8 @@ public class NoticeModifyServlet extends HttpServlet {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
 		int pg = Integer.parseInt(request.getParameter("pg"));
 		String userId = request.getParameter("userid");
+		String userName = request.getParameter("username");
+		String managerYN = request.getParameter("manageryn");
 				
 		Notice notice = new NoticeService().selectOne(noticeNo);
 				
@@ -47,6 +49,8 @@ public class NoticeModifyServlet extends HttpServlet {
 			request.setAttribute("notice", notice);
 			request.setAttribute("pg", pg);
 			request.setAttribute("userid", userId);
+			request.setAttribute("username", userName);
+			request.setAttribute("manageryn", managerYN);
 			view.forward(request, response);
 		}else{
 			//에러

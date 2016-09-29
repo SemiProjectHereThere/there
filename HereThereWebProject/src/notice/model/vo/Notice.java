@@ -86,5 +86,9 @@ public class Notice implements java.io.Serializable{
 		this.countView = countView;
 	}
 	
+	@Override
+	public String toString(){
+		return noticeNo + ", " + noticeTitle + ", " + noticeContent;
+	}
 	
 }

@@ -37,10 +37,20 @@ public class NoticeListServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		ArrayList<Notice> list = new NoticeService().selectList();
+		
 		String userId = request.getParameter("userid");
-		int pg = Integer.parseInt(request.getParameter("pg"));
-		String userName = request.getParameter("username");
-		String managerYN = request.getParameter("manageryn");
+		
+		int pg = 0;
+		if(request.getParameter("pg") == null){
+			pg = (Integer)request.getAttribute("pg");
+		}else if(request.getAttribute("pg") == null){
+			pg = Integer.parseInt(request.getParameter("pg"));
+		}
+		
+		String userName = (String)request.getParameter("username");
+//		String userName = (String)request.getAttribute("username");
+		String managerYN = (String)request.getParameter("manageryn");
+//		String managerYN = (String)request.getAttribute("manageryn");
 		
 		RequestDispatcher view = request.getRequestDispatcher("notice/noticeListView.jsp");
 		request.setAttribute("list", list);

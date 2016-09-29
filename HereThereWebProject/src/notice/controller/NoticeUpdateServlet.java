@@ -36,14 +36,25 @@ public class NoticeUpdateServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int noticeNo = Integer.parseInt(request.getParameter("noticeno"));
-		String noticeTitle = request.getParameter("noticetitle");
-		String noticeContent = request.getParameter("noticecontent");
+		String noticeTitle = request.getParameter("title");
+		String noticeContent = request.getParameter("upsmart");
+		String userName = request.getParameter("username");
+		String userId = request.getParameter("userid");
+		String managerYN = request.getParameter("manageryn");
+		int pg = Integer.parseInt(request.getParameter("pg"));
+		System.out.println(pg);
 		
 		Notice notice = new Notice(noticeNo, noticeTitle, noticeContent);
 		int result = new NoticeService().updateNotice(notice);
 		
 		if(result > 0){
-			response.sendRedirect("/HereThere/nlist");
+			RequestDispatcher view = request.getRequestDispatcher("nlist");
+			request.setAttribute("userid", userId);
+			request.setAttribute("pg", pg);
+			request.setAttribute("username", userName);
+			request.setAttribute("manageryn", managerYN);
+			view.forward(request, response);
+			
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("notice/noticeError.jsp");
 			request.setAttribute("code", "nupdate");

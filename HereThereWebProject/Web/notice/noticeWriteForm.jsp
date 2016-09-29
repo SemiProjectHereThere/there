@@ -6,7 +6,6 @@
 	String managerYN = (String)request.getParameter("manageryn");
 	int pg = Integer.parseInt(request.getParameter("pg"));
 	
-			
 %>
 <html>
 <head>
