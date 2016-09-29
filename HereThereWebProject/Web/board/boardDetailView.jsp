@@ -31,8 +31,13 @@
 	<script src="/HereThere/raty-2.7.0/demo/javascripts/labs.js" type="text/javascript"></script>
 <style type="text/css">
 #map {
-	height: 300px;
-	width: 300px;
+	height: 240px;
+	width: 740px;
+}
+#map .map11{
+	position: relative;
+    overflow: hidden;
+    left: -25px;
 }
 
 #floating-panel {
@@ -120,7 +125,7 @@
 		<span> <%=b.getBdEnrollDate() %> </span>
 	</div>
 	<div class="detailVW">
-		<span>작성자 : <%=b.getBdWriter() %></span>
+		<%-- <span>작성자 : <%=b.getBdWriter() %></span> --%>
 	</div>
 	<div class="container11">
 		<%=b.getBdContent() %>

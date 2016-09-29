@@ -630,11 +630,15 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 }
 
 .detailbd .header11 {
-    border-bottom: 1px solid #000;
+	border-bottom: 1px solid #000;
     height: 50px;
     width: 96%;
     margin: 0px 20px;
     line-height: 50px;
+    background: rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+    width: 100%;
+    margin-left: 0;
 }
 .detailbd .header11 span {
 	float:right;
@@ -664,10 +668,7 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 .container12 .clearfix11 .map11 {
 	float:right;
 }
-.detailVW {
-	
-	float:right;
-}
+
 .footerDetailV{
 	width:100%;
 	height:170px;
@@ -709,28 +710,34 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 .detailbd .header11 {
     border-bottom: 1px solid #000;
     height: 50px;
-    width: 96%;
-    margin: 0px 20px;
+    width: 100%;
+    margin: 0;
     line-height: 50px;
 }
 .detailbd .header11 span {
 	float:right;
 }
 .container12 .container11 {
-	width: 100%;
+    width: 100%;
     padding: 20px 40px;
+    background: rgba(120, 194, 212, 0.26);
+    margin-top: 31px;
+    margin-bottom: 31px;
 }
 .container12 .clearfix11 {
     content: "";
     clear: both;
     display: block;
-    padding: 20px;
+    padding: 28px;
     width: 100%;
     height: 80px;
+    background: rgba(0,0,0,.075)
 }
 .container12 .clearfix11 .leftbox {
 	width:46%;
 	float:left;
+	margin-top: 28px;
+	background: rgba(100, 149, 237, 0.2);
 }
 .container12 .clearfix11 .leftbox .star {
     height: 50px;
@@ -753,11 +760,15 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
 	
 }
 .container12 .clearfix11 .map11 {
-	float:right;
+	
 }
 .detailVW {
 	
 	float:right;
+}
+.detailVW span {
+	postion:relative;
+	top: -19px;
 }
 .footerDetailV{
 	width:100%;
