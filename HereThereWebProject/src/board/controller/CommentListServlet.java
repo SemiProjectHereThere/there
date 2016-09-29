@@ -43,7 +43,7 @@ public class CommentListServlet extends HttpServlet {
 		
 		ArrayList<Comment> list = new BoardService().selectAllCm(boardNo);
 		
-		//전송할 최종 json 객체
+		if(list != null){
 				JSONObject json = new JSONObject();
 				JSONArray jarr = new JSONArray();
 				
@@ -65,6 +65,7 @@ public class CommentListServlet extends HttpServlet {
 				out.print(json.toJSONString());
 				out.flush();
 				out.close();
+		}
 	}
 
 	/**
