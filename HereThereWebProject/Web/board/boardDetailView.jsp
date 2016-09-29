@@ -115,6 +115,7 @@
 	<div class="container11">
 		<%=b.getBdContent() %>
 	</div>
+	<div id="favorite"></div>
 	<div class="clearfix11">
 				<div class="leftbox">
 					<div class="star">
@@ -205,6 +206,7 @@
 	var arr = new Array();
 	$(function(){
 		cmlist();
+		favselect();
 		
 		$('#cmInsert').click(function(){
 			var comment = $('#comment').val(); 
@@ -214,7 +216,6 @@
 				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
 				type : "get",
 				success : function(data){
-					console.log("data ::::::::::: "+data);
 					if(data != null){
 						$('#cmtbox').empty();
 						cmlist();
@@ -222,22 +223,6 @@
 				}
 			});
 		});
-		
-/* 		$('#cmDelete').click(function(){
-			var cmNo = $('#cmtDel' + arr[i]).val(); 
-// 			console.log(comment);
-			$.ajax({
-				url : "cmDelete",
-				data : {cmNo : cmNo},
-				type : "get",
-				success : function(data){
-					if(data != null){
-					$('#cmtbox').empty();
-					cmlist();
-					}
-				}
-		});
-	}); */
 });
 	
 function cmDelete(num){
@@ -251,12 +236,10 @@ function cmDelete(num){
 			cmlist();
 			}
 		}
-	});
-	
+	});	
 }
 	
 function cmlist(){
-	console.log("sdsdf"+ <%=b.getBdNo()%>);
 	$.ajax({
 		url : "cmList",
 		data : {bno :<%=b.getBdNo()%>},
@@ -279,6 +262,48 @@ function cmlist(){
 		}
 			
 	});
+}
+function favselect(){
+	$.ajax({
+		url : "favSelect",
+		data : {bno :<%=b.getBdNo()%>, mid : "<%=member.getMemberId()%>" },
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				console.log(data);
+				if(data.favNo != 0){
+					$("#favorite").html("<img src='/HereThere/image/favorite1.png' onclick='favDelete(" + data.favNo + ")'>");
+				}else{
+					$("#favorite").html("<img src='/HereThere/image/favorite2.png' onclick='favInsert()'>");
+				}
+		}		
+	});
+}
+function favInsert(){
+	$.ajax({
+		url : "favInsert",
+		data : {bno :<%=b.getBdNo()%>, mid : "<%=member.getMemberId()%>" },
+		type : "get",
+		success : function(data){
+			if(data != null){
+				$("#favorite").empty();
+				favselect();
+			}
+		}
+	});	
+}
+function favDelete(num){
+	$.ajax({
+		url : "favDelete",
+		data : {favNo : num},
+		type : "get",
+		success : function(data){
+			if(data != null){
+				$("#favorite").empty();
+				favselect();
+			}
+		}
+	});	
 }
 </script>
 <script>

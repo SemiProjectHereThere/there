@@ -8,6 +8,7 @@ import board.model.dao.BoardDao;
 import board.model.vo.Board;
 import board.model.vo.BoardS;
 import board.model.vo.Comment;
+import board.model.vo.Favorite;
 import board.model.vo.Picture;
 
 public class BoardService {
@@ -237,6 +238,37 @@ public class BoardService {
 	public int deleteComment(int cmNo) {
 		Connection con = getConnection();
 		int result = new BoardDao().deleteComment(con, cmNo);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int favSelect(int bno, String mid) {
+		Connection con = getConnection();
+		int favNo = new BoardDao().favSelect(con, bno, mid);
+		close(con);
+		return favNo;
+	}
+
+	public int insertFavorite(int bno, String mid) {
+		Connection con = getConnection();
+		int result = new BoardDao().insertFavorite(con, bno, mid);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int deleteFavorite(int favNo) {
+		Connection con = getConnection();
+		int result = new BoardDao().deleteFavorite(con, favNo);
 		if(result > 0){
 			commit(con);
 		}else{

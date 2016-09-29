@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import board.model.vo.Board;
 import board.model.vo.BoardS;
 import board.model.vo.Comment;
+import board.model.vo.Favorite;
 import board.model.vo.Picture;
 
 import static common.JDBCTemplate.*;
@@ -1129,6 +1130,75 @@ ArrayList<Board> list = null;
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, cmNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int favSelect(Connection con, int bno, String mid) {
+		int favNo = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select fa_id from favorite where fa_mb_id = ? and fa_bd_no = ?";		//등록순으로 정렬하여 list에 담는다.
+
+		try {
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mid);
+			pstmt.setInt(2, bno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				favNo = rset.getInt("fa_id");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return favNo;
+	}
+
+	public int insertFavorite(Connection con, int bno, String mid) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into favorite values(?, ?, favorite_seq.NEXTVAL)";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mid);
+			pstmt.setInt(2, bno);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteFavorite(Connection con, int favNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "delete from favorite where fa_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, favNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
