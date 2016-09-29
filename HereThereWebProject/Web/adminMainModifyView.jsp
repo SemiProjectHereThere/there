@@ -46,7 +46,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="indexAction" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/indexAction" title="여기저기">여기저기 here there</a>
 			</h1>
 		
 			<div class="pull-right lnb">
@@ -99,7 +99,6 @@
 					<h3>MAIN1 사진 변경</h3> <br>
 					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 					<input type="hidden" name="memberid" value=<%= userId %>>
-					<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
@@ -121,7 +120,6 @@
 					<h3>MAIN2 사진 변경</h3> <br>
 					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 					<input type="hidden" name="memberid" value=<%= userId %>>
-					<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
@@ -192,7 +190,6 @@
 							<h3>SEOUL 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -214,7 +211,6 @@
 							<h3>DAEJEON 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -236,7 +232,6 @@
 							<h3>GWANGJU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -282,7 +277,6 @@
 							<h3>BUSAN 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -304,7 +298,6 @@
 							<h3>ULSAN 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -355,7 +348,6 @@
 							<h3>DAEGU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -377,7 +369,6 @@
 							<h3>JEJU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -399,7 +390,6 @@
 							<h3>INCHEON 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
-							<input type="button" value="사진 삭제" onclick="location.href='coverdel?memberid=<%= userId %>'">
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>

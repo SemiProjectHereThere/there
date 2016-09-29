@@ -70,7 +70,7 @@
 		<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="indexAction" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/indexAction" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<%-- <% if(!managerYN.equals("Y")){ %> --%>
