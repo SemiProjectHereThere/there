@@ -259,9 +259,9 @@
 					<div class="col-lg-6" onclick="location.href='BoardDetailView?boardNo=<%= b.getBdNo()%>'">
 					<p class="naming"><%=b.getBdTitle() %></p>
 						<%if(c.equals("1")){ %>
-							<img class="aared" src="/HereThere/image/eat.png" />
+							<img class="aared" src="/HereThere/image/view.png" />
 						<%}else if(c.equals("2")){ %>
-							<img class="aagreen" src="/HereThere/image/view.png" />
+							<img class="aagreen" src="/HereThere/image/eat.png" />
 						<%}else if(c.equals("3")){ %>
 							<img class="aablue" src="/HereThere/image/pic.png" />
 						<%} %>
