@@ -1,0 +1,37 @@
+/*
+|--------------------------------------------------------------------------
+| UItoTop jQuery Plugin 1.2
+| http://www.mattvarone.com/web-design/uitotop-jquery-plugin/
+|--------------------------------------------------------------------------
+*/
+
+#toTop {
+  display:none;
+  text-decoration:none;
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  overflow:hidden;
+  width:51px;
+  height:50px;
+  border:none;
+  text-indent:100%;
+  z-index:999;
+  background:url(/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/img/ui.totop.PNG) no-repeat left top;
+}
+
+#toTopHover {
+  background:url(/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/img/ui.totop.PNG) no-repeat left -51px;
+  width:51px;
+  height:51px;
+  display:block;
+  overflow:hidden;
+  float:left;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:alpha(opacity=0);
+}
+
+#toTop:active, #toTop:focus {
+  outline:none;
+}

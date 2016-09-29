@@ -39,7 +39,10 @@
 	<script src="/HereThere/raty-2.7.0/vendor/jquery.js"></script><script src="/HereThere/raty-2.7.0/lib/jquery.raty.js"></script>
 	<script src="/HereThere/raty-2.7.0/demo/javascripts/labs.js" type="text/javascript"></script>
 
-	
+	<!-- scr -->
+     <meta name="author" content="www.mattvarone.com">
+     <link rel="stylesheet" media="screen,projection" href="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/css/ui.totop.css" />
+     <meta name="viewport" content="width=device-width; initial-scale=1"/>
  </head>
 
  <body>
@@ -343,5 +346,26 @@
 	 		$('.boardVOption option:eq(<%=option%>)').attr("selected", "selected");
 
 	</script>
+	
+	    <!-- easing plugin ( optional ) -->
+    <script src="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/js/easing.js" type="text/javascript"></script>
+    <!-- UItoTop plugin -->
+    <script src="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/js/jquery.ui.totop.js" type="text/javascript"></script>
+    <!-- Starting the plugin -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+			
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
 	</body>
 </html>

@@ -25,6 +25,11 @@
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="js/jquery.bxslider.min.js"></script>
 	
+	<!-- scr -->
+    <meta name="author" content="www.mattvarone.com">
+    <link rel="stylesheet" media="screen,projection" href="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/css/ui.totop.css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1"/>
+	
 	<style>
 #s_banner_wrap {width:100%; height:400px; position: relative; margin:10px 0}
 
@@ -248,5 +253,25 @@
 			
 		</div>
 		<!-- footer End -->
+		<!-- easing plugin ( optional ) -->
+	    <script src="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/js/easing.js" type="text/javascript"></script>
+	    <!-- UItoTop plugin -->
+	    <script src="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/js/jquery.ui.totop.js" type="text/javascript"></script>
+	    <!-- Starting the plugin -->
+	    <script type="text/javascript">
+	        $(document).ready(function() {
+	            /*
+	            var defaults = {
+	                containerID: 'toTop', // fading element id
+	                containerHoverID: 'toTopHover', // fading element hover id
+	                scrollSpeed: 1200,
+	                easingType: 'linear'
+	            };
+	            */
+				
+	            $().UItoTop({ easingType: 'easeOutQuart' });
+	
+	        });
+	    </script>
 	</body>
 </html>

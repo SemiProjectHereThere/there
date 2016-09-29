@@ -27,6 +27,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.leanModal.min.js"></script>
+
+	<!-- scr -->
+    <meta name="author" content="www.mattvarone.com">
+    <link rel="stylesheet" media="screen,projection" href="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/css/ui.totop.css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1"/>
+    
 </head>
 <body>
 	<!-- header Start -->
@@ -280,5 +286,25 @@
 		<script>
 			$('.mySelect option:eq(<%=mySelect%>)').attr("selected", "selected");
 		</script>
+		<!-- easing plugin ( optional ) -->
+    	<script src="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/js/easing.js" type="text/javascript"></script>
+    	<!-- UItoTop plugin -->
+    	<script src="/HereThere/sksmatt-UItoTop-jQuery-Plugin-14d6f09/js/jquery.ui.totop.js" type="text/javascript"></script>
+    	<!-- Starting the plugin -->
+    	<script type="text/javascript">
+        	$(document).ready(function() {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+			
+            $().UItoTop({ easingType: 'easeOutQuart' });
+
+        });
+    </script>
 </body>
 </html>
