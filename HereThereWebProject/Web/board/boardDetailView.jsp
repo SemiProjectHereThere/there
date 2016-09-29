@@ -19,6 +19,10 @@
 	<!-- 부가적인 테마 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
+	
+	<!-- starpoint -->
+	<script src="/HereThere/raty-2.7.0/vendor/jquery.js"></script><script src="/HereThere/raty-2.7.0/lib/jquery.raty.js"></script>
+	<script src="/HereThere/raty-2.7.0/demo/javascripts/labs.js" type="text/javascript"></script>
 <style type="text/css">
 #map {
 	height: 300px;
@@ -44,7 +48,7 @@
 <!-- header Start -->
 <div class="header clearfix">
 	<h1 class="pull-left">
-		<a href="/HereThere/indexAction" title="여기저기">여기저기 here there</a>
+		<a href="index.jsp" title="여기저기">여기저기 here there</a>
 	</h1>
 	<%
 		if(member == null){
@@ -115,12 +119,23 @@
 	<div class="container11">
 		<%=b.getBdContent() %>
 	</div>
-	<div id="favorite"></div>
 	<div class="clearfix11">
 				<div class="leftbox">
-					<div class="star">
-					<%=b.getBdStarPt() %> 
+				<form action="starstar" method="post"> 
+					<div class="star star11" name="star">
+						
+						<input type="hidden" name="starbno" value="<%=b.getBdNo() %>">
+						<input type="hidden" name="starww" value="<%=member.getMemberId() %>">
+						<input type="submit" value="별점주기">
 					</div>
+					
+				</form>
+					<script>
+	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
+
+	 				$('.star11').raty({score: <%=b.getBdStarPt() %> });
+	 				
+					</script>
 					<div class="add">
 						
 					</div>
@@ -147,8 +162,10 @@
 						<input type="button" id="cmInsert" value="댓글달기">	
 	</div>
 	<div id="map1"></div>
+	<%if(b.getBdWriter().equals(member.getMemberId())){ %>
 	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
 	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
+	<%} %>
 </div>
 		<!-- footer Start -->
 		<div class="footerDetailV">
@@ -173,13 +190,39 @@
 			<div class="cs2">
 			Copyrightⓒ KHCompany. All Rights Reserved.
 			</div>
-
+			
+		</div>
+		<!-- footer End -->
+<!-- <div style="width:540px;border:1px solid #000;">
+			<div class="header" style="border-bottom:1px solid #000; height:50px;width:500px;margin:0px 20px;line-height:50px;">제목
+			<span style="float:right;"> hit </span>
+			</div>
+			<div class="container" style="width:500px;padding:20px">
+				Phasellus nisl nisl, posuere sed, rhoncus ut, tempus sed, orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam vitae pede. Mauris euismod erat eget sapien. Pellentesque adipiscing dui ut mi. Nunc porta blandit lectus. Quisque mauris sapien, adipiscing vel, hendrerit eget, commodo a, orci. Vestibulum vel nunc vel nisl rutrum tristique. Nulla facilisi. Nam ultricies. Vivamus mauris orci, consequat sed, venenatis at, congue accumsan, lectus. In hac habitasse platea dictumst. Quisque varius lorem quis libero. Quisque dui nisl, viverra vel, euismod ut, vehicula et, lacus. Phasellus vulputate cursus dolor.
+			</div>
+			
+			3<div class="clearfix" style="overflow:hidden;padding:20px;width:500px;">
+				1<div class="leftbox" style="width:230px; float:left;">
+					<div class="star" style="height:50px">
+					별점★Phasellus nisl nisl, posuere sed, rhoncus ut, 
+					</div>
+					<div class="add">
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
+					</div>
+				</div>1
+				2<div class="map" style="float:right;">
+					<div></div>
+				</div>
+			</div>
+		<div> -->
 
 <script type="text/javascript">
 	var arr = new Array();
 	$(function(){
 		cmlist();
-		favselect();
 		
 		$('#cmInsert').click(function(){
 			var comment = $('#comment').val(); 
@@ -189,6 +232,7 @@
 				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
 				type : "get",
 				success : function(data){
+					console.log("data ::::::::::: "+data);
 					if(data != null){
 						$('#cmtbox').empty();
 						cmlist();
@@ -196,6 +240,22 @@
 				}
 			});
 		});
+		
+/* 		$('#cmDelete').click(function(){
+			var cmNo = $('#cmtDel' + arr[i]).val(); 
+// 			console.log(comment);
+			$.ajax({
+				url : "cmDelete",
+				data : {cmNo : cmNo},
+				type : "get",
+				success : function(data){
+					if(data != null){
+					$('#cmtbox').empty();
+					cmlist();
+					}
+				}
+		});
+	}); */
 });
 	
 function cmDelete(num){
@@ -209,10 +269,12 @@ function cmDelete(num){
 			cmlist();
 			}
 		}
-	});	
+	});
+	
 }
 	
 function cmlist(){
+	console.log("sdsdf"+ <%=b.getBdNo()%>);
 	$.ajax({
 		url : "cmList",
 		data : {bno :<%=b.getBdNo()%>},
@@ -221,7 +283,7 @@ function cmlist(){
 			success : function(data){
 // 				console.log(data);
 				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
-				//console.log(jsonStr);
+						//console.log(jsonStr);
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
 				
 				var values = $("#cmtbox").html();
@@ -235,48 +297,6 @@ function cmlist(){
 		}
 			
 	});
-}
-function favselect(){
-	$.ajax({
-		url : "favSelect",
-		data : {bno :<%=b.getBdNo()%>, mid : "<%=member.getMemberId()%>" },
-			type : "post",
-			dataType : "json",
-			success : function(data){
-				console.log(data);
-				if(data.favNo != 0){
-					$("#favorite").html("<img src='/HereThere/image/favorite1.png' onclick='favDelete(" + data.favNo + ")'>");
-				}else{
-					$("#favorite").html("<img src='/HereThere/image/favorite2.png' onclick='favInsert()'>");
-				}
-		}		
-	});
-}
-function favInsert(){
-	$.ajax({
-		url : "favInsert",
-		data : {bno :<%=b.getBdNo()%>, mid : "<%=member.getMemberId()%>" },
-		type : "get",
-		success : function(data){
-			if(data != null){
-				$("#favorite").empty();
-				favselect();
-			}
-		}
-	});	
-}
-function favDelete(num){
-	$.ajax({
-		url : "favDelete",
-		data : {favNo : num},
-		type : "get",
-		success : function(data){
-			if(data != null){
-				$("#favorite").empty();
-				favselect();
-			}
-		}
-	});	
 }
 </script>
 <script>
@@ -346,8 +366,8 @@ function clearMarkers() {
 }
 
 // Shows any markers currently in the array.
-function showMarkers() {
-  setMapOnAll(map);
+	function showMarkers() {
+ 	 setMapOnAll(map);
 }
 
 </script>
