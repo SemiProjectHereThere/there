@@ -189,11 +189,11 @@
 					
 					<p class="naming"><%=b.getBdTitle() %></p>
 						<%if(b.getBdCategory().equals("1")){ %>
-							<img class="aared" src="/HereThere/image/eat.png" />
+							<img class="aared" src="/HereThere/image/view.png" />
 						<%}else if(b.getBdCategory().equals("2")){ %>
-							<img class="aagreen" src="/HereThere/image/pic.png" />
+							<img class="aagreen" src="/HereThere/image/eat.png" />
 						<%}else if(b.getBdCategory().equals("3")){ %>
-							<img class="aablue" src="/HereThere/image/view.png" />
+							<img class="aablue" src="/HereThere/image/pic.png" />
 						<%} %>
 					<div class="<%=b.getBdNo() %> score1"></div>
 					
@@ -244,11 +244,11 @@
 					<div class="col-lg-6" onclick="location.href='BoardDetailView?boardNo=<%= b.getBdNo()%>'">
 					<p class="naming"><%=b.getBdTitle() %></p>
 						<%if(b.getBdCategory().equals("1")){ %>
-							<img class="aared" src="/HereThere/image/eat.png" />
+							<img class="aared" src="/HereThere/image/view.png" />
 						<%}else if(b.getBdCategory().equals("2")){ %>
-							<img class="aagreen" src="/HereThere/image/pic.png" />
+							<img class="aagreen" src="/HereThere/image/eat.png" />
 						<%}else if(b.getBdCategory().equals("3")){ %>
-							<img class="aablue" src="/HereThere/image/view.png" />
+							<img class="aablue" src="/HereThere/image/pic.png" />
 						<%} %>
 					<div class="<%=b.getBdNo() %> score1"></div>
 					
