@@ -24,8 +24,9 @@
 <script type="text/javascript" src="/HereThere/js/jquery-3.1.0.min.js"></script>
 <style type="text/css">
 #map {
+	margin: auto;
 	height: 300px;
-	width: 300px;
+	width: 780px;
 }
 
 #floating-panel {
@@ -38,6 +39,19 @@
 	text-align: center;
 	font-family: 'Roboto', 'sans-serif';
 	line-height: 30px;
+	padding-left: 10px;
+}
+
+table.writeForm th{
+	width: 120px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #ff9966;
+}
+
+table.writeForm td{
 	padding-left: 10px;
 }
 </style>
@@ -126,21 +140,21 @@
 	
 	</script>
 <div class="container pt-80">
+	<div class="pt-80">
 	<form id="frm" name="frm" action="/HereThere/BoardInsert" method="post" onsubmit="return checking1()"
 		accept-charset="utf-8">
-		<input type="text" id="xy" name="xy" size="300" /> 
+		<input type="hidden" id="xy" name="xy" size="300" /> 
 		<input type="hidden" name="id" value="<%=member.getMemberId()%>">
 		<input type="hidden" class="xyz" name="xyz"/>
-		<table width="100%">
-
+		<table class="writeForm" width="100%">
 			<tr>
-				<td>제목</td>
+				<th>제목</th>
 				<td><input type="text" id="title" name="title" /></td>
 			</tr>
 			<tr>
-				<td>지역분류</td>
+				<th>지역분류</th>
 				<td><select name="location">
-						<option value="1">서울특별시</option>
+						<option value="1" selected>서울특별시</option>
 						<option value="2">인천광역시</option>
 						<option value="3">부산광역시</option>
 						<option value="4">울산광역시</option>
@@ -156,13 +170,13 @@
 						<option value="14">경상북도</option>
 						<option value="15">경상남도</option>
 						<option value="16">제주도</option>
-				</select> &nbsp; &nbsp; <input type="radio" name="category" value="1">코스
+				</select> &nbsp; &nbsp; <input type="radio" name="category" value="1" checked>코스
 					&nbsp; &nbsp; <input type="radio" name="category" value="2">맛집
 					&nbsp; &nbsp; <input type="radio" name="category" value="3">명소
 				</td>
 			</tr>
 			<tr>
-				<td>내용</td>
+				<th>내용</th>
 				<td><textarea name="smarteditor" id="smarteditor" rows="10"
 						cols="100" style="width: 766px; height: 412px;"></textarea></td>
 			</tr>
@@ -182,11 +196,8 @@
 			<input onclick="deleteMarkers();" type=button value="삭제">
 		</div>
 		<div id="map"></div>
-		<p></p>
-		<div class="info">
-			<input onclick="info()" type=button value="전송">
-		</div>
 	</form>
+	</div>
 </div>
 	<script type="text/javascript">
 $(function(){
