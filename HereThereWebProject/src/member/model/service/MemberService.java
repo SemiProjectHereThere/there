@@ -163,4 +163,16 @@ public class MemberService {
 		close(con);
 		return result;
 	}
+
+	public int myFavoriteDelete(String memberId, String[] bdnos) {
+		Connection con = getConnection();
+		int result = new MemberDao().myFavoriteDelete(con, memberId, bdnos);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 }

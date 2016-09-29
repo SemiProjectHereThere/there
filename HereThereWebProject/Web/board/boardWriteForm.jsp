@@ -46,7 +46,7 @@
 	<!-- header Start -->
 	<div class="header clearfix">
 		<h1 class="pull-left">
-			<a href="index.jsp" title="여기저기">여기저기
+			<a href="/HereThere/indexAction" title="여기저기">여기저기
 				here there</a>
 		</h1>
 		<%
@@ -172,7 +172,7 @@
 			</tr>
 		</table>
 		<div>
-			<input id="address" type="textbox" value="지역을 검색하세요"> <input
+			<input id="address" type="textbox" placeholder="지역을 검색하세요"> <input
 				type="button" value="검색" onclick="codeAddress()">
 		</div>
 		<div id="r"></div>

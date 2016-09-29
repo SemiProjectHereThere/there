@@ -32,7 +32,7 @@
 	<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="/HereThere/index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/indexAction" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left" onclick="window.scrollTo(0,0);"><%= member.getMemberName() %></div>
@@ -153,9 +153,73 @@
 
 		<!-- container2 컨텐츠 내용시작 -->
 		<div class="bg-color">
+			
 			<div class="container wrapper" id="mycontent">
 			<!-- contant Start -->
+			<% if(mySelect.equals("1")){%>
 			<%try{%>
+			<%int a = 0; %>
+			
+			<%if(list.size()%2 == 0){ %>
+			<%a= list.size()/2 + 1; %>
+			<%}else{%>
+			<%a= list.size()/2 + 2; %>
+			<%}for(int i = 1; i<a; i++){ %>
+				<form action="myFavoDel?memberId=<%= member.getMemberId() %>" method="post">
+				<div class="col-lg-12 photo-link">
+				
+				
+				<%for(int j = i*2-1; j<i*2 + 1; j++){ %>
+					
+					<%Board b = list.get(j-1); %>	
+					<% 
+						String k ="";
+     					String s = b.getBdContent(); 
+      					if(s.indexOf("/HereThere/SE2")!= -1){
+      					k = s.substring(s.indexOf("/HereThere/SE2"), s.indexOf("&#10;&#10;"));
+      					}
+      					
+  					 %>
+  					 <div class="col-lg-6-my">
+					<input type="checkbox" name="myFavoDels" value="<%= b.getBdNo()%>" style="width:25px; height:25px;">
+					</div>
+					<div class="col-lg-6" onclick="location.href='BoardDetailView?boardNo=<%= b.getBdNo()%>'">
+					
+					
+					
+					<p class="naming"><%=b.getBdTitle() %></p>
+						<%if(b.getBdCategory().equals("1")){ %>
+							<img class="aared" src="/HereThere/image/eat.png" />
+						<%}else if(b.getBdCategory().equals("2")){ %>
+							<img class="aagreen" src="/HereThere/image/pic.png" />
+						<%}else if(b.getBdCategory().equals("3")){ %>
+							<img class="aablue" src="/HereThere/image/view.png" />
+						<%} %>
+					<div class="<%=b.getBdNo() %> score1"></div>
+					
+					<script>
+	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
+	 				$('.' + <%=b.getBdNo()%>).raty({readOnly:true, score: <%=b.getBdStarPt() %> });
+					</script>
+					<%if(k==""){ %>
+					<img src="/HereThere/image/img2.png" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
+					<%}else{ %>
+					<img src="<%=k %>" class="img-rounded center-block" alt="<%=b.getBdTitle() %>" />
+					<%} %>
+					</div>
+				<%if(j == (list.size())){ %>
+		
+				<% break;}} %>
+				</div>
+				<input type="submit" value="찜 삭제">
+				</form>
+				<%}}catch (Exception e){ %>
+				<% System.out.println("검색결과 없음"); %>
+				<div>검색결과없음</div>
+				
+				<%} %>
+				<% }else{ %>
+					<%try{%>
 			<%int a = 0; %>
 			
 			<%if(list.size()%2 == 0){ %>
@@ -190,7 +254,6 @@
 					
 					<script>
 	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
-
 	 				$('.' + <%=b.getBdNo()%>).raty({readOnly:true, score: <%=b.getBdStarPt() %> });
 					</script>
 					<%if(k==""){ %>
@@ -209,9 +272,6 @@
 				<div>검색결과없음</div>
 				
 				<%} %>
-				
-				<% if(mySelect.equals("1")){%>
-					<div style="width:100px; height:100px; border: 1px solid red"></div>
 				<% } %>
 			<!-- contant End -->
 			</div>

@@ -34,7 +34,7 @@
 	<!-- header Start -->
 		<div class="header clearfix">
 			<h1 class="pull-left">
-				<a href="/HereThere/index.jsp" title="여기저기">여기저기 here there</a>
+				<a href="/HereThere/indexAction" title="여기저기">여기저기 here there</a>
 			</h1>
 			<div class="pull-right lnb">
 				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%= member.getMemberName() %></div>
@@ -141,7 +141,7 @@
 							</div>
 							<div>
 								<input type="submit" value="수정" /><input type="button" value="탈퇴하기" class="joinout" onclick="joinout()">
-								<a href="/HereThere/index.jsp">Cancel</a>
+								<a href="/HereThere/indexAction">Cancel</a>
 							</div>
 						</form>
 					</section>

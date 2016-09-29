@@ -61,7 +61,7 @@ public class memberJoinServlet extends HttpServlet {
 				
 				//5. 받은 결과에 따라 뷰 선택해서 내보냄
 				if(result > 0){
-					response.sendRedirect("index.jsp");
+					response.sendRedirect("indexAction");
 				}else{
 					//response.sendRedirect("member/memberError.jsp");
 					RequestDispatcher rd = request.getRequestDispatcher("member/memberError.jsp");

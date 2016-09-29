@@ -458,5 +458,35 @@ public class MemberDao {
 		return result;
 	}
 
+	public int myFavoriteDelete(Connection con, String memberId, String[] bdnos) {
+		int result = 0;
+		
+		if(bdnos != null){
+			for(int i = 0; i < bdnos.length; i++){
+				System.out.println(memberId + ", " + bdnos);
+				PreparedStatement pstmt = null;
+				
+				String query = "delete from favorite where fa_mb_id = ? and fa_bd_no = ?";
+				
+				try {
+					pstmt = con.prepareStatement(query);
+					pstmt.setString(1, memberId);
+					pstmt.setInt(2, new Integer(bdnos[i]));
+					
+					result = pstmt.executeUpdate();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally{
+					close(pstmt);	
+				}
+			}
+		}else{
+			System.out.println("bdnos null");
+		}
+		
+		return result;
+	}
+
 
 }
