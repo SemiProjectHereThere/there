@@ -75,6 +75,11 @@ public class Board implements java.io.Serializable{
 		this.bdWriter = bdWriter;
 	}
 
+	public Board(int bdNo) {
+		super();
+		this.bdNo = bdNo;
+	}
+
 	public String getBdTitle() {
 		return bdTitle;
 	}

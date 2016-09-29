@@ -1233,4 +1233,26 @@ ArrayList<Board> list = null;
 		
 		return result;
 	}
+
+	public int pointgo(Connection con, Board board1) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String query = "update board set BD_STARPOINT = (select avg(stp_point) from starpoint where stp_board_no = ?) where bd_no = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, board1.getBdNo());
+			pstmt.setInt(2, board1.getBdNo());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

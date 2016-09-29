@@ -1,6 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,15 +46,20 @@ public class StarPointServlet extends HttpServlet {
 		
 		/*Board boardgom = new Board(starbno, starww);
 		int resultgom = new BoardService().gomStarPt(boardgom);*/
-		
+
 		Board board = new Board(starbno, starpoint, starww);
 		int result = new BoardService().insertStarPt(board);
 		
+		Board board1 = new Board(starbno);
+		int point = new BoardService().pointgo(board1);
+
 		if(result > 0){
 			response.sendRedirect("BoardDetailView?boardNo=" + starbno);
-			//request.setAttribute("gom", "yes");
+		
 		}else{
 			response.sendRedirect("BoardDetailView?boardNo=" + starbno);
+			
+
 			
 			//RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
 			//request.setAttribute("gom", "no");

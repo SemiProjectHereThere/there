@@ -4,6 +4,12 @@
 <% 
 	Board b = (Board)request.getAttribute("board"); 
 	Member member = (Member)session.getAttribute("member");
+
+	/* int yn = Integer.parseInt(yn1); */
+	/* if(yn==0){
+		yn = 1;
+	} */
+
 %>
 <html>
 <head>
@@ -126,14 +132,16 @@
 						
 						<input type="hidden" name="starbno" value="<%=b.getBdNo() %>">
 						<input type="hidden" name="starww" value="<%=member.getMemberId() %>">
+						
 						<input type="submit" value="별점주기">
+						
 					</div>
 					
 				</form>
 					<script>
 	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
 
-	 				$('.star11').raty({score: <%=b.getBdStarPt() %> });
+	 				$('.star11').raty({readOnly:false, score: <%=b.getBdStarPt() %> });
 	 				
 					</script>
 					<div class="add">
