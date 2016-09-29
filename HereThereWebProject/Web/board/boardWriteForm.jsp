@@ -71,7 +71,7 @@ table.writeForm td{
 			<div class="col-lg-4 pull-left menubar1">
 				더보기
 				<ul class="submenu">
-					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
+					<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
 					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
 					<li><a href="/HereThere/member/helpPage.jsp">도움말</a></li>
 				</ul>
@@ -81,7 +81,7 @@ table.writeForm td{
 			} else {
 		%>
 		<div class="pull-right lnb">
-			<div class="col-lg-4 pull-left"><%=member.getMemberName()%></a>
+			<div class="col-lg-4 pull-left" onclick="location.href='/HereThere/MyBoardList?memberId=<%= member.getMemberId() %>&mySelect=0'"><%=member.getMemberName()%></a>
 			</div>
 			<!-- 마이페이지로 이동 -->
 
@@ -94,10 +94,11 @@ table.writeForm td{
 				더보기
 				<!-- 더보기 메뉴 -->
 				<ul class="submenu">
-					<li><a href="/HereThere/mall?userid=<%=member.getMemberId()%>&pg=1">회원관리</a></li>
-					<li><a href="/HereThere/nlist?userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
-					<li><a href="/HereThere/mupView?userId=<%=member.getMemberId()%>">내정보 수정</a></li>
-					<li><a href="/HereThere/help.html">도움말</a></li>
+					<li><a href="/HereThere/AdminMainModify?username=<%= member.getMemberName() %>&userid=<%= member.getMemberId() %>&manageryn=<%= member.getManagerYN() %>">메인관리</a></li>
+					<li><a href="/HereThere/mall?&username=<%= member.getMemberName() %>&userid=<%=member.getMemberId()%>&pg=1&manageryn=<%= member.getManagerYN() %>">회원관리</a></li>
+					<li><a href="/HereThere/nlist?username=<%= member.getMemberName() %>&userid=<%=member.getMemberId()%>&pg=1&manageryn=<%=member.getManagerYN()%>">공지사항</a></li>
+					<li><a href="/HereThere/mupView?username=<%= member.getMemberName() %>&userId=<%=member.getMemberId()%>">내정보 수정</a></li>
+					<li><a href="/HereThere/member/helpPage.jsp?username=<%= member.getMemberName() %>&userId=<%= member.getMemberId() %>">도움말</a></li>
 				</ul>
 			</div>
 		</div>

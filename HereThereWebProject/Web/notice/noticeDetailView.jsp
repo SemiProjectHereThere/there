@@ -43,9 +43,9 @@
 			</h1>
 			<div class="pull-right lnb">
 				<% if(!managerYN.equals("Y")){ %>
-				<div class="col-lg-4 pull-left"><a href="myInfo?memberId=<%= userId %>"><%= userName %></a></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= userId %>&mySelect=0'"><%= userName %></a></div>
 				<% }else{ %>
-				<div class="col-lg-4 pull-left"><%= userName %></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= userId %>&mySelect=0'"><%= userName %></div>
 				<% } %>
 			
 				<!-- 로그인 정보 입력 -->
@@ -66,10 +66,11 @@
 				<div class="col-lg-4 pull-left menubar1">더보기
 				<!-- 더보기 메뉴 -->
 					<ul class="submenu">
+						<li><a href="/HereThere/AdminMainModify?username=<%= userName %>&userid=<%= userId %>&manageryn=<%= managerYN %>">메인관리</a></li>
 						<li><a href="/HereThere/mall?username=<%= userName %>&userid=<%= userId %>&pg=1">회원관리</a></li>
 						<li><a href="/HereThere/nlist?username=<%= userName %>&userid=<%= userId %>&pg=1&manageryn=<%= managerYN %>">공지사항</a></li>
 						<li><a href="/HereThere/mupView?username=<%= userName %>&userId=<%= userId %>">내 정보 수정</a></li>
-						<li><a href="/HereThere/help.html?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
+						<li><a href="/HereThere/member/helpPage.jsp?username=<%= userName %>&userId=<%= userId %>">도움말</a></li>
 					</ul>
 				</div>
 				<% } %>
@@ -127,7 +128,7 @@
 				     <tr align="center">
 				      <td width="120">&nbsp;</td>
 				      <td colspan="2" width="399" height="50" >
-					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/nlist?pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
+					  <input type=button value="목록" OnClick="javascript:document.location.href='/HereThere/nlist?pg=<%= pg %>&userid=<%= userId %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
 					  <% if(managerYN.equals("Y")) { %>
 					  <input type=button value="글쓰기"  OnClick="javascript:document.location.href='/HereThere/notice/noticeWriteForm.jsp?pg=<%= endPg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
 					  <input type=button value="수정" OnClick="javascript:document.location.href='/HereThere/nmodify?noticeno=<%= noticeNo %>&pg=<%= pg %>&userid=<%= n.getNoticeWriter() %>&username=<%= userName %>&manageryn=<%= managerYN %>';">
