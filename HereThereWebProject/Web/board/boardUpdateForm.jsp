@@ -85,7 +85,7 @@ table.writeForm td{
 		<div class="pull-right lnb">
 			<div class="col-lg-4 pull-left"><%=member.getMemberName()%></a>
 			</div>
-			<!-- 마이페이지로 이동 -->
+			<!-- 마이페이지로 이동 --> 
 
 			<div class="col-lg-4 pull-left">
 				<a href="/HereThere/logout">로그아웃</a>

@@ -132,7 +132,7 @@ table.writeForm td{
 	</script>
 	<center>
 <div class="container pt-80">
-	<div class="pt-80">
+	<div class="pt-80"> 
 	<form id="frm" name="frm" action="/HereThere/BoardInsert" method="post" onsubmit="return checking1()"
 		accept-charset="utf-8">
 		<input type="hidden" id="xy" name="xy" size="300" /> 
