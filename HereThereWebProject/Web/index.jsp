@@ -215,7 +215,7 @@
 							<% if(admin.getRenameIncheonName() == null){ %> 
 							<a href="boardselect?boardVLocation=2"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
 							<% }else{ %>   
-							<a href="boardselect?boardVLocation=2"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>Incheon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<a href="boardselect?boardVLocation=2"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>incheon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 							<% } %>  
   					</div>  
       
