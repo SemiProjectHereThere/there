@@ -41,6 +41,8 @@ public class StarPointServlet extends HttpServlet {
 		//String starpoint = request.getParameter("star");
 		int starbno = Integer.parseInt(request.getParameter("starbno"));
 		String starww = request.getParameter("starww");
+		String ynno = "zero";
+		String yn = "";
 		
 		//System.out.println(starpoint + "," + starbno + ", " + starww);
 		
@@ -52,14 +54,24 @@ public class StarPointServlet extends HttpServlet {
 		
 		Board board1 = new Board(starbno);
 		int point = new BoardService().pointgo(board1);
-
+		
+		RequestDispatcher view = null;
 		if(result > 0){
-			response.sendRedirect("BoardDetailView?boardNo=" + starbno);
+			view = request.getRequestDispatcher("BoardDetailView?boardNo=" + starbno);
+			yn = "true";
+			ynno = "first";
+			request.setAttribute("test", yn);
+			request.setAttribute("testno", ynno);
+			view.forward(request, response);
+			
 		
 		}else{
-			response.sendRedirect("BoardDetailView?boardNo=" + starbno);
-			
-
+			view = request.getRequestDispatcher("BoardDetailView?boardNo=" + starbno);
+			yn= "true";
+			ynno = "two";
+			request.setAttribute("test", yn);
+			request.setAttribute("testno", ynno);
+			view.forward(request, response);
 			
 			//RequestDispatcher error = request.getRequestDispatcher("board/boardError.jsp");
 			//request.setAttribute("gom", "no");

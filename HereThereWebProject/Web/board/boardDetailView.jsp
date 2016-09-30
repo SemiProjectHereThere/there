@@ -4,6 +4,15 @@
 <% 
 	Board b = (Board)request.getAttribute("board"); 
 	Member member = (Member)session.getAttribute("member");
+	
+	String test = "";
+	String testno = "";
+	
+	testno = (String)request.getAttribute("testno");
+	test = (String)request.getAttribute("test");
+	if(test == null){
+		test = "false";
+	}
 
 	/* int yn = Integer.parseInt(yn1); */
 	/* if(yn==0){
@@ -141,15 +150,20 @@
 						<input type="hidden" name="starbno" value="<%=b.getBdNo() %>">
 						<input type="hidden" name="starww" value="<%=member.getMemberId() %>">
 						
+						<% if(testno== null){ %>
 						<input type="submit" value="별점주기">
-						
+						<% }else if(testno.equals("first")){ %>
+						<span>참여해주셔서 감사합니다!</span>
+						<%}else if(testno.equals("two")){ %>
+						<sapn>이미 참여하셨습니다!<sapn>
+						<%} %>
 					</div>
 					
 				</form>
 					<script>
 	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
 
-	 				$('.star11').raty({readOnly:false, score: <%=b.getBdStarPt() %> });	
+	 				$('.star11').raty({readOnly:<%=test%>, score: <%=b.getBdStarPt() %> });	
 					</script>
 					<div class="add">
 					</div>
