@@ -731,30 +731,36 @@ body {font-family:"맑은 고딕", sans-serif, arial, sans; font-size:20px; colo
     padding: 28px;
     width: 100%;
     height: 80px;
-    background: rgba(0,0,0,.075)
+    background: rgba(0,0,0,0)
 }
 .container12 .clearfix11 .leftbox {
-	width:46%;
-	float:left;
-	margin-top: 28px;
-	background: rgba(100, 149, 237, 0.2);
+	width: 46%;
+    float: left;
+    margin-top: -22px;
+    background: rgba(100, 149, 237, 0.2);
+    margin-bottom: 30px;
 }
 .container12 .clearfix11 .leftbox .star {
-    height: 50px;
+    height: 100px;
     line-height: 50px;
     text-align: center;
+    width: 385px;
 }
 .container12 .clearfix11 .leftbox .star img {
 	width: 25px;
     height: 30px;
 }
 .container12 .clearfix11 .leftbox .star input{
-	height: 48px;
+    height: 48px;
+    width: 90px;
     float: right;
     background: #0baf7b;
     display: block;
     border: 2px solid #2fb500;
     border-radius: 12px;
+    position: relative;
+    bottom: -51px;
+    left: -195px;
 }
 .container12 .clearfix11 .leftbox .add {
 	
