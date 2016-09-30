@@ -120,15 +120,15 @@
 				<div id="s_banner_wrap">
 					<ul class="bxslider">
       					<% if(admin.getRenameSeoulName() == null){ %>
-      					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
+      					<img style="height:400px;" src="MainPguploadfiles/question.jpg"  onclick="location.href='boardselect?boardVLocation=0'">
       					<% }else{ %>
-      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png">
+      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png"  onclick="location.href='boardselect?boardVLocation=0'">
       					<% } %>
       					
       					<% if(admin.getRenameSeoulName() == null){ %>
-      					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
+      					<img style="height:400px;" src="MainPguploadfiles/question.jpg" onclick="location.href='boardselect?boardVLocation=0'">
       					<% }else{ %>
-      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main2.png">
+      					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main2.png" onclick="location.href='boardselect?boardVLocation=0'">
       					<% } %>
     				</ul>
 				</div>
