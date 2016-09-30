@@ -52,6 +52,9 @@
 	line-height: 30px;
 	padding-left: 10px;
 }
+#favorite{
+	float: right;
+}
 </style>
  </head>
  
@@ -122,10 +125,10 @@
 <!-- header End -->
 <div class="container12 detailbd pt-80">
 	<div class="header11"><%=b.getBdTitle() %>(<%=b.getBdReadCnt() %>)
-		<span> <%=b.getBdEnrollDate() %> </span>
+		<span> <%=b.getBdEnrollDate() %>&nbsp; &nbsp; <div id="favorite"></div></span>
 	</div>
 	<div class="detailVW">
-		<%-- <span>작성자 : <%=b.getBdWriter() %></span> --%>
+	
 	</div>
 	<div class="container11">
 		<%=b.getBdContent() %>
@@ -146,33 +149,17 @@
 					<script>
 	 	 			$.fn.raty.defaults.path = '/HereThere/raty-2.7.0/lib/images';;
 
-	 				$('.star11').raty({readOnly:false, score: <%=b.getBdStarPt() %> });
-	 				
+	 				$('.star11').raty({readOnly:false, score: <%=b.getBdStarPt() %> });	
 					</script>
 					<div class="add">
-						
 					</div>
 				</div>
-				<div id="map" class="map11">
-					<div></div>
-				</div>
-			</div>
-	
-	<%-- <table>
-		<tr><td>제목</td><td><%=b.getBdTitle() %></td></tr>
-		<tr><td>글쓴이</td><td><%=b.getBdWriter() %></td></tr>
-		<tr><td>조회수</td><td><%=b.getBdReadCnt() %></td></tr>
-		<tr><td>내용</td><td><%=b.getBdContent() %></td></tr>
-	</table> --%>
-	
-	
+				<div id="map" class="map11"></div>
+			</div><br><br><br><br><br><br><br><br>
 	<div>
-	<p id="cmtbox"></p>
-	</div>
-	<div>
-		<input type="hidden" name="writer" value="">
-						<textarea id="comment" name="comment" cols="20" rows="4"></textarea>
-						<input type="button" id="cmInsert" value="댓글달기">	
+		<div><p id="cmtbox"></p></div>
+		<textarea id="comment" name="comment" cols="50" rows="2"></textarea>
+		<input type="button" id="cmInsert" value="댓글달기">	
 	</div>
 	<div id="map1"></div>
 	<%if(b.getBdWriter().equals(member.getMemberId())){ %>
@@ -205,36 +192,11 @@
 			</div>
 			
 		</div>
-		<!-- footer End -->
-<!-- <div style="width:540px;border:1px solid #000;">
-			<div class="header" style="border-bottom:1px solid #000; height:50px;width:500px;margin:0px 20px;line-height:50px;">제목
-			<span style="float:right;"> hit </span>
-			</div>
-			<div class="container" style="width:500px;padding:20px">
-				Phasellus nisl nisl, posuere sed, rhoncus ut, tempus sed, orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam vitae pede. Mauris euismod erat eget sapien. Pellentesque adipiscing dui ut mi. Nunc porta blandit lectus. Quisque mauris sapien, adipiscing vel, hendrerit eget, commodo a, orci. Vestibulum vel nunc vel nisl rutrum tristique. Nulla facilisi. Nam ultricies. Vivamus mauris orci, consequat sed, venenatis at, congue accumsan, lectus. In hac habitasse platea dictumst. Quisque varius lorem quis libero. Quisque dui nisl, viverra vel, euismod ut, vehicula et, lacus. Phasellus vulputate cursus dolor.
-			</div>
-			
-			3<div class="clearfix" style="overflow:hidden;padding:20px;width:500px;">
-				1<div class="leftbox" style="width:230px; float:left;">
-					<div class="star" style="height:50px">
-					별점★Phasellus nisl nisl, posuere sed, rhoncus ut, 
-					</div>
-					<div class="add">
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-						<p><span>닉네임</span> : 야야야야야양야야야야야</p>
-					</div>
-				</div>1
-				2<div class="map" style="float:right;">
-					<div></div>
-				</div>
-			</div>
-		<div> -->
 
 <script type="text/javascript">
 	var arr = new Array();
 	$(function(){
+		favselect();
 		cmlist();
 		
 		$('#cmInsert').click(function(){
@@ -245,7 +207,6 @@
 				data : {bno :"<%=b.getBdNo()%>", writer :"<%=member.getMemberId()%>", comment : comment},
 				type : "get",
 				success : function(data){
-					console.log("data ::::::::::: "+data);
 					if(data != null){
 						$('#cmtbox').empty();
 						cmlist();
@@ -253,22 +214,6 @@
 				}
 			});
 		});
-		
-/* 		$('#cmDelete').click(function(){
-			var cmNo = $('#cmtDel' + arr[i]).val(); 
-// 			console.log(comment);
-			$.ajax({
-				url : "cmDelete",
-				data : {cmNo : cmNo},
-				type : "get",
-				success : function(data){
-					if(data != null){
-					$('#cmtbox').empty();
-					cmlist();
-					}
-				}
-		});
-	}); */
 });
 	
 function cmDelete(num){
@@ -304,12 +249,54 @@ function cmlist(){
 					arr[i] = json.list[i].no;
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "<div>글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + "&nbsp; <input type='button' id='cmDelete' onclick='cmDelete("+arr[i]+")' value='삭제'><hr></div>";
+					values += "<div>글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + "&nbsp; <input type='button' class='btn btn-default' id='cmDelete' onclick='cmDelete("+arr[i]+")' value='삭제'><hr></div>";
 			}	
 			$("#cmtbox").html(values);
 		}
 			
 	});
+}
+function favselect(){
+	$.ajax({
+		url : "favSelect",
+		data : {bno :<%=b.getBdNo()%>, mid : "<%=member.getMemberId()%>" },
+			type : "post",
+			dataType : "json",
+			success : function(data){
+				console.log(data);
+				if(data.favNo != 0){
+					$("#favorite").html("<img src='/HereThere/image/favorite1.png' onclick='favDelete(" + data.favNo + ")'>");
+				}else{
+					$("#favorite").html("<img src='/HereThere/image/favorite2.png' onclick='favInsert()'>");
+				}
+		}		
+	});
+}
+function favInsert(){
+	$.ajax({
+		url : "favInsert",
+		data : {bno :<%=b.getBdNo()%>, mid : "<%=member.getMemberId()%>" },
+		type : "get",
+		success : function(data){
+			if(data != null){
+				$("#favorite").empty();
+				favselect();
+			}
+		}
+	});	
+}
+function favDelete(num){
+	$.ajax({
+		url : "favDelete",
+		data : {favNo : num},
+		type : "get",
+		success : function(data){
+			if(data != null){
+				$("#favorite").empty();
+				favselect();
+			}
+		}
+	});	
 }
 </script>
 <script>
