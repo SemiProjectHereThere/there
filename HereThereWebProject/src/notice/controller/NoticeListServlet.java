@@ -40,12 +40,8 @@ public class NoticeListServlet extends HttpServlet {
 		
 		String userId = request.getParameter("userid");
 		
-		int pg = 0;
-		if(request.getParameter("pg") == null){
-			pg = (Integer)request.getAttribute("pg");
-		}else if(request.getAttribute("pg") == null){
-			pg = Integer.parseInt(request.getParameter("pg"));
-		}
+		int	pg = Integer.parseInt(request.getParameter("pg"));
+		
 		
 		String userName = (String)request.getParameter("username");
 //		String userName = (String)request.getAttribute("username");

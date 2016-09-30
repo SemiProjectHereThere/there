@@ -22,7 +22,7 @@
 	final int BLOCK = 5;			//아래에 보일 페이지 수 
 	int pg = 0;					//페이지 초기값
 	
-	if(request.getParameter("pg") != null || request.getAttribute("pg") != null) {
+	if(request.getAttribute("pg") != null) {
 		pg = Integer.parseInt(request.getParameter("pg"));
 	}
 	
@@ -164,8 +164,10 @@
 				<%
 					if(pg>BLOCK) {
 				%>
-					[<a href="/HereThere/nlist?pg=1&userid=<%= userId %>">◀◀</a>]
-					[<a href="/HereThere/nlist?pg=<%=startPage-1%>&userid=<%= userId %>">◀</a>]
+					[<a href="/HereThere/nlist?pg=1&userid=<%= userId %>
+					&manageryn=<%= managerYN %>&username=<%= userName %>">◀◀</a>]
+					[<a href="/HereThere/nlist?pg=<%=startPage-1%>&userid=
+					<%= userId %>&manageryn=<%= managerYN %>&username=<%= userName %>">◀</a>]
 				<%
 					}
 				%>
@@ -178,7 +180,8 @@
 				<%
 						}else{
 				%>
-							[<a href="/HereThere/nlist?pg=<%=i %>&userid=<%= userId %>"><%=i %></a>]
+							[<a href="/HereThere/nlist?pg=<%=i %>&userid=
+							<%= userId %>&manageryn=<%= managerYN %>&username=<%= userName %>"><%=i %></a>]
 				<%
 						}
 					}
@@ -187,8 +190,8 @@
 				<%
 					if(endPage<allPage){
 				%>
-					[<a href="/HereThere/nlist?pg=<%=endPage+1%>&userid=<%= userId %>">▶</a>]
-					[<a href="/HereThere/nlist?pg=<%=allPage%>&userid=<%= userId %>">▶▶</a>]
+					[<a href="/HereThere/nlist?pg=<%=endPage+1%>&userid=<%= userId %>&manageryn=<%= managerYN %>&username=<%= userName %>">▶</a>]
+					[<a href="/HereThere/nlist?pg=<%=allPage%>&userid=<%= userId %>&manageryn=<%= managerYN %>&username=<%= userName %>">▶▶</a>]
 				<%
 					}
 				%>
