@@ -156,8 +156,8 @@
 				</div>
 				<div id="map" class="map11"></div>
 			</div><br><br><br><br><br><br><br><br>
-	<div>
-		<div><p id="cmtbox"></p></div>
+	<div> 
+		<div><p id="cmtbox"></p></div> 
 		<textarea id="comment" name="comment" cols="50" rows="2"></textarea>
 		<input type="button" id="cmInsert" class="btn btn-primary" value="댓글달기">	
 	</div>
