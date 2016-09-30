@@ -159,12 +159,12 @@
 	<div>
 		<div><p id="cmtbox"></p></div>
 		<textarea id="comment" name="comment" cols="50" rows="2"></textarea>
-		<input type="button" id="cmInsert" value="댓글달기">	
+		<input type="button" id="cmInsert" class="btn btn-primary" value="댓글달기">	
 	</div>
 	<div id="map1"></div>
 	<%if(b.getBdWriter().equals(member.getMemberId())){ %>
-	<a href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
-	<a href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
+	<a class="btn btn-warning" href="/HereThere/BoardUpView?bno=<%=b.getBdNo()%>">수정</a>
+	<a class="btn btn-warning" href="/HereThere/BoardDelete?bno=<%=b.getBdNo()%>">삭제</a>
 	<%} %>
 </div>
 		<!-- footer Start -->
@@ -249,7 +249,7 @@ function cmlist(){
 					arr[i] = json.list[i].no;
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 // 					values += json.list[i].writer + ", " + decodeURIComponent(json.list[i].content);
-					values += "<div>글쓴이 : " + json.list[i].writer + "<br>내용 : " + json.list[i].content + "&nbsp; <input type='button' class='btn btn-default' id='cmDelete' onclick='cmDelete("+arr[i]+")' value='삭제'><hr></div>";
+					values += "<div><mark>" + json.list[i].writer + "</mark> &nbsp; &nbsp; " + json.list[i].content + "&nbsp; <input type='button' class='btn btn-default' id='cmDelete' onclick='cmDelete("+arr[i]+")' value='삭제'><hr></div>";
 			}	
 			$("#cmtbox").html(values);
 		}
