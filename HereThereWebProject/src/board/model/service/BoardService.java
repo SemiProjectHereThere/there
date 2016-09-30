@@ -277,6 +277,30 @@ public class BoardService {
 		close(con);
 		return result;
 	}
+
+	public int insertStarPt(Board board) {
+		Connection con = getConnection();
+		int result = new BoardDao().insertStarPt(con, board);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
+
+	public int pointgo(Board board1) {
+		Connection con = getConnection();
+		int result = new BoardDao().pointgo(con, board1);
+		if(result > 0){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
+		return result;
+	}
 				
 	
 
