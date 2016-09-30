@@ -5,6 +5,7 @@
 	String userId = (String)request.getParameter("userid");
 	String userName = (String)request.getParameter("username");
 	String managerYN = (String)request.getParameter("manageryn");
+	Member member = (Member)session.getAttribute("member");
 	  
 %>
 
@@ -50,7 +51,7 @@
 			</h1>
 		
 			<div class="pull-right lnb">
-				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= userId %>&mySelect=0'"><%= userName %></div>
+				<div class="col-lg-4 pull-left" onclick="location.href='MyBoardList?memberId=<%= userId %>&mySelect=0'"><%= member.getMemberName() %></div>
 				<!-- 마이페이지로 이동 -->
 			
 				<div class="col-lg-4 pull-left"><a href="/HereThere/logout">로그아웃</a></div>
@@ -79,14 +80,14 @@
 				<a href="/HereThere/BoardList"><img src="image/img10.jpg" class=""/></a> -->
 				<div id="s_banner_wrap">
 					<ul class="bxslider">
-						<% if(admin.getRenameMainName() == null){ %>
+						<% if(admin.getRenameSeoulName() == null){ %>
       					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
       					<% }else{ %>
       					<img style="height:400px;" 
       					src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main.png">
       					<% } %>
       					
-      					<% if(admin.getRenameMain2Name() == null){ %>
+      					<% if(admin.getRenameSeoulName() == null){ %>
       					<img style="height:400px;" src="MainPguploadfiles/question.jpg">
       					<% }else{ %>
       					<img style="height:400px;" src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>main2.png">
@@ -101,6 +102,7 @@
 					<h3>MAIN1 사진 변경</h3> <br>
 					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 					<input type="hidden" name="memberid" value=<%= userId %>>
+					<input type="hidden" name="membername" value=<%= userName %>>
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
@@ -122,6 +124,7 @@
 					<h3>MAIN2 사진 변경</h3> <br>
 					<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 					<input type="hidden" name="memberid" value=<%= userId %>>
+					<input type="hidden" name="membername" value=<%= userName %>>
 					<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 					</form>
 					</div>
@@ -192,6 +195,7 @@
 							<h3>SEOUL 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -213,6 +217,7 @@
 							<h3>DAEJEON 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -234,6 +239,7 @@
 							<h3>GWANGJU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -279,6 +285,7 @@
 							<h3>BUSAN 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -300,6 +307,7 @@
 							<h3>ULSAN 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -338,7 +346,7 @@
     						<% if(admin.getRenameIncheonName() == null){ %> 
 							<a href="boardselect?boardVLocation=2"><img src="MainPguploadfiles/question.jpg" class="img-rounded center-block" alt="남한산성사진" /></a>
 							<% }else{ %>   
-							<a href="boardselect?boardVLocation=2"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>Incheon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
+							<a href="boardselect?boardVLocation=2"><img src="<%=request.getContextPath()%>\MainPguploadfiles\<%= admin.getAdminId() %>incheon.png" class="img-rounded center-block" alt="남한산성사진" /></a>
 							<% } %>
   					</div>  
   					
@@ -350,6 +358,7 @@
 							<h3>DAEGU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -371,6 +380,7 @@
 							<h3>JEJU 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>
@@ -392,6 +402,7 @@
 							<h3>INCHEON 사진 변경</h3> <br>
 							<input type="file" id="theFileInput" accept=".png" size="40" name="coverfile">
 							<input type="hidden" name="memberid" value=<%= userId %>>
+							<input type="hidden" name="membername" value=<%= userName %>>
 							<input type="submit" value="변경하기" style="float: right; font-size:14pt; padding: 1px 24px; height: 35px;">
 							</form>
 							</div>

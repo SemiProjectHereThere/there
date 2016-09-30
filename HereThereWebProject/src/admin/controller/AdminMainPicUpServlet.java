@@ -57,6 +57,7 @@ public class AdminMainPicUpServlet extends HttpServlet {
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 		
 		String memberId = multi.getParameter("memberid");
+		String memberName = multi.getParameter("membername");
 		
 		originalFileName = multi.getFilesystemName("coverfile");
 		renameFileName = memberId + "main" + "." 
@@ -85,7 +86,11 @@ public class AdminMainPicUpServlet extends HttpServlet {
 		
 		
 		if(result > 0){
-			response.sendRedirect("AdminMainModify?userid="+admin.getAdminId());
+			response.sendRedirect("AdminMainModify?userid="+admin.getAdminId()+"&username="+memberName);
+//			RequestDispatcher view = request.getRequestDispatcher("AdminMainModify");
+//			request.setAttribute("userid", admin.getAdminId());
+//			request.setAttribute("username", memberName);
+//			view.forward(request, response);
 		}else{
 			
 		}

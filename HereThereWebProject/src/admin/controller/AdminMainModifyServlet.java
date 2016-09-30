@@ -37,6 +37,7 @@ public class AdminMainModifyServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		String memberId = request.getParameter("userid");
+		String memberName = request.getParameter("username");
 		
 		Admin admin = new AdminService().selectOne(memberId);
 		
@@ -44,6 +45,7 @@ public class AdminMainModifyServlet extends HttpServlet {
 		if(admin != null){
 			view = request.getRequestDispatcher("adminMainModifyView.jsp");
 			request.setAttribute("admin", admin);
+			request.setAttribute("username", memberName);
 			view.forward(request, response);
 		}else{
 		}

@@ -52,6 +52,7 @@ public class AdminUlsanPicUpServlet extends HttpServlet {
 		MultipartRequest multi = new MultipartRequest(request, savePath, sizeLimit, "utf-8", new DefaultFileRenamePolicy());
 		
 		String memberId = multi.getParameter("memberid");
+		String memberName = multi.getParameter("membername");
 		originalFileName = multi.getFilesystemName("coverfile");
 		
 		//바꿀 이름 만들기
@@ -80,7 +81,7 @@ public class AdminUlsanPicUpServlet extends HttpServlet {
 		
 		
 		if(result > 0){
-			response.sendRedirect("AdminMainModify?userid="+admin.getAdminId());
+			response.sendRedirect("AdminMainModify?userid="+admin.getAdminId()+"&username="+memberName);
 		}else{
 			
 		}
